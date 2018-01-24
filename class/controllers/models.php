@@ -15,9 +15,14 @@ require_once PATH_MODELS . 'class_lang.php';
 
 //USERS
 require_once PATH_MODELS . 'class_usersinfo.php';
+require_once PATH_MODELS . 'class_userslist.php';
+require_once PATH_MODELS . 'class_usersadd.php';
+require_once PATH_MODELS . 'class_usersupdate.php';
 require_once PATH_MODELS . 'class_usersinfoupdate.php';
 require_once PATH_MODELS . 'class_userspasswordupdate.php';
-//require_once PATH_MODELS . 'class_userslist.php'; //en este habiria que tarbajar ahora
+
+//USERS DETAILS
+require_once PATH_MODELS . 'class_usersdetailsadd.php';
 
 //MENU ASSIDE
 require_once PATH_MODELS . 'class_assidemenulist.php';
@@ -36,13 +41,18 @@ require_once PATH_MODELS . 'class_forminput.php';
 
 //TABLES
 require_once PATH_MODELS . 'class_tablegenerator.php';
-require_once PATH_MODELS . 'class_tablemenulist.php';
-require_once PATH_MODELS . 'class_tablesubmenulist.php';
 require_once PATH_MODELS . 'class_tablepager.php';
 require_once PATH_MODELS . 'class_tablemain.php';
 require_once PATH_MODELS . 'class_tablechilds.php';
 require_once PATH_MODELS . 'class_tablescripts.php';
 require_once PATH_MODELS . 'class_datatable.php';
+
+//TABLES - MENU
+require_once PATH_MODELS . 'class_tablemenulist.php';
+require_once PATH_MODELS . 'class_tablesubmenulist.php';
+
+//TABLES - USERS
+require_once PATH_MODELS . 'class_tableuserslist.php';
 
 //STATUS
 require_once PATH_MODELS . 'class_statusInfo.php';
@@ -57,6 +67,9 @@ require_once PATH_MODELS . 'class_menudelete.php';
 require_once PATH_MODELS . 'class_menuupdate.php';
 require_once PATH_MODELS . 'class_submenulist.php';
 require_once PATH_MODELS . 'class_iconlist.php';
+
+//SECTIONS
+require_once PATH_MODELS . 'class_sectioninfo.php';
 
 //CUSTOM SECTIONS
 /*
