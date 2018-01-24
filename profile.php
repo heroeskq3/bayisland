@@ -1,7 +1,16 @@
+<?php
+//Section Parameters
+$section_tittle      = "Edit Profile";
+$section_description = null;
+$section_style       = 1;
+$section_searchbar   = 0;
+$section_restrict    = 1;
+$section_navbar      = 1;
+?>
 <?php require_once 'header.php';?>
 <?php
 //USERS INFORMATION
-$usersInfo     = class_usersinfo($UserId);
+$usersInfo     = class_usersinfo($_SESSION['UserId']);
 $row_usersInfo = $usersInfo['response'][0];
 
 //FILE UPLOAD
@@ -14,30 +23,17 @@ if($File["name"]){
 
 //USERS INFO UPDATE
 if (isset($_POST['form_usersInfoUpdate'])) {
-    $usersInfoUpdate = class_usersInfoUpdate($UserId, $FirstName, $LastName, $Email, $Image);
+    $usersInfoUpdate = class_usersInfoUpdate($_SESSION['UserId'], $FirstName, $LastName, $Email, $Image);
     header('Location: profile.php');
     die();
 }
 //USERS PASSWORD UPDATE
 if (isset($_POST['form_usersPasswordUpdate'])) {
-    $usersPasswordUpdate = class_usersPasswordUpdate($UserId, $Password);
+    $usersPasswordUpdate = class_usersPasswordUpdate($_SESSION['UserId'], $Password);
     header('Location: profile.php');
     die();
 }
 ?>
-<div id="content" class="pmd-content inner-page">
-    <!--tab start-->
-    <div class="container-fluid full-width-container about">
-        <!-- Title -->
-        <h1 class="section-title" id="services">
-            <span>Profile</span>
-        </h1>
-        <!-- End Title -->
-        <!--breadcrum start-->
-        <ol class="breadcrumb text-left">
-            <li><a href="index.html">Dashboard</a></li>
-            <li class="active">Profile</li>
-        </ol>
         <!--breadcrum end-->
         <div class="page-content profile-edit section-custom">
             <div class="pmd-card pmd-z-depth">
@@ -131,9 +127,7 @@ if (isset($_POST['form_usersPasswordUpdate'])) {
                 </div>
             </div>
         </div>
-    </div>
-    <!-- tab end -->
-</div>
+
 <?php require_once 'footer.php';?>
 <!-- Scripts Starts -->
 
