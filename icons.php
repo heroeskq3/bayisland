@@ -1,12 +1,3 @@
-<?php
-//Section Parameters
-$section_tittle      = "Icons";
-$section_description = null;
-$section_style       = 1;
-$section_searchbar   = 0;
-$section_restrict    = 1;
-$section_navbar      = 1;
-?>
 <?php require_once 'header.php'?>
 <style>
 	.icon-custom .row div {
@@ -17,8 +8,22 @@ $section_navbar      = 1;
 		min-height: 94px;
 	}
 </style>
+<div id="content" class="pmd-content">
+
     <!-- Typography  -->
 	<div class="container-fluid">
+
+		<!-- Title -->
+		<h1 class="section-title" id="services">
+			<span>Icons</span>
+		</h1><!-- End Title -->
+
+		<!--breadcrum start-->
+		<ol class="breadcrumb text-left">
+		  <li><a href="index.html">Dashboard</a></li>
+		  <li class="active">Icons</li>
+		</ol><!--breadcrum end-->
+
 		<!-- icons list-->
 		<section class="row component-section">
 
@@ -106,7 +111,9 @@ $section_navbar      = 1;
 					</section> <!-- icons of different sizes end -->
 				</div>
 			</div>
+
 		</section>
+
 		<!-- icons list-->
 		<section class="row component-section">
 
@@ -3178,5 +3185,9 @@ $section_navbar      = 1;
 				</div>
 			</div> <!-- icons list code and example end -->
 		</section> <!-- icons list end -->
+
 	</div>
+
+</div> <!--Icons end -->
+
 <?php require_once 'footer.php'?>

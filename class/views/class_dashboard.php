@@ -1,5 +1,4 @@
-<!-- <div id="content" class="pmd-content content-area dashboard">
- --><div id="content" class="content-area dashboard">
+<div id="content" class="pmd-content content-area dashboard">
 
 	<div class="container-fluid">
 		<div class="row" id="card-masonry">

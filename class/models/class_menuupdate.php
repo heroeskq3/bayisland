@@ -1,7 +1,7 @@
 <?php
-function class_menuUpdate($Id, $Name, $Description, $Url, $Icon, $MenuId, $Order, $Status)
+function class_menuUpdate($Id, $Name, $Description, $Url, $Icon, $MenuId, $Status)
 {
-    $mysql_query    = "UPDATE menu SET Name = '$Name',Description = '$Description',Url = '$Url',Icon = '$Icon', MenuId = '$MenuId', `Order` = '$Order', Status = '$Status' WHERE Id = $Id";
+    $mysql_query    = "UPDATE menu SET Name = '$Name',Description = '$Description',Url = '$Url',Icon = '$Icon', MenuId = '$MenuId', Status = '$Status' WHERE Id = $Id";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

@@ -948,7 +948,6 @@ function class_iconList()
         "star_half",
     );
 
-    asort($array);
     $array_debug   = 0;
     $array_results = class_array($array, $array_debug);
 

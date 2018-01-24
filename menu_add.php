@@ -1,16 +1,7 @@
-<?php
-//Section Parameters
-$section_tittle      = "Menu Add";
-$section_description = null;
-$section_style       = 1;
-$section_searchbar   = 0;
-$section_restrict    = 1;
-$section_navbar      = 1;
-?>
 <?php require_once 'header.php';?>
 <?php
 if ($form_add) {
-    $menuadd = class_menuAdd($Name, $Description, $Url, $Icon, $MenuId, $Order, $Status);
+    $menuadd = class_menuAdd($Name, $Description, $Url, $Icon, $MenuId, $Status);
     header('Location: menu_list.php');
     die();
 }
@@ -34,13 +25,6 @@ $array_status   = array();
 $array_status[] = array('label' => 'Active', 'value' => '1', 'selected' => $Status);
 $array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $Status);
 
-//Order by list
-$array_order   = array();
-for ($i = 1; $i < 11; ++$i) {
-    $array_order[] = array('label' => $i, 'value' => $i, 'selected' => $Order);
-}
-
-
 /* * * * *
  * FORMS GENERATOR - Create Forms fields
  * value = use variable request or multiple values define array (value and label)
@@ -60,7 +44,6 @@ $formFields = array(
     'Url'         => array('name' => 'Url', 'label' => 'Url', 'value' => $Url, 'dataType' => 'Int', 'inputType' => 'text', 'required' => false, 'position' => 1),
     'Icon'        => array('name' => 'Icon', 'label' => 'Icon', 'value' => $array_iconlist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
     'Patern Menu' => array('name' => 'MenuId', 'label' => 'Patern Menu', 'value' => $array_menulist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Order'      => array('name' => 'Order', 'label' => 'Order', 'value' => $array_order, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 2),
     'Status'      => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
 );
 
@@ -77,9 +60,35 @@ $formParams = array(
 );
 
 $formAdd = class_formGenerator($formParams, $formFields, $formButtons);
-
-echo $formAdd;
 ?>
+<!--content area start-->
+<div id="content" class="pmd-content inner-page">
+    <!--tab start-->
+    <div class="container-fluid full-width-container">
+        <!-- Title -->
+        <h1 class="section-title" id="services">
+            <span>Menu Manager</span>
+        </h1>
+        <!-- End Title -->
+        <!--breadcrum start-->
+        <ol class="breadcrumb text-left">
+            <li><a href="index.php">Settings</a></li>
+            <li><a href="menu_list.php">Menu list</a></li>
+            <li><a href="menu_add.php">Menu add</a></li>
+        </ol>
+        <!--breadcrum end-->
+        <div class="section section-custom billinfo">
+            <!--section-title -->
+            <h2>Add new menu</h2>
+            <!--section-title end -->
+            <!-- section content start-->
+            <?php echo $formAdd; ?>
+                <!-- section content end -->
+        </div>
+    </div>
+    <!-- tab end -->
+</div>
+<!-- content area end -->
 <?php require_once 'footer.php';?>
 <!-- Scripts Starts -->
 <script>
