@@ -17,19 +17,29 @@
 <!-- Propeller css -->
 <link rel="stylesheet" type="text/css" href="assets/css/propeller.min.css">
 
-<!-- DataTables css-->
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
-<!-- Propeller dataTables css-->
+<!-- Propeller date time picker css-->
+<link rel="stylesheet" type="text/css" href="components/datetimepicker/css/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="components/datetimepicker/css/pmd-datetimepicker.css" />
 
-<link rel="stylesheet" type="text/css" href="components/data-table/css/pmd-datatable.css">
+<!-- Select2 css-->
+<link rel="stylesheet" type="text/css" href="components/select2/css/select2.min.css" />
+<link rel="stylesheet" type="text/css" href="components/select2/css/select2-bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="components/select2/css/pmd-select2.css" />
 
 <!-- Propeller theme css-->
 <link rel="stylesheet" type="text/css" href="themes/css/propeller-theme.css" />
 
 <!-- Propeller admin theme css-->
 <link rel="stylesheet" type="text/css" href="themes/css/propeller-admin.css">
+
+
+<!-- DataTables css-->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.0/css/select.dataTables.min.css">
+
+<!-- Propeller dataTables css-->
+<link rel="stylesheet" type="text/css" href="components/data-table/css/pmd-datatable.css">
 
 </head>
 

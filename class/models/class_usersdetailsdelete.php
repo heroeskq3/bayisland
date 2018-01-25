@@ -1,7 +1,7 @@
 <?php
-function class_assideMenuList()
+function class_usersDetailsDelete($Id)
 {
-    $mysql_query    = "SELECT m.* FROM menu m WHERE m.Status = 1 AND MenuId = 0 ORDER BY m.Order, m.Name ASC";
+    $mysql_query    = "DELETE FROM users_details WHERE Id = $Id";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

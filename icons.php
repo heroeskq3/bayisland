@@ -3180,3 +3180,4 @@ $section_navbar      = 1;
 		</section> <!-- icons list end -->
 	</div>
 <?php require_once 'footer.php'?>
+<?php class_formScripts(); ?>

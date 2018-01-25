@@ -1,6 +1,6 @@
 <?php
 //Section Parameters
-$section_tittle      = "Users Update";
+$section_tittle      = "Users Manager";
 $section_description = null;
 $section_style       = 1;
 $section_searchbar   = 0;
@@ -10,18 +10,40 @@ $section_navbar      = 1;
 <?php require_once 'header.php';?>
 <?php
 if ($form_update) {
-    $usersupdate = class_usersUpdate($Id, $Name, $Description, $Url, $Icon, $MenuId, $Order, $Status);
+    class_usersUpdate($Id, $UsersIndex, $UserName, $Password, $TypeId, $OwnerId, $Status);
     header('Location: users_list.php');
     die();
 }
-//Info
+
+//Users Info
 $usersinfo     = class_usersInfo($Id);
-$row_usersinfo = $usersinfo['response'][0]; //poner los info
+$row_usersinfo = $usersinfo['response'][0];
 
 //Status list
 $array_status   = array();
-$array_status[] = array('label' => 'Active', 'value' => 1, 'selected' => $row_usersinfo['Status']);
-$array_status[] = array('label' => 'Inactive', 'value' => 0, 'selected' => $row_usersinfo['Status']);
+$array_status[] = array('label' => 'Active', 'value' => '1', 'selected' => $row_usersinfo['Status']);
+$array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $row_usersinfo['Status']);
+
+//Users Type List
+$userstypelist       = class_usersTypeList();
+$array_userstypelist = array();
+foreach ($userstypelist['response'] as $row_userstypelist) {
+    $array_userstypelist[] = array('label' => $row_userstypelist['Name'], 'value' => $row_userstypelist['Id'], 'selected' => $row_usersinfo['TypeId']);
+}
+
+//Users List
+$userslist       = class_usersList();
+$array_userslist = array();
+foreach ($userslist['response'] as $row_userslist) {
+    $array_userslist[] = array('label' => $row_userslist['UserName'], 'value' => $row_userslist['Id'], 'selected' => $row_usersinfo['OwnerId']);
+}
+
+//Users Details List
+$usersdetailslist       = class_usersDetailsList();
+$array_usersdetailslist = array();
+foreach ($usersdetailslist['response'] as $row_usersdetailslist) {
+    $array_usersdetailslist[] = array('label' => '['.$row_usersdetailslist['Id'].'] - '.$row_usersdetailslist['FirstName'].' '.$row_usersdetailslist['LastName'], 'value' => $row_usersdetailslist['Id'], 'selected' => $row_usersinfo['UsersIndex']);
+}
 
 /* * * * *
  * FORMS GENERATOR - Create Forms fields
@@ -34,13 +56,13 @@ $array_status[] = array('label' => 'Inactive', 'value' => 0, 'selected' => $row_
  * * * * */
 
 $formFields = array(
-    'form_update' => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
-    'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $row_usersinfo['Id'], 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
-    'FirstName'        => array('name' => 'FirstName', 'label' => 'FirstName', 'value' => $row_usersinfo['FirstName'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'LastName'        => array('name' => 'LastName', 'label' => 'LastName', 'value' => $row_usersinfo['LastName'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'MiddleName'        => array('name' => 'MiddleName', 'label' => 'MiddleName', 'value' => $row_usersinfo['MiddleName'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'Email'        => array('name' => 'Email', 'label' => 'Email', 'value' => $row_usersinfo['Email'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'Status'      => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 1)
+    'form_update'   => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
+    'UsersIndex'     => array('name' => 'UsersIndex', 'label' => 'Users Info', 'value' => $array_usersdetailslist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 1),
+    'UserName'     => array('name' => 'UserName', 'label' => 'Username', 'value' => $row_usersinfo['UserName'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
+    'Password'  => array('name' => 'Password', 'label' => 'Password', 'value' => $row_usersinfo['Password'], 'dataType' => 'Str', 'inputType' => 'password', 'required' => true, 'position' => 1),
+    'TypeId'   => array('name' => 'TypeId', 'label' => 'Type', 'value' => $array_userstypelist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => true, 'position' => 3),
+    'OwnerId' => array('name' => 'OwnerId', 'label' => 'Owner', 'value' => $array_userslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 3),
+    'Status'     => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
 );
 
 // define buttons for form
@@ -51,65 +73,12 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
+    'name' => 'Update',
     'action' => '',
     'method' => 'post',
 );
 
-$formUpdate = class_formGenerator($formParams, $formFields, $formButtons);
-echo $formUpdate;
+$formadd = class_formGenerator($formParams, $formFields, $formButtons);
+echo $formadd;
 ?>
-<?php require_once 'footer.php';?>
-<!-- Scripts Starts -->
-<script>
-$(document).ready(function() {
-    var sPath = window.location.pathname;
-    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-    $(".pmd-sidebar-nav").each(function() {
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").addClass("open");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-        $(this).find("a[href='" + sPage + "']").addClass("active");
-    });
-    $(".auto-update-year").html(new Date().getFullYear());
-});
-</script>
-<!-- Select2 js-->
-<script type="text/javascript" src="components/select2/js/select2.full.js"></script>
-<!-- Propeller Select2 -->
-<script type="text/javascript">
-$(document).ready(function() {
-    <!-- Simple Selectbox -->
-    $(".select-simple").select2({
-        theme: "bootstrap",
-        minimumResultsForSearch: Infinity,
-    });
-    <!-- Selectbox with search -->
-    $(".select-with-search").select2({
-        theme: "bootstrap"
-    });
-    <!-- Select Multiple Tags -->
-    $(".select-tags").select2({
-        tags: false,
-        theme: "bootstrap",
-    });
-    <!-- Select & Add Multiple Tags -->
-    $(".select-add-tags").select2({
-        tags: true,
-        theme: "bootstrap",
-    });
-});
-</script>
-<script type="text/javascript" src="components/select2/js/pmd-select2.js"></script>
-<script>
-$(document).ready(function() {
-    var sPath = window.location.pathname;
-    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-    $(".pmd-sidebar-nav").each(function() {
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").addClass("open");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-        $(this).find("a[href='" + sPage + "']").addClass("active");
-    });
-});
-</script>
-<!-- Scripts Ends -->
+<?php require_once 'footer.php';

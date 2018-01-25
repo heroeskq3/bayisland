@@ -10,9 +10,9 @@ if (isset($_SESSION['phperror'])) {
 }
 
 //USERS DETAILS
-$UserId = null;
-if (isset($_POST['UserId'])) {
-    $UserId = (int)$_POST['UserId'];
+$UsersId = null;
+if (isset($_POST['UsersId'])) {
+    $UsersId = (int)$_POST['UsersId'];
 }
 $FirstName = null;
 if (isset($_POST['FirstName'])) {
@@ -33,6 +33,10 @@ if (isset($_POST['Company'])) {
 $Phone = null;
 if (isset($_POST['Phone'])) {
     $Phone = $_POST['Phone'];
+}
+$Mobile = null;
+if (isset($_POST['Mobile'])) {
+    $Mobile = $_POST['Mobile'];
 }
 $Email = null;
 if (isset($_POST['Email'])) {
@@ -92,6 +96,10 @@ if (isset($_POST['Status'])) {
 }
 
 //USERS
+$UsersIndex = null;
+if (isset($_POST['UsersIndex'])) {
+    $UsersIndex = (int)$_POST['UsersIndex'];
+}
 $UserName = null;
 if (isset($_POST['UserName'])) {
     $UserName = htmlspecialchars($_POST['UserName']);
@@ -108,6 +116,29 @@ $TypeId = null;
 if (isset($_POST['TypeId'])) {
     $TypeId = ($_POST['TypeId']);
 }
+
+//USERS TYPE
+$Report = null;
+if (isset($_POST['Report'])) {
+    $Report = ($_POST['Report']);
+}
+$Customer = null;
+if (isset($_POST['Customer'])) {
+    $Customer = ($_POST['Customer']);
+}
+$Agent = null;
+if (isset($_POST['Agent'])) {
+    $Agent = ($_POST['Agent']);
+}
+$Supervisor = null;
+if (isset($_POST['Supervisor'])) {
+    $Supervisor = ($_POST['Supervisor']);
+}
+$Admin = null;
+if (isset($_POST['Admin'])) {
+    $Admin = ($_POST['Admin']);
+}
+
 
 //FORM ACTIONS
 $form_add = null;

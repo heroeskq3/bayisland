@@ -1,8 +1,7 @@
 <?php
 function class_usersList()
 {
-    $mysql_query    = "SELECT ud.* FROM users u INNER JOIN users_details ud ON ud.UserId = u.Id"; 
-    //voy por aqui haciendo la parte de users list con errores apartir de este query y problemas en table
+    $mysql_query    = "SELECT u.* FROM users u"; 
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

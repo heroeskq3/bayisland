@@ -1,5 +1,5 @@
 <?php
-function class_tableMain($array)
+function class_tableMain($array, $table_params)
 {
     //set array
     $array_key = array_keys(current($array));
@@ -26,19 +26,23 @@ function class_tableMain($array)
         //values
         foreach ($array_key as $key) {
             if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
-                $results .= '<td data-title="' . $row[$key] . '">' . $row[$key] . '</td>';
+                $results .= '<td data-title="' . null . '">' . $row[$key] . '</td>';
             }
         }
 
         //actions
         $results .= '<td class="pmd-table-row-action">';
-        $results .= '<a href="?action=update&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">edit</i></a>';
+        if ($table_params['showactions']) {
+            $results .= '<a href="?action=update&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">edit</i></a>';
+        }
 
         //Actions Buttons - Main Table - Show Child
         if (count($row['childs'])) {
             $results .= '<a href="javascript:void();" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm child-table-expand direct-expand direct-expand-' . $row['index'] . '"><i class="material-icons md-dark pmd-sm"></i></a>';
         } else {
-            $results .= '<a href="?action=delete&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">delete</i></a>';
+            if ($table_params['showactions']) {
+                $results .= '<a href="?action=delete&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">delete</i></a>';
+            }
         }
         $results .= '</td>';
         $results .= '</tr>';

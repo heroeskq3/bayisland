@@ -5,6 +5,9 @@
 require_once PATH_MODELS . 'class_conn.php';
 require_once PATH_MODELS . 'class_login.php';
 
+//SCRIPTS
+require_once PATH_MODELS . 'class_scripts.php';
+
 require_once PATH_MODELS . 'class_api.php';
 require_once PATH_MODELS . 'class_mysql.php';
 require_once PATH_MODELS . 'class_array.php';
@@ -17,12 +20,30 @@ require_once PATH_MODELS . 'class_lang.php';
 require_once PATH_MODELS . 'class_usersinfo.php';
 require_once PATH_MODELS . 'class_userslist.php';
 require_once PATH_MODELS . 'class_usersadd.php';
+require_once PATH_MODELS . 'class_usersdelete.php';
 require_once PATH_MODELS . 'class_usersupdate.php';
 require_once PATH_MODELS . 'class_usersinfoupdate.php';
 require_once PATH_MODELS . 'class_userspasswordupdate.php';
 
+//USERS TYPE
+require_once PATH_MODELS . 'class_userstypeinfo.php';
+require_once PATH_MODELS . 'class_userstypeadd.php';
+require_once PATH_MODELS . 'class_userstypeupdate.php';
+require_once PATH_MODELS . 'class_userstypedelete.php';
+require_once PATH_MODELS . 'class_userstypelist.php';
+
 //USERS DETAILS
 require_once PATH_MODELS . 'class_usersdetailsadd.php';
+require_once PATH_MODELS . 'class_usersdetailsupdate.php';
+require_once PATH_MODELS . 'class_usersdetailsdelete.php';
+require_once PATH_MODELS . 'class_usersdetailsinfo.php';
+require_once PATH_MODELS . 'class_usersdetailslist.php';
+
+//COUNTRY
+require_once PATH_MODELS . 'class_countrylist.php';
+
+//STATE
+require_once PATH_MODELS . 'class_statelist.php';
 
 //MENU ASSIDE
 require_once PATH_MODELS . 'class_assidemenulist.php';
@@ -38,6 +59,7 @@ require_once PATH_MODELS . 'class_filesupload.php';
 //FORMS
 require_once PATH_MODELS . 'class_formgenerator.php';
 require_once PATH_MODELS . 'class_forminput.php';
+require_once PATH_MODELS . 'class_formscripts.php';
 
 //TABLES
 require_once PATH_MODELS . 'class_tablegenerator.php';
@@ -54,8 +76,12 @@ require_once PATH_MODELS . 'class_tablesubmenulist.php';
 //TABLES - USERS
 require_once PATH_MODELS . 'class_tableuserslist.php';
 
+//TABLES - USERS TYPE
+require_once PATH_MODELS . 'class_tableuserstypelist.php';
+
 //STATUS
 require_once PATH_MODELS . 'class_statusInfo.php';
+require_once PATH_MODELS . 'class_statusIcon.php';
 
 //SETTINGS
 
@@ -66,7 +92,9 @@ require_once PATH_MODELS . 'class_menuadd.php';
 require_once PATH_MODELS . 'class_menudelete.php';
 require_once PATH_MODELS . 'class_menuupdate.php';
 require_once PATH_MODELS . 'class_submenulist.php';
-require_once PATH_MODELS . 'class_iconlist.php';
+
+//ICONS
+require_once PATH_MODELS . 'class_iconslist.php';
 
 //SECTIONS
 require_once PATH_MODELS . 'class_sectioninfo.php';

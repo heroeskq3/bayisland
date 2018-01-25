@@ -1,7 +1,4 @@
 <!-- Scripts Starts -->
-<script src="assets/js/jquery-1.12.2.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/propeller.min.js"></script>
 <script>
 	$(document).ready(function() {
 		var sPath=window.location.pathname;
@@ -43,18 +40,6 @@
 	});
 </script>
 <script type="text/javascript" src="components/select2/js/pmd-select2.js"></script>
-<script>
-	$(document).ready(function() {
-		var sPath=window.location.pathname;
-		var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-		$(".pmd-sidebar-nav").each(function(){
-			$(this).find("a[href='"+sPage+"']").parents(".dropdown").addClass("open");
-			$(this).find("a[href='"+sPage+"']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-			$(this).find("a[href='"+sPage+"']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-			$(this).find("a[href='"+sPage+"']").addClass("active");
-		});
-	});
-</script>
 <!-- login page sections show hide -->
 <script type="text/javascript">
 	$(document).ready(function(){

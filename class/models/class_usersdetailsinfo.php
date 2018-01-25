@@ -1,7 +1,7 @@
 <?php
-function class_usersInfo($Id)
+function class_usersDetailsInfo($Id)
 {
-    $mysql_query    = "SELECT u.* FROM users u WHERE u.Id = '$Id'";
+    $mysql_query    = "SELECT ud.* FROM users_details ud WHERE ud.Id = '$Id'";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

@@ -9,16 +9,20 @@ $section_navbar      = 1;
 ?>
 <?php require_once 'header.php';?>
 <?php
-//USERS INFORMATION
-$usersInfo     = class_usersinfo($_SESSION['UserId']);
-$row_usersInfo = $usersInfo['response'][0];
+//Users Info
+$usersinfo     = class_usersInfo($_SESSION['UserId']);
+$row_usersinfo = $usersinfo['response'][0];
+
+//Users Details Info
+$usersdetailsinfo     = class_usersDetailsInfo($row_usersinfo['UsersIndex']);
+$row_usersdetailsinfo = $usersdetailsinfo['response'][0];
 
 //FILE UPLOAD
-if($File["name"]){
-    $debug = 0;
-    $resource = "profile";
-    $fileUpload = class_filesUpload($File,$resource,$debug);
-    $Image = $File["name"];
+if ($File["name"]) {
+    $debug      = 0;
+    $resource   = "profile";
+    $fileUpload = class_filesUpload($File, $resource, $debug);
+    $Image      = $File["name"];
 }
 
 //USERS INFO UPDATE
@@ -42,7 +46,7 @@ if (isset($_POST['form_usersPasswordUpdate'])) {
                     <form id="form_usersInfoUpdate" method="post" action="" enctype="multipart/form-data">
                         <div data-provides="fileinput" class="fileinput fileinput-new col-lg-3">
                             <div data-trigger="fileinput" class="fileinput-preview thumbnail img-circle img-responsive">
-                                <img src="<?php echo PATH_PROFILEPICTURE.$row_usersInfo['Image']; ?>" alt="<?php echo $row_usersInfo['FullName']; ?>">
+                                <img src="<?php echo PATH_PROFILEPICTURE . $row_usersdetailsinfo['Image']; ?>" alt="<?php echo $row_usersdetailsinfo['Image']; ?>">
                             </div>
                             <div class="action-button">
                                 <span class="btn btn-default btn-raised btn-file ripple-effect">
@@ -59,30 +63,30 @@ if (isset($_POST['form_usersPasswordUpdate'])) {
                             <div class="row">
                                 <div class="form-horizontal" >
                                     <input type="hidden" name="form_usersInfoUpdate" value="1" id="form_usersInfoUpdate">
-                                    <input type="hidden" name="Image" value="<?php echo $row_usersInfo['Image']; ?>" id="Image">
+                                    <input type="hidden" name="Image" value="<?php echo $row_usersdetailsinfo['Image']; ?>" id="Image">
                                     <fieldset>
                                         <div class="form-group prousername pmd-textfield">
                                             <label class="control-label col-sm-3">Username</label>
                                             <div class="col-sm-9">
-                                                <p class="form-control-static"><strong><?php echo $row_usersInfo['UserName']; ?></strong></p>
+                                                <p class="form-control-static"><strong><?php echo $row_usersinfo['UserName']; ?></strong></p>
                                             </div>
                                         </div>
                                         <div class="form-group pmd-textfield">
                                             <label class="col-sm-3 control-label" for="u_fname">First Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control empty" id="FirstName" name="FirstName" value="<?php echo $row_usersInfo['FirstName']; ?>">
+                                                <input type="text" class="form-control empty" id="FirstName" name="FirstName" value="<?php echo $row_usersdetailsinfo['FirstName']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group pmd-textfield">
                                             <label class="col-sm-3 control-label" for="u_fname">Last Name</label>
                                             <div class="col-sm-9">
-                                                <input type="text" class="form-control empty" id="LastName" name="LastName" value="<?php echo $row_usersInfo['LastName']; ?>">
+                                                <input type="text" class="form-control empty" id="LastName" name="LastName" value="<?php echo $row_usersdetailsinfo['LastName']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group pmd-textfield">
                                             <label class="col-sm-3 control-label" for="u_fname">Email</label>
                                             <div class="col-sm-9">
-                                                <input type="email" class="form-control empty" name="Email" value="<?php echo $row_usersInfo['Email']; ?>" id="Email" placeholder="">
+                                                <input type="email" class="form-control empty" name="Email" value="<?php echo $row_usersdetailsinfo['Email']; ?>" id="Email" placeholder="">
                                             </div>
                                         </div>
                                         <div class="form-group btns margin-bot-30">
@@ -103,13 +107,13 @@ if (isset($_POST['form_usersPasswordUpdate'])) {
                                         <div class="form-group pmd-textfield">
                                             <label class="control-label col-sm-3" for="u_password">Password</label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control empty" id="Password" name="Password" value="<?php echo $row_usersInfo['Password']; ?>">
+                                                <input type="password" class="form-control empty" id="Password" name="Password" value="<?php echo $row_usersinfo['Password']; ?>">
                                             </div>
                                         </div>
                                         <div class="form-group pmd-textfield">
                                             <label class="control-label col-sm-3" for="u_password"></label>
                                             <div class="col-sm-9">
-                                                <input type="password" class="form-control empty" id="PasswordRepeat" name="PasswordRepeat" value="<?php echo $row_usersInfo['Password']; ?>">
+                                                <input type="password" class="form-control empty" id="PasswordRepeat" name="PasswordRepeat" value="<?php echo $row_usersinfo['Password']; ?>">
                                                 <span class="help-text">Repeat password</span>
                                             </div>
                                         </div>
@@ -132,17 +136,4 @@ if (isset($_POST['form_usersPasswordUpdate'])) {
 <!-- Scripts Starts -->
 
 <script src="components/file-upload/js/upload-image.js"></script>
-<script>
-    $(document).ready(function() {
-        var sPath=window.location.pathname;
-        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-        $(".pmd-sidebar-nav").each(function(){
-            $(this).find("a[href='"+sPage+"']").parents(".dropdown").addClass("open");
-            $(this).find("a[href='"+sPage+"']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-            $(this).find("a[href='"+sPage+"']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-            $(this).find("a[href='"+sPage+"']").addClass("active");
-        });
-        $(".auto-update-year").html(new Date().getFullYear());
-    });
-</script>
 <!-- Scripts Ends -->

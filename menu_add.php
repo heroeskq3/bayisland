@@ -23,10 +23,10 @@ foreach ($menulist['response'] as $row_menulist) {
 }
 
 //Icon List
-$iconlist       = class_iconList();
-$array_iconlist = array();
-foreach ($iconlist['response'] as $row_iconlist) {
-    $array_iconlist[] = array('label' => $row_iconlist, 'value' => $row_iconlist, 'selected' => $Icon);
+$iconslist       = class_iconsList();
+$array_iconslist = array();
+foreach ($iconslist['response'] as $row_iconslist) {
+    $array_iconslist[] = array('label' => $row_iconslist, 'value' => $row_iconslist, 'selected' => null);
 }
 
 //Status list
@@ -56,11 +56,11 @@ $formFields = array(
     'form_add'    => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
     'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $Id, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
     'Name'        => array('name' => 'Name', 'label' => 'Name', 'value' => $Name, 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'Description' => array('name' => 'Description', 'label' => 'Description', 'value' => $Description, 'dataType' => 'Int', 'inputType' => 'textarea', 'required' => false, 'position' => 1),
-    'Url'         => array('name' => 'Url', 'label' => 'Url', 'value' => $Url, 'dataType' => 'Int', 'inputType' => 'text', 'required' => false, 'position' => 1),
-    'Icon'        => array('name' => 'Icon', 'label' => 'Icon', 'value' => $array_iconlist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Patern Menu' => array('name' => 'MenuId', 'label' => 'Patern Menu', 'value' => $array_menulist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Order'      => array('name' => 'Order', 'label' => 'Order', 'value' => $array_order, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 2),
+    'Description' => array('name' => 'Description', 'label' => 'Description', 'value' => $Description, 'dataType' => 'Int', 'inputType' => 'false', 'required' => false, 'position' => 1),
+    'Url'         => array('name' => 'Url', 'label' => 'Url', 'value' => $Url, 'dataType' => 'Int', 'inputType' => 'text', 'required' => false, 'position' => 2),
+    'Patern Menu' => array('name' => 'MenuId', 'label' => 'Patern Menu', 'value' => $array_menulist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 2),
+    'Icon'        => array('name' => 'Icon', 'label' => 'Icon', 'value' => $array_iconslist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
+    'Order'      => array('name' => 'Order', 'label' => 'Order', 'value' => $array_order, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
     'Status'      => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
 );
 
@@ -72,6 +72,7 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
+    'name' => $section_tittle ,
     'action' => '',
     'method' => 'post',
 );
@@ -81,57 +82,3 @@ $formAdd = class_formGenerator($formParams, $formFields, $formButtons);
 echo $formAdd;
 ?>
 <?php require_once 'footer.php';?>
-<!-- Scripts Starts -->
-<script>
-$(document).ready(function() {
-    var sPath = window.location.pathname;
-    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-    $(".pmd-sidebar-nav").each(function() {
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").addClass("open");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-        $(this).find("a[href='" + sPage + "']").addClass("active");
-    });
-    $(".auto-update-year").html(new Date().getFullYear());
-});
-</script>
-<!-- Select2 js-->
-<script type="text/javascript" src="components/select2/js/select2.full.js"></script>
-<!-- Propeller Select2 -->
-<script type="text/javascript">
-$(document).ready(function() {
-    <!-- Simple Selectbox -->
-    $(".select-simple").select2({
-        theme: "bootstrap",
-        minimumResultsForSearch: Infinity,
-    });
-    <!-- Selectbox with search -->
-    $(".select-with-search").select2({
-        theme: "bootstrap"
-    });
-    <!-- Select Multiple Tags -->
-    $(".select-tags").select2({
-        tags: false,
-        theme: "bootstrap",
-    });
-    <!-- Select & Add Multiple Tags -->
-    $(".select-add-tags").select2({
-        tags: true,
-        theme: "bootstrap",
-    });
-});
-</script>
-<script type="text/javascript" src="components/select2/js/pmd-select2.js"></script>
-<script>
-$(document).ready(function() {
-    var sPath = window.location.pathname;
-    var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-    $(".pmd-sidebar-nav").each(function() {
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").addClass("open");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-        $(this).find("a[href='" + sPage + "']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-        $(this).find("a[href='" + sPage + "']").addClass("active");
-    });
-});
-</script>
-<!-- Scripts Ends -->

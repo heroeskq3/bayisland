@@ -1,5 +1,5 @@
 <?php
-function class_iconList()
+function class_iconsList()
 {
     $array = array(
         "assignment",

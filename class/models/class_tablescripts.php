@@ -1,5 +1,5 @@
 <?php
-function class_tableScripts($array){
+function class_showMore($array){
     //SHOW MORE
     $results = '<script type="text/javascript">';
     $results .= '$(document).ready(function () {';
@@ -15,27 +15,8 @@ function class_tableScripts($array){
     return $results;
 }
  ?>
- <!-- Scripts Starts -->
-<script src="assets/js/jquery-1.12.2.min.js"></script>
-<script src="assets/js/bootstrap.min.js"></script>
-<script src="assets/js/propeller.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        var sPath=window.location.pathname;
-        var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-        $(".pmd-sidebar-nav").each(function(){
-            $(this).find("a[href='"+sPage+"']").parents(".dropdown").addClass("open");
-            $(this).find("a[href='"+sPage+"']").parents(".dropdown").find('.dropdown-menu').css("display", "block");
-            $(this).find("a[href='"+sPage+"']").parents(".dropdown").find('a.dropdown-toggle').addClass("active");
-            $(this).find("a[href='"+sPage+"']").addClass("active");
-        });
-        $(".auto-update-year").html(new Date().getFullYear());
-    });
-</script> 
-
-<!-- Scripts Ends -->
-
+<?php function class_tableScripts($array,$table_params){ ?>
+<?php echo class_showMore($array); ?>
 
 <!-- Datatable js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
@@ -44,8 +25,8 @@ function class_tableScripts($array){
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
 <!-- Datatable responsive js-->
-<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
-
+<!-- <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+ -->
 <!-- Datatable select js-->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
 
@@ -156,8 +137,9 @@ $(document).ready(function() {
     /// Select value
     $('.custom-select-info').hide();
     
-    $(".data-table-responsive").html('<h2 class="pmd-card-title-text">Menu List</h2>');
+    $(".data-table-responsive").html('<h2 class="pmd-card-title-text"><?php echo $table_params['name'];?></h2>');
     $(".custom-select-action").html('<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>');
         
 } );
 </script>
+<?php } ?>

@@ -8,8 +8,9 @@ if (1) { //system debuggeer
     ClassViews('class_html'); //html header
     ClassViews('class_asside'); //asside menu
     ClassViews('class_nav'); //nav bar
+    class_scriptsLibrary(); //JS Scripts
 
-    error_reporting(0); //php error & warning on/off
+    //error_reporting(0); //php error & warning on/off
     set_error_handler("class_phpError"); //php debugger
 }
 
@@ -18,7 +19,6 @@ $array_url = explode('/', $_SERVER['PHP_SELF']);
 $section_url = array_pop($array_url);
 $sectioninfo = class_menuInfoUrl($section_url);
 $row_sectioninfo = $sectioninfo['response'][0];
-//class_debug($sectioninfo);
 
 //determine Partner menu
 if($sectioninfo['rows']){
@@ -28,6 +28,7 @@ if($sectioninfo['rows']){
 	$row_menuinfo = array('Name'=>$section_tittle,'Url'=>isset($HTTP_REFERER));
 }
 ?>
+
 <div id="content" class="pmd-content inner-page">
     <div class="container-fluid full-width-container value-added-detail-page">
 		<div>

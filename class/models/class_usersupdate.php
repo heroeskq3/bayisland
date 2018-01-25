@@ -1,7 +1,7 @@
 <?php
-function class_usersUpdate($UserId,$FirstName,$LastName,$Email,$Image)
+function class_usersUpdate($Id, $UsersIndex, $UserName, $Password, $TypeId, $OwnerId, $Status)
 {
-    $mysql_query    = "UPDATE users_details ud SET ud.FirstName = '$FirstName', ud.LastName = '$LastName', ud.Email = '$Email', ud.Image = '$Image' WHERE ud.UserId = $UserId";
+    $mysql_query    = "UPDATE users u SET UsersIndex = '$UsersIndex', UserName = '$UserName', Password = '$Password', TypeId = '$TypeId', OwnerId = '$OwnerId', Status = '$Status' WHERE u.Id = $Id";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;
