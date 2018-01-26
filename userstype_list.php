@@ -35,10 +35,8 @@ $table_params = array(
     'showactions' => true,
 );
 $table_array = class_tableUsersTypeList();
-class_debug($table_array);
 
 //generate table list
-$tablegenerator = class_tableGenerator($table_array, $table_params);
-echo $tablegenerator;
+echo class_tableGenerator($table_array, $table_params);
 ?>
 <?php require_once 'footer.php';?>

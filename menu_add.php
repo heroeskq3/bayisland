@@ -53,8 +53,8 @@ for ($i = 1; $i < 11; ++$i) {
 
 //Form Generator
 $formFields = array(
-    'form_add'    => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
-    'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $Id, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
+    'form_add'    => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
+    'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $Id, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
     'Name'        => array('name' => 'Name', 'label' => 'Name', 'value' => $Name, 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
     'Description' => array('name' => 'Description', 'label' => 'Description', 'value' => $Description, 'dataType' => 'Int', 'inputType' => 'false', 'required' => false, 'position' => 1),
     'Url'         => array('name' => 'Url', 'label' => 'Url', 'value' => $Url, 'dataType' => 'Int', 'inputType' => 'text', 'required' => false, 'position' => 2),
@@ -75,6 +75,7 @@ $formParams = array(
     'name' => $section_tittle ,
     'action' => '',
     'method' => 'post',
+    'enctype' => ''
 );
 
 $formAdd = class_formGenerator($formParams, $formFields, $formButtons);

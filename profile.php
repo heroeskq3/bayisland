@@ -17,19 +17,18 @@ $row_usersinfo = $usersinfo['response'][0];
 $usersdetailsinfo     = class_usersDetailsInfo($row_usersinfo['UsersIndex']);
 $row_usersdetailsinfo = $usersdetailsinfo['response'][0];
 
+//USERS INFO UPDATE
+if (isset($_POST['form_usersInfoUpdate'])) {
+    $usersInfoUpdate = class_usersDetailsUpdate($row_usersinfo['UsersIndex'], $FirstName, $LastName, $Email, $Image);
+    header('Location: profile.php');
+    die();
+}
 //FILE UPLOAD
 if ($File["name"]) {
     $debug      = 0;
     $resource   = "profile";
     $fileUpload = class_filesUpload($File, $resource, $debug);
     $Image      = $File["name"];
-}
-
-//USERS INFO UPDATE
-if (isset($_POST['form_usersInfoUpdate'])) {
-    $usersInfoUpdate = class_usersInfoUpdate($_SESSION['UserId'], $FirstName, $LastName, $Email, $Image);
-    header('Location: profile.php');
-    die();
 }
 //USERS PASSWORD UPDATE
 if (isset($_POST['form_usersPasswordUpdate'])) {

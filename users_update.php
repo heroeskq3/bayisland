@@ -42,7 +42,7 @@ foreach ($userslist['response'] as $row_userslist) {
 $usersdetailslist       = class_usersDetailsList();
 $array_usersdetailslist = array();
 foreach ($usersdetailslist['response'] as $row_usersdetailslist) {
-    $array_usersdetailslist[] = array('label' => '['.$row_usersdetailslist['Id'].'] - '.$row_usersdetailslist['FirstName'].' '.$row_usersdetailslist['LastName'], 'value' => $row_usersdetailslist['Id'], 'selected' => $row_usersinfo['UsersIndex']);
+    $array_usersdetailslist[] = array('label' => '[' . $row_usersdetailslist['Id'] . '] - ' . $row_usersdetailslist['FirstName'] . ' ' . $row_usersdetailslist['LastName'], 'value' => $row_usersdetailslist['Id'], 'selected' => $row_usersinfo['UsersIndex']);
 }
 
 /* * * * *
@@ -56,13 +56,13 @@ foreach ($usersdetailslist['response'] as $row_usersdetailslist) {
  * * * * */
 
 $formFields = array(
-    'form_update'   => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
-    'UsersIndex'     => array('name' => 'UsersIndex', 'label' => 'Users Info', 'value' => $array_usersdetailslist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 1),
-    'UserName'     => array('name' => 'UserName', 'label' => 'Username', 'value' => $row_usersinfo['UserName'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'Password'  => array('name' => 'Password', 'label' => 'Password', 'value' => $row_usersinfo['Password'], 'dataType' => 'Str', 'inputType' => 'password', 'required' => true, 'position' => 1),
-    'TypeId'   => array('name' => 'TypeId', 'label' => 'Type', 'value' => $array_userstypelist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => true, 'position' => 3),
-    'OwnerId' => array('name' => 'OwnerId', 'label' => 'Owner', 'value' => $array_userslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Status'     => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
+    'form_update' => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
+    'UsersIndex'  => array('name' => 'UsersIndex', 'label' => 'Users Info', 'value' => $array_usersdetailslist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 1),
+    'UserName'    => array('name' => 'UserName', 'label' => 'Username', 'value' => $row_usersinfo['UserName'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
+    'Password'    => array('name' => 'Password', 'label' => 'Password', 'value' => $row_usersinfo['Password'], 'dataType' => 'Str', 'inputType' => 'password', 'required' => true, 'position' => 1),
+    'TypeId'      => array('name' => 'TypeId', 'label' => 'Type', 'value' => $array_userstypelist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => true, 'position' => 3),
+    'OwnerId'     => array('name' => 'OwnerId', 'label' => 'Owner', 'value' => $array_userslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 3),
+    'Status'      => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
 );
 
 // define buttons for form
@@ -73,12 +73,12 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name' => 'Update',
+    'name'   => 'Update',
     'action' => '',
     'method' => 'post',
+    'enctype' => ''
 );
 
-$formadd = class_formGenerator($formParams, $formFields, $formButtons);
-echo $formadd;
+echo class_formGenerator($formParams, $formFields, $formButtons);
 ?>
 <?php require_once 'footer.php';

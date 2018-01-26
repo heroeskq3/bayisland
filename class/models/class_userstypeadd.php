@@ -1,7 +1,7 @@
 <?php
-function class_usersTypeAdd($UserName, $Password, $TypeId, $OwnerId, $Status)
+function class_usersTypeAdd($Name, $Admin, $Supervisor, $Agent, $Customer, $Report, $Status)
 {
-    $mysql_query    = "INSERT INTO users (UserName, Password, TypeId, OwnerId, `Status`) VALUES('$UserName', '$Password', '$TypeId', '$OwnerId', '$Status')";
+    $mysql_query    = "INSERT INTO users_type (Name, Admin, Supervisor, Agent, Customer,  Report, `Status`) VALUES('$Name', '$Admin', '$Supervisor', '$Agent', '$Customer', '$Report', '$Status')";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

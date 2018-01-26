@@ -52,7 +52,7 @@ foreach ($usersdetailslist['response'] as $row_usersdetailslist) {
  * * * * */
 
 $formFields = array(
-    'form_add'   => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
+    'form_add'   => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
     'UsersIndex' => array('name' => 'UsersIndex', 'label' => 'User Info', 'value' => $array_usersdetailslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 1),
     'UserName'     => array('name' => 'UserName', 'label' => 'Username', 'value' => $UserName, 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 2),
     'Password'  => array('name' => 'Password', 'label' => 'Password', 'value' => $Password, 'dataType' => 'Str', 'inputType' => 'password', 'required' => true, 'position' => 2),
@@ -72,6 +72,7 @@ $formParams = array(
     'name' => 'Add',
     'action' => '',
     'method' => 'post',
+    'enctype' => ''
 );
 
 $formadd = class_formGenerator($formParams, $formFields, $formButtons);

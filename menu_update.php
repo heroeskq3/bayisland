@@ -55,8 +55,8 @@ for ($i = 1; $i < 10; ++$i) {
  * * * * */
 
 $formFields = array(
-    'form_update' => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
-    'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $row_menuinfo['Id'], 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
+    'form_update' => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
+    'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $row_menuinfo['Id'], 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
     'Name'        => array('name' => 'Name', 'label' => 'Name', 'value' => $row_menuinfo['Name'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
     'Description' => array('name' => 'Description', 'label' => 'Description', 'value' => $row_menuinfo['Description'], 'dataType' => 'Int', 'inputType' => 'textarea', 'required' => false, 'position' => 1),
     'Url'         => array('name' => 'Url', 'label' => 'Url', 'value' => $row_menuinfo['Url'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => false, 'position' => 2),   
@@ -77,9 +77,9 @@ $formParams = array(
     'name' => 'Update',
     'action' => '',
     'method' => 'post',
+    'enctype' => ''
 );
 
-$formUpdate = class_formGenerator($formParams, $formFields, $formButtons);
-echo $formUpdate;
+echo class_formGenerator($formParams, $formFields, $formButtons);
 ?>
 <?php require_once 'footer.php';?>

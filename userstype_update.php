@@ -9,9 +9,10 @@ $section_navbar      = 1;
 ?>
 <?php require_once 'header.php';?>
 <?php
+class_debug($_POST);
 if ($form_update) {
     $usersupdate = class_usersTypeUpdate($Id, $Name, $Admin, $Supervisor, $Agent, $Agent, $Customer, $Report, $Status);
-    header('Location: users_list.php');
+    header('Location: userstype_list.php');
     die();
 }
 //Info
@@ -34,7 +35,7 @@ $array_status[] = array('label' => 'Inactive', 'value' => 0, 'selected' => $row_
  * * * * */
 
 $formFields = array(
-    'form_update' => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 1),
+    'form_update' => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
     'Name'        => array('name' => 'Name', 'label' => 'Name', 'value' => $row_userstypeinfo['Name'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
     'Admin'       => array('name' => 'Admin', 'label' => 'Admin', 'value' => $row_userstypeinfo['Admin'], 'dataType' => 'Int', 'inputType' => 'checkbox', 'required' => true, 'position' => 2),
     'Supervisor'  => array('name' => 'Supervisor', 'label' => 'Supervisor', 'value' => $row_userstypeinfo['Supervisor'], 'dataType' => 'Int', 'inputType' => 'checkbox', 'required' => true, 'position' => 2),
@@ -55,9 +56,9 @@ $formParams = array(
     'name'   => 'Update',
     'action' => '',
     'method' => 'post',
+    'enctype' => ''
 );
 
-$formUpdate = class_formGenerator($formParams, $formFields, $formButtons);
-echo $formUpdate;
+echo class_formGenerator($formParams, $formFields, $formButtons);
 ?>
 <?php require_once 'footer.php';

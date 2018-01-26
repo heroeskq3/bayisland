@@ -8,7 +8,7 @@ function class_formGenerator($formParams, $formFields, $formButtons)
     if ($formParams['name']) {
         $results .= '<h2>' . $formParams['name'] . '</h2>'; //section-title
     }
-    $results .= '<form id="validationForm" action="' . $formParams['action'] . '" method="' . $formParams['method'] . '">';
+    $results .= '<form id="validationForm" action="' . $formParams['action'] . '" method="' . $formParams['method'] . '" enctype="' . $formParams['enctype'] . '">';
     $results .= '<div class="pmd-card pmd-z-depth">';
     $results .= '<div class="pmd-card-body">';
 
@@ -22,6 +22,9 @@ function class_formGenerator($formParams, $formFields, $formButtons)
         }
 
         //start col
+        if ($row['position'] == 0) {
+            $results .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
+        }
         if ($row['position'] == 1) {
             $results .= '<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">';
         }
@@ -32,10 +35,40 @@ function class_formGenerator($formParams, $formFields, $formButtons)
             $results .= '<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">';
         }
 
+        if($row['position']){
+
+            if($row['inputType']=='checkbox'){ //label styles for checkbox input
+                $results .= '<div class="checkbox pmd-default-theme">';
+            }else{ //label styles for others inputs
+                $results .= '<div class="form-group pmd-textfield pmd-textfield-floating-label">';
+                $results .= '<label for="regular1" class="control-label">' . $row['label'] . '</label>';
+            }
+            
+            if($row['inputType']=="hidden"){ //labels for hidden inputs & position 1
+                $results .= '<p class="form-control-static"><strong>hola</strong></p>';
+            }
+        }else{
+            $results .= '<div>';
+            $row['inputType'] = 'hidden'; //define input hidden for all position = 0
+        }
+        
+        
         /* INPUTS START */
         $results .= class_formInput($row['inputType'], $row['name'], $row['label'], $row['value'], $row['required']);
 
+        $results .= '</div>';
+        
+
+
         //col position end
+        if ($row['position'] == 0) {
+            $results .= '</div>';
+            if ($pos == 0) {
+                //clearfix end
+                $results .= '</div>';
+                $i = 0; //reset position
+            }
+        }
         if ($row['position'] == 1) {
             $results .= '</div>';
             if ($pos == 0) {

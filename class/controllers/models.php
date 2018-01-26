@@ -22,7 +22,6 @@ require_once PATH_MODELS . 'class_userslist.php';
 require_once PATH_MODELS . 'class_usersadd.php';
 require_once PATH_MODELS . 'class_usersdelete.php';
 require_once PATH_MODELS . 'class_usersupdate.php';
-require_once PATH_MODELS . 'class_usersinfoupdate.php';
 require_once PATH_MODELS . 'class_userspasswordupdate.php';
 
 //USERS TYPE

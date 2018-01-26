@@ -29,7 +29,7 @@ if ($action == "delete") {
 }
 
 $table_params = array(
-    'name'  => "List",
+    'name'        => "List",
     'searchbar'   => true,
     'rowsbypage'  => 10,
     'showactions' => true,
