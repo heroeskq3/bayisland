@@ -1,0 +1,132 @@
+<?php
+function class_tableMain($array, $table_params)
+{
+    //set array
+    $array_key = array_keys(current($array));
+    $results = '<table id="example" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">';
+    $results .= '<thead>';
+    $results .= '<tr>';
+    //keys
+    foreach ($array_key as $key) {
+        if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+            $results .= '<th>' . $key . '</th>';
+        }
+    }
+    $results .= '<th>Actions</th>';
+    $results .= '</tr>';
+    $results .= '</thead>';
+    $results .= '<tbody>';
+    foreach ($array as $row) {
+        $results .= '<tr>';
+        //values
+        foreach ($array_key as $key) {
+            if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+                $results .= '<td data-title="' . null . '">' . $row[$key] . '</td>';
+            }
+        }
+        //actions
+        $results .= '<td class="pmd-table-row-action">';
+        if ($table_params['showactions']) {
+            $results .= '<a href="?action=update&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">edit</i></a>';
+        }
+        //Actions Buttons - Main Table - Show Child
+        if (count($row['childs'])) {
+            $results .= '<a href="javascript:void();" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm child-table-expand direct-expand direct-expand-' . $row['index'] . '"><i class="material-icons md-dark pmd-sm"></i></a>';
+        } else {
+            if ($table_params['showactions']) {
+                $results .= '<a href="?action=delete&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">delete</i></a>';
+            }
+        }
+        $results .= '</td>';
+        $results .= '</tr>';
+
+					<tr class="child-table">
+						<td colspan="12">
+							<div class="direct-child-table" style="display:none">
+								<table class="table pmd-table table-striped table-sm">
+									<thead>
+										<tr>
+											<th>Title</th>
+											<th>Amount (%)</th>
+											<th>Status</th>
+											<th>Created</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<td>Service Tax </td>
+										<td>14.5</td>
+										<td><span class="status-btn red-bg">InActive</span></td>
+										<td>2014-03-03</td>
+										<td class="pmd-table-row-action">
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">edit</i></a>
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">delete</i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>CWT1 </td>
+										<td>2</td>
+										<td><span class="status-btn green-bg">Active</span></td>
+										<td>2014-03-03</td>
+										<td class="pmd-table-row-action">
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">edit</i></a>
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">delete</i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>Service charge shaival test </td>
+										<td>20</td>
+										<td><span class="status-btn green-bg">Active</span></td>
+										<td>2014-03-03</td>
+										<td class="pmd-table-row-action">
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">edit</i></a>
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">delete</i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>Fixed Tax </td>
+										<td>2.5</td>
+										<td><span class="status-btn red-bg">InActive</span></td>
+										<td>2014-03-03</td>
+										<td class="pmd-table-row-action">
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">edit</i></a>
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">delete</i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>cess vat</td>
+										<td>5.8</td>
+										<td><span class="status-btn red-bg">InActive</span></td>
+										<td>2014-03-03</td>
+										<td class="pmd-table-row-action">
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">edit</i></a>
+											<a href="javascript:void(0);" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-xs"><i class="material-icons md-dark pmd-xs">delete</i></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+				</tr>
+
+/*
+        //childs
+        if (count($row['childs'])) {
+            $results .= '<tr class="child-table">';
+            $results .= '<td colspan="12">';
+            $results .= '<div class="direct-child-table-' . $row['index'] . '" style="display:none">';
+            $results .= class_tableChilds($row['childs']);
+            $results .= '</div>';
+            $results .= '</td>';
+            foreach ($array_key as $key) {
+                $results .= '<td></td>';
+            }
+            $results .= '</tr>';
+        }
+    } //end foreach
+    */
+    $results .= '</tbody>';
+    $results .= '</table>';
+    return $results;
+}

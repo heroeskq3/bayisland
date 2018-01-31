@@ -1,6 +1,6 @@
 <?php
 //Section Parameters
-$section_tittle      = "Users Details";
+$section_tittle      = "Details Manager";
 $section_description = null;
 $section_style       = 1;
 $section_searchbar   = 0;
@@ -9,6 +9,14 @@ $section_navbar      = 1;
 ?>
 <?php require_once 'header.php';?>
 <?php
+//upload resource
+if ($File["name"]) {
+    $debug      = 0;
+    $resource   = "profile";
+    $fileUpload = class_filesUpload($File, $resource, $debug);
+    $Image      = $File["name"];
+}
+
 if ($form_update) {
     class_usersDetailsUpdate($Id, $FirstName, $LastName, $MiddleName, $Company, $Phone, $Mobile, $Email, $Country, $State, $City, $Address, $Details, $Responsible, $CustomInfo1, $CustomInfo2, $CustomInfo3, $CustomInfo4, $CustomInfo5, $Image, $Status);
     header('Location: usersdetails_list.php');
@@ -45,38 +53,28 @@ foreach ($statelist['response'] as $row_statelist) {
     $array_statelist[] = array('label' => $row_statelist['Name'], 'value' => $row_statelist['Id'], 'selected' => $row_usersdetailsinfo['State']);
 }
 
-/* * * * *
- * FORMS GENERATOR - Create Forms fields
- * value = use variable request
- * dataType = int, str, datetime, date, time, bool
- * inputType = hiddem, text, textarea, select, checkbox, email, datetime, datepick, jumpmenu, file, tel
- * required = true or false
- * buttonType = submit or back
- * position = 1 = 1cols, 2 = 2cols, 3 = 3cols / based Materialized Framework
- * * * * */
-
 $formFields = array(
-    'form_update' => array('name' => 'form_update', 'label' => 'form_update', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
-    'Responsible' => array('name' => 'Responsible', 'label' => 'Responsible', 'value' => $array_userslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 1),
-    'FirstName'   => array('name' => 'FirstName', 'label' => 'First Name', 'value' => $row_usersdetailsinfo['FirstName'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => true, 'position' => 3),
-    'LastName'    => array('name' => 'LastName', 'label' => 'Last Name', 'value' => $row_usersdetailsinfo['LastName'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => true, 'position' => 3),
-    'MiddleName'  => array('name' => 'MiddleName', 'label' => 'Middle Name', 'value' => $row_usersdetailsinfo['MiddleName'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 3),
-    'Company'     => array('name' => 'Company', 'label' => 'Company', 'value' => $row_usersdetailsinfo['Company'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 2),
-    'Phone'       => array('name' => 'Phone', 'label' => 'Phone', 'value' => $row_usersdetailsinfo['Phone'], 'dataType' => 'Str', 'inputType' => 'tel', 'required' => false, 'position' => 2),
-    'Mobile'      => array('name' => 'Mobile', 'label' => 'Mobile', 'value' => $row_usersdetailsinfo['Mobile'], 'dataType' => 'Str', 'inputType' => 'tel', 'required' => false, 'position' => 2),
-    'Email'       => array('name' => 'Email', 'label' => 'Email', 'value' => $row_usersdetailsinfo['Email'], 'dataType' => 'Str', 'inputType' => 'email', 'required' => false, 'position' => 2),
-    'Country'     => array('name' => 'Country', 'label' => 'Country', 'value' => $array_countrylist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'State'       => array('name' => 'State', 'label' => 'State', 'value' => $array_statelist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'City'        => array('name' => 'City', 'label' => 'City', 'value' => $row_usersdetailsinfo['City'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 3),
-    'Address'     => array('name' => 'Address', 'label' => 'Address', 'value' => $row_usersdetailsinfo['Address'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 1),
-    'Details'     => array('name' => 'Details', 'label' => 'Details', 'value' => $row_usersdetailsinfo['Details'], 'dataType' => 'Str', 'inputType' => 'textarea', 'required' => false, 'position' => 1),
-    'CustomInfo1' => array('name' => 'CustomInfo1', 'label' => 'CustomInfo1', 'value' => $row_usersdetailsinfo['CustomInfo1'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 2),
-    'CustomInfo2' => array('name' => 'CustomInfo2', 'label' => 'CustomInfo2', 'value' => $row_usersdetailsinfo['CustomInfo2'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 2),
-    'CustomInfo3' => array('name' => 'CustomInfo3', 'label' => 'CustomInfo3', 'value' => $row_usersdetailsinfo['CustomInfo3'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 3),
-    'CustomInfo4' => array('name' => 'CustomInfo4', 'label' => 'CustomInfo4', 'value' => $row_usersdetailsinfo['CustomInfo4'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 3),
-    'CustomInfo5' => array('name' => 'CustomInfo5', 'label' => 'CustomInfo5', 'value' => $row_usersdetailsinfo['CustomInfo5'], 'dataType' => 'Str', 'inputType' => 'text', 'required' => false, 'position' => 3),
-    'Image'       => array('name' => 'Image', 'label' => 'Image', 'value' => $row_usersdetailsinfo['Image'], 'dataType' => 'Str', 'inputType' => 'file', 'required' => false, 'position' => 1),
-    'Status'      => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 1),
+    'form_update' => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_update', 'value' => 1),
+    'Responsible' => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'Responsible', 'value' => $array_userslist),
+    'First Name'   => array('inputType' => 'text', 'required' => true, 'position' => 3, 'name' => 'FirstName', 'value' => $row_usersdetailsinfo['FirstName']),
+    'Last Name'    => array('inputType' => 'text', 'required' => true, 'position' => 3, 'name' => 'LastName', 'value' => $row_usersdetailsinfo['LastName']),
+    'Middle Name'  => array('inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'MiddleName', 'value' => $row_usersdetailsinfo['MiddleName']),
+    'Company'     => array('inputType' => 'text', 'required' => false, 'position' => 2, 'name' => 'Company', 'value' => $row_usersdetailsinfo['Company']),
+    'Phone'       => array('inputType' => 'tel', 'required' => false, 'position' => 2, 'name' => 'Phone', 'value' => $row_usersdetailsinfo['Phone']),
+    'Mobile'      => array('inputType' => 'tel', 'required' => false, 'position' => 2, 'name' => 'Mobile', 'value' => $row_usersdetailsinfo['Mobile']),
+    'Email'       => array('inputType' => 'email', 'required' => false, 'position' => 2, 'name' => 'Email', 'value' => $row_usersdetailsinfo['Email']),
+    'Country'     => array('inputType' => 'select', 'required' => false, 'position' => 3, 'name' => 'Country', 'value' => $array_countrylist),
+    'State'       => array('inputType' => 'select', 'required' => false, 'position' => 3, 'name' => 'State', 'value' => $array_statelist),
+    'City'        => array('inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'City', 'value' => $row_usersdetailsinfo['City']),
+    'Address'     => array('inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Address', 'value' => $row_usersdetailsinfo['Address']),
+    'Details'     => array('inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_usersdetailsinfo['Details']),
+    'CustomInfo1' => array('inputType' => 'text', 'required' => false, 'position' => 2, 'name' => 'CustomInfo1', 'value' => $row_usersdetailsinfo['CustomInfo1']),
+    'CustomInfo2' => array('inputType' => 'text', 'required' => false, 'position' => 2, 'name' => 'CustomInfo2', 'value' => $row_usersdetailsinfo['CustomInfo2']),
+    'CustomInfo3' => array('inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'CustomInfo3', 'value' => $row_usersdetailsinfo['CustomInfo3']),
+    'CustomInfo4' => array('inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'CustomInfo4', 'value' => $row_usersdetailsinfo['CustomInfo4']),
+    'CustomInfo5' => array('inputType' => 'text', 'required' => false, 'position' => 3, 'name' => 'CustomInfo5', 'value' => $row_usersdetailsinfo['CustomInfo5']),
+    'Image'       => array('inputType' => 'image', 'required' => false, 'position' => 1, 'name' => 'Image', 'value' => $row_usersdetailsinfo['Image']),
+    'Status'      => array('inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Status', 'value' => $array_status),
 );
 
 // define buttons for form
@@ -87,9 +85,9 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name'   => 'Update',
-    'action' => '',
-    'method' => 'post',
+    'name'    => 'Update',
+    'action'  => '',
+    'method'  => 'post',
     'enctype' => 'multipart/form-data',
 );
 

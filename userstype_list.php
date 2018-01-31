@@ -3,7 +3,7 @@
 $section_tittle      = "User Type";
 $section_description = null;
 $section_style       = 1;
-$section_searchbar   = 1;
+$section_searchbar   = 0;
 $section_restrict    = 1;
 $section_navbar      = 1;
 ?>
@@ -33,6 +33,7 @@ $table_params = array(
     'searchbar'   => true,
     'rowsbypage'  => 10,
     'showactions' => true,
+    'checkbox'    => false,
 );
 $table_array = class_tableUsersTypeList();
 

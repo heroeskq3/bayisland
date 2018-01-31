@@ -57,7 +57,9 @@ require_once PATH_MODELS . 'class_filesupload.php';
 
 //FORMS
 require_once PATH_MODELS . 'class_formgenerator.php';
+require_once PATH_MODELS . 'class_formgenerator2.php';
 require_once PATH_MODELS . 'class_forminput.php';
+require_once PATH_MODELS . 'class_formbuttons.php';
 require_once PATH_MODELS . 'class_formscripts.php';
 
 //TABLES
@@ -82,15 +84,20 @@ require_once PATH_MODELS . 'class_tableuserstypelist.php';
 require_once PATH_MODELS . 'class_statusInfo.php';
 require_once PATH_MODELS . 'class_statusIcon.php';
 
-//SETTINGS
-
-//SETTINGS - MENU
+//MENU
 require_once PATH_MODELS . 'class_menulist.php';
 require_once PATH_MODELS . 'class_menuinfo.php';
 require_once PATH_MODELS . 'class_menuadd.php';
 require_once PATH_MODELS . 'class_menudelete.php';
 require_once PATH_MODELS . 'class_menuupdate.php';
 require_once PATH_MODELS . 'class_submenulist.php';
+
+//PRIVILEGES
+require_once PATH_MODELS . 'class_privilegesinfo.php';
+require_once PATH_MODELS . 'class_privilegeslist.php';
+require_once PATH_MODELS . 'class_privilegesadd.php';
+require_once PATH_MODELS . 'class_privilegesupdate.php';
+require_once PATH_MODELS . 'class_privilegesdelete.php';
 
 //ICONS
 require_once PATH_MODELS . 'class_iconslist.php';

@@ -3,7 +3,7 @@
 $section_tittle      = "Users Details";
 $section_description = null;
 $section_style       = 1;
-$section_searchbar   = 1;
+$section_searchbar   = 0;
 $section_restrict    = 1;
 $section_navbar      = 1;
 ?>
@@ -28,39 +28,45 @@ if ($action == "delete") {
     die();
 }
 
+function class_tableUsersDetailsList()
+{
+    $array = class_usersDetailsList();
+
+    $results = array();
+    if ($array['rows']) {
+        foreach ($array['response'] as $row_array) {
+
+            $results[] = array(
+                //Define custom Patern Table Alias Keys => Values
+                'Full Name'   => $row_array['FirstName'] . ' ' . $row_array['LastName'],
+                'E-Mail'      => $row_array['Email'],
+                'Country'     => $row_array['Country'],
+                'Created'     => $row_array['CreateDate'],
+                'Last Update' => $row_array['LastUpdate'],
+                'Status'      => class_statusInfo($row_array['Status']),
+
+                //Define Index, Status, Childs
+                'index'       => $row_array['Id'],
+                'status'      => $row_array['Status'], //use = 1 or 0
+                'childs'      => null, //define array
+            );
+        }
+    }
+
+    return $results;
+}
+
+$table_array = class_tableUsersDetailsList();
+
 $table_params = array(
-    'name'  => "List",
+    'name'        => "List",
     'searchbar'   => true,
     'rowsbypage'  => 10,
     'showactions' => true,
+    'checkbox'    => false,
 );
-//$table_array = class_tableUsersList();
-
-//users details list
-$usersdetailslist = class_usersDetailsList();
-
-if ($usersdetailslist['rows']) {
-    $table_array = array();
-    foreach ($usersdetailslist['response'] as $row_usersdetailslist) {
-
-        $table_array[] = array(
-            //Define custom Patern Table Alias Keys => Values
-            'Full Name'    => $row_usersdetailslist['FirstName'].' '.$row_usersdetailslist['LastName'],
-            'E-Mail'     => $row_usersdetailslist['Email'],
-            'Country'     => $row_usersdetailslist['Country'],
-            'Created'     => $row_usersdetailslist['CreateDate'],
-            'Last Update' => $row_usersdetailslist['LastUpdate'],
-            'Status'      => class_statusInfo($row_usersdetailslist['Status']),
-
-            //Define Index, Status, Childs
-            'index'       => $row_usersdetailslist['Id'],
-            'status'      => $row_usersdetailslist['Status'], //use = 1 or 0
-            'childs'      => null, //define array
-        );
-    }
-}
 
 //generate table list
 echo class_tableGenerator($table_array, $table_params);
 ?>
-<?php require_once 'footer.php';?>
+<?php require_once 'footer.php';

@@ -49,6 +49,6 @@
         });
         $(".auto-update-year").html(new Date().getFullYear());
     });
-</script> 
+</script>
 </body>
 </html>

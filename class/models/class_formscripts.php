@@ -1,5 +1,7 @@
 <?php function class_formScripts(){ ?>
 <!-- Scripts Starts -->
+<script src="components/file-upload/js/upload-image.js"></script>
+
 <!-- Select2 js-->
 <script type="text/javascript" src="components/select2/js/select2.full.js"></script>
 

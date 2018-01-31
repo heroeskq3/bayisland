@@ -59,6 +59,7 @@ function class_formInput($inputType, $name, $label, $value, $required)
     if ($inputType=='file') {
         $results .= '<input type="file" id="regular1" class="form-control" name="' . $name . '" value="' . $value . '" '.$required.'>';
     }
+
     //PASSWORD INPUT
     if ($inputType=='password') {
         $results .= '<input type="password" id="regular1" class="form-control" name="' . $name . '" value="' . $value . '" '.$required.'>';

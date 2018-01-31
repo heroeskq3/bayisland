@@ -1,7 +1,7 @@
 <?php
-function class_usersTypeUpdate($Id, $Name, $Admin, $Status)
+function class_privilegesInfo($Id)
 {
-    $mysql_query    = "UPDATE users_type ut SET ut.Name = '$Name', ut.Admin = '$Admin', ut.Status = '$Status' WHERE ut.Id = $Id";
+    $mysql_query    = "SELECT p.* FROM privileges p WHERE p.Id = '$Id'";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

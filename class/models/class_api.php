@@ -2,7 +2,6 @@
 //API ARRAY RESULTS - JSON FOR DEBBUGER - FAULT CODE
 function api($status,$request, $response, $rows, $debug)
 {
-
     $results = array(
         "status"   => $status,
         "request"  => $request,

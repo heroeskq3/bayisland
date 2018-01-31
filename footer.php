@@ -1,5 +1,7 @@
-	</div>
+
 </div>
+</div>
+<!--end content area-->
 <?php
 //debugger 23
 ClassViews('class_debug');

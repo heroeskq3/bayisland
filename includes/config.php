@@ -1,7 +1,8 @@
 <?php
 //define config
-define('CONFIG_LANG', 'en'); //define default language
 define('CONFIG_FAVICON', 'favicon.ico');
+
+define('CONFIG_LANG', 'en'); //define default language
 define('CONFIG_LOGOICON', 'logo-icon-bayisland.png');
 define('CONFIG_LOGOHEADER', 'bayisland-logo.png');
 define('CONFIG_SUPPORTPHONE', '4444-0000');

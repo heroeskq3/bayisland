@@ -3,7 +3,7 @@
 $section_tittle      = "Menu Manager";
 $section_description = null;
 $section_style       = 1;
-$section_searchbar   = 1;
+$section_searchbar   = 0;
 $section_restrict    = 1;
 $section_navbar      = 1;
 ?>

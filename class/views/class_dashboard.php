@@ -1,10 +1,4 @@
-<!-- <div id="content" class="pmd-content content-area dashboard">
- --><div id="content" class="content-area dashboard">
-
-	<div class="container-fluid">
-		<div class="row" id="card-masonry">
-		 
-		 <!-- Today's Site Activity -->
+ <!-- Today's Site Activity -->
 		 <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
 			<div class="pmd-card pmd-z-depth">      
 				<div class="pmd-card-title">
@@ -675,11 +669,7 @@
 				 </div>
 				 <span class="btn-loader loader hidden">Loading...</span>
 			</div>
-	 	 </div><!-- end project progress -->	
-	</div>
-</div>
-
-</div>
+	 	 </div><!-- end project progress -->
 <script type="text/javascript">
 (function() {
   "use strict";

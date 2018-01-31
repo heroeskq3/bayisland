@@ -9,6 +9,20 @@ if (isset($_SESSION['phperror'])) {
     $phperror = $_SESSION['phperror'];
 }
 
+//PRIVIL
+$Add = null;
+if (isset($_POST['Add'])) {
+    $Add = (int)$_POST['Add'];
+}
+$Update = null;
+if (isset($_POST['Update'])) {
+    $Update = (int)$_POST['Update'];
+}
+$Delete = null;
+if (isset($_POST['Delete'])) {
+    $Delete = (int)$_POST['Delete'];
+}
+
 //USERS DETAILS
 $UsersId = null;
 if (isset($_POST['UsersId'])) {

@@ -1,19 +1,31 @@
 <?php
 function class_tableMain($array, $table_params)
 {
-    //set array
-    $array_key = array_keys(current($array));
 
-    $results = '<table id="example" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">';
+    $results = null;
+    $results .= '<section class="row component-section">';
+    $results .= '<div class="col-md-9">';
+    $results .= '<div class="component-box">';
+    $results .= '<div  class="pmd-card pmd-z-depth pmd-card-custom-view">';
+    $results .= '<div class="table-responsive">';
+
+    //table start
+    $results .= '<table id="example-checkbox" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">';
     $results .= '<thead>';
     $results .= '<tr>';
 
+    //checkbox
+    $results .= '<th></th>';
+
     //keys
+    $array_key = array_keys(current($array));
     foreach ($array_key as $key) {
         if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
             $results .= '<th>' . $key . '</th>';
         }
     }
+
+    //actions
     $results .= '<th>Actions</th>';
 
     $results .= '</tr>';
@@ -22,6 +34,9 @@ function class_tableMain($array, $table_params)
     foreach ($array as $row) {
 
         $results .= '<tr>';
+
+        //checkbox
+        $results .= '<th></th>';
 
         //values
         foreach ($array_key as $key) {
@@ -32,11 +47,10 @@ function class_tableMain($array, $table_params)
 
         //actions
         $results .= '<td class="pmd-table-row-action">';
+        
         if ($table_params['showactions']) {
             $results .= '<a href="?action=update&Id=' . $row['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="material-icons md-dark pmd-sm">edit</i></a>';
         }
-
-        //Actions Buttons - Main Table - Show Child
         if (count($row['childs'])) {
             $results .= '<a href="javascript:void();" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm child-table-expand direct-expand direct-expand-' . $row['index'] . '"><i class="material-icons md-dark pmd-sm"></i></a>';
         } else {
@@ -45,6 +59,7 @@ function class_tableMain($array, $table_params)
             }
         }
         $results .= '</td>';
+        //end actions
         $results .= '</tr>';
 
         //childs
@@ -64,6 +79,13 @@ function class_tableMain($array, $table_params)
     }
     $results .= '</tbody>';
     $results .= '</table>';
+    //table end
+
+    $results .= '</div>';
+    $results .= '</div>';
+    $results .= '</div>';
+    $results .= '</div>';
+    $results .= '</section>';
 
     return $results;
 

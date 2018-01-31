@@ -1,6 +1,6 @@
 <?php
 //Section Parameters
-$section_tittle      = "Menu Add";
+$section_tittle      = "Menu Manager";
 $section_description = null;
 $section_style       = 1;
 $section_searchbar   = 0;
@@ -34,52 +34,42 @@ $array_status   = array();
 $array_status[] = array('label' => 'Active', 'value' => '1', 'selected' => $Status);
 $array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $Status);
 
-//Order by list
-$array_order   = array();
-for ($i = 1; $i < 11; ++$i) {
-    $array_order[] = array('label' => $i, 'value' => $i, 'selected' => $Order);
+//Order List
+$menu_order = class_assideMenuList();
+$array_order = array();
+foreach ($menu_order['response'] as $row_order) {
+    $array_order[] = array('label' => '[Up] - '.$row_order['Name'], 'value' => $row_order['Order']-1, 'selected' => null);
+    $array_order[] = array('label' => '[Down] - '.$row_order['Name'], 'value' => $row_order['Order']+1, 'selected' => null);
 }
-
-
-/* * * * *
- * FORMS GENERATOR - Create Forms fields
- * value = use variable request or multiple values define array (value and label)
- * dataType = int, str, datetime, date, time, bool
- * inputType = hiddem, text, textarea, select, checkbox, email, datetime, datepick, jumpmenu, file
- * required = true or false
- * buttonType = submit or back
- * position = 0 = hidden, 1 = 1cols, 2 = 2cols, 3 = 3cols / based Materialized Framework
- * * * * */
+$array_order[] = array('label' => '', 'value' => 0, 'selected' => null);
 
 //Form Generator
 $formFields = array(
-    'form_add'    => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
-    'Id'          => array('name' => 'Id', 'label' => 'Id', 'value' => $Id, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
-    'Name'        => array('name' => 'Name', 'label' => 'Name', 'value' => $Name, 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
-    'Description' => array('name' => 'Description', 'label' => 'Description', 'value' => $Description, 'dataType' => 'Int', 'inputType' => 'false', 'required' => false, 'position' => 1),
-    'Url'         => array('name' => 'Url', 'label' => 'Url', 'value' => $Url, 'dataType' => 'Int', 'inputType' => 'text', 'required' => false, 'position' => 2),
-    'Patern Menu' => array('name' => 'MenuId', 'label' => 'Patern Menu', 'value' => $array_menulist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 2),
-    'Icon'        => array('name' => 'Icon', 'label' => 'Icon', 'value' => $array_iconslist, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Order'      => array('name' => 'Order', 'label' => 'Order', 'value' => $array_order, 'dataType' => 'Int', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Status'      => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
+    'form_add'    => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
+    'Id'          => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Id', 'value' => $Id),
+    'Name'        => array('inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Name', 'value' => $Name),
+    'Description' => array('inputType' => 'false', 'required' => false, 'position' => 1, 'name' => 'Description', 'value' => $Description),
+    'Url'         => array('inputType' => 'text', 'required' => false, 'position' => 2, 'name' => 'Url', 'value' => $Url),
+    'Patern Menu' => array('inputType' => 'select', 'required' => false, 'position' => 2, 'name' => 'MenuId', 'value' => $array_menulist),
+    'Icon'        => array('inputType' => 'select', 'required' => false, 'position' => 3, 'name' => 'Icon', 'value' => $array_iconslist),
+    'Order'       => array('inputType' => 'select', 'required' => false, 'position' => 3, 'name' => 'Order', 'value' => $array_order),
+    'Status'      => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),
 );
 
 // define buttons for form
 $formButtons = array(
     'Submit' => array('buttonType' => 'submit'),
-    'Cancel' => array('buttonType' => 'back'),
+    'Cancel' => array('buttonType' => 'cancel'),
 );
 
 //set params for form
 $formParams = array(
-    'name' => $section_tittle ,
-    'action' => '',
-    'method' => 'post',
-    'enctype' => ''
+    'name'    => 'Add',
+    'action'  => '',
+    'method'  => 'post',
+    'enctype' => '',
 );
 
-$formAdd = class_formGenerator($formParams, $formFields, $formButtons);
-
-echo $formAdd;
+echo class_formGenerator($formParams, $formFields, $formButtons);
 ?>
-<?php require_once 'footer.php';?>
+<?php require_once 'footer.php';

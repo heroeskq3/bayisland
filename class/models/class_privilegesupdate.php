@@ -1,7 +1,7 @@
 <?php
-function class_usersTypeAdd($Name, $Admin, $Status)
+function class_privilegesUpdate($Id, $TypeId, $MenuId, $Add, $Update, $Delete)
 {
-    $mysql_query    = "INSERT INTO users_type (Name, Admin, `Status`) VALUES('$Name', '$Admin', '$Status')";
+    $mysql_query    = "UPDATE privileges SET TypeId = '$TypeId', MenuId = '$MenuId', `Add` = '$Add', `Update` = '$Update', `Delete` = '$Delete' WHERE Id = $Id";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

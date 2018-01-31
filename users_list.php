@@ -1,9 +1,9 @@
 <?php
 //Section Parameters
-$section_tittle      = "User List";
+$section_tittle      = "Users Manager";
 $section_description = null;
 $section_style       = 1;
-$section_searchbar   = 1;
+$section_searchbar   = 0;
 $section_restrict    = 1;
 $section_navbar      = 1;
 ?>
@@ -27,14 +27,6 @@ if ($action == "delete") {
     header('Location: users_list.php');
     die();
 }
-
-$table_params = array(
-    'name'        => "List",
-    'searchbar'   => true,
-    'rowsbypage'  => 10,
-    'showactions' => true,
-);
-//$table_array = class_tableUsersList();
 
 //users list
 $userslist = class_usersList();
@@ -62,7 +54,13 @@ if ($userslist['rows']) {
         );
     }
 }
-
+$table_params = array(
+    'name'        => "List",
+    'searchbar'   => true,
+    'rowsbypage'  => 10,
+    'showactions' => true,
+    'checkbox'    => false,
+);
 //generate table list
 echo class_tableGenerator($table_array, $table_params);
 ?>

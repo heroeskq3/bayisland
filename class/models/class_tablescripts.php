@@ -15,7 +15,7 @@ function class_showMore($array){
     return $results;
 }
  ?>
-<?php function class_tableScripts($array,$table_params){ ?>
+<?php function class_tableScripts($array,$params){ ?>
 <?php echo class_showMore($array); ?>
 
 <!-- Datatable js -->
@@ -36,16 +36,19 @@ function class_showMore($array){
 $(document).ready(function() {
     $('#example-checkbox').DataTable({
         responsive: false,
+        <?php if($params['checkbox']){ ?>
         columnDefs: [ {
             orderable: false,
             className: 'select-checkbox',
             targets:0,
         } ],
+        <?php } ?>
+
         select: {
             style: 'multi',
             selector: 'td:first-child'
         },
-        order: [ 1, 'asc' ],
+        order: [ 0, 'asc' ],
         bFilter: true,
         bLengthChange: true,
         pagingType: "simple",
@@ -90,7 +93,7 @@ $(document).ready(function() {
             $(this).closest('.dataTables_wrapper').find('.custom-select-info').hide();
         }
     } );
-    $("div.data-table-title").html('<h2 class="pmd-card-title-text">Propeller Data table</h2>');
+    $("div.data-table-title").html('<h2 class="pmd-card-title-text"><?php echo $params['name'];?></h2>');
     $(".custom-select-action").html('<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</button>');
     
 } );
@@ -112,7 +115,7 @@ $(document).ready(function() {
             orderable: false,
             targets:   1
         } ],
-        order: [ 1, 'asc' ],
+        order: [ 0, 'asc' ],
         bFilter: true,
         bLengthChange: true,
         pagingType: "simple",
@@ -137,7 +140,7 @@ $(document).ready(function() {
     /// Select value
     $('.custom-select-info').hide();
     
-    $(".data-table-responsive").html('<h2 class="pmd-card-title-text"><?php echo $table_params['name'];?></h2>');
+    $(".data-table-responsive").html('<h2 class="pmd-card-title-text"><?php echo $params['name'];?></h2>');
     $(".custom-select-action").html('<button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">delete</i></button><button class="btn btn-sm pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-primary" type="button"><i class="material-icons pmd-sm">more_vert</i></button>');
         
 } );

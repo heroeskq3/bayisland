@@ -12,10 +12,6 @@ function class_tableUsersTypeList()
                 //Define custom Patern Table Alias Keys => Values
                 'Name'       => $row['Name'],
                 'Admin'      => class_statusIcon($row['Admin']),
-                'Supervisor' => class_statusIcon($row['Supervisor']),
-                'Agent'      => class_statusIcon($row['Agent']),
-                'Customer'   => class_statusIcon($row['Customer']),
-                'Report'     => class_statusIcon($row['Report']),
                 'Status'     => class_statusInfo($row['Status']),
 
                 //Define Index, Status, Childs

@@ -1,7 +1,7 @@
 <?php
-function class_usersTypeAdd($Name, $Admin, $Status)
+function class_privilegesList()
 {
-    $mysql_query    = "INSERT INTO users_type (Name, Admin, `Status`) VALUES('$Name', '$Admin', '$Status')";
+    $mysql_query    = "SELECT p.* FROM privileges p";
     $mysql_database = "bayisland";
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

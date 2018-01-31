@@ -7,7 +7,7 @@ function class_tableChilds($array)
         //resturn array fields keys
         $childs_key = array_keys(current($array));
         //$results .= '<table class="table pmd-table table-striped table-sm">';
-        $results .= '<table class="table pmd-table table-striped table-xs">';
+        $results .= '<table class="table pmd-table table-striped table-sm">';
         $results .= '<thead>';
         $results .= '<tr>';
 

@@ -22,7 +22,7 @@ $row_usersdetailsinfo = $usersdetailsinfo['response'][0];
     </a>
     <ul class="dropdown-menu">
         <li>
-            <a href="profile.php">
+            <a href="profile_update.php">
                 <?php echo LANG_PERFILEDIT; ?>
             </a>
         </li>

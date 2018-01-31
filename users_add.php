@@ -41,24 +41,14 @@ foreach ($usersdetailslist['response'] as $row_usersdetailslist) {
     $array_usersdetailslist[] = array('label' => '['.$row_usersdetailslist['Id'].'] - '.$row_usersdetailslist['FirstName'].' '.$row_usersdetailslist['LastName'], 'value' => $row_usersdetailslist['Id'], 'selected' => null);
 }
 
-/* * * * *
- * FORMS GENERATOR - Create Forms fields
- * value = use variable request
- * dataType = int, str, datetime, date, time, bool
- * inputType = hiddem, text, textarea, select, checkbox, email, datetime, datepick, jumpmenu, file
- * required = true or false
- * buttonType = submit or back
- * position = 1 = 1cols, 2 = 2cols, 3 = 3cols / based Materialized Framework
- * * * * */
-
 $formFields = array(
-    'form_add'   => array('name' => 'form_add', 'label' => 'form_add', 'value' => 1, 'dataType' => 'Int', 'inputType' => 'hidden', 'required' => false, 'position' => 0),
-    'UsersIndex' => array('name' => 'UsersIndex', 'label' => 'User Info', 'value' => $array_usersdetailslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 1),
-    'UserName'     => array('name' => 'UserName', 'label' => 'Username', 'value' => $UserName, 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 2),
-    'Password'  => array('name' => 'Password', 'label' => 'Password', 'value' => $Password, 'dataType' => 'Str', 'inputType' => 'password', 'required' => true, 'position' => 2),
-    'TypeId'   => array('name' => 'TypeId', 'label' => 'Type', 'value' => $array_userstypelist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => true, 'position' => 3),
-    'OwnerId' => array('name' => 'OwnerId', 'label' => 'Owner', 'value' => $array_userslist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => false, 'position' => 3),
-    'Status'     => array('name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
+    'form_add'   => array('inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1, ),
+    'Info' => array('inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'UsersIndex', 'value' => $array_usersdetailslist, ),
+    'Username'     => array('inputType' => 'text', 'required' => true, 'position' => 2, 'name' => 'UserName', 'value' => $UserName, ),
+    'Password'  => array('inputType' => 'password', 'required' => true, 'position' => 2, 'name' => 'Password', 'value' => $Password, ),
+    'Type'   => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'TypeId', 'value' => $array_userstypelist, ),
+    'Owner' => array('inputType' => 'select', 'required' => false, 'position' => 3, 'name' => 'OwnerId', 'value' => $array_userslist, ),
+    'Status'     => array('inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status, ),
 );
 
 // define buttons for form
