@@ -33,5 +33,8 @@ function ClassViews($key)
         case 'class_dashboard':
             require_once PATH_VIEWS . 'class_dashboard.php';
             break;
+        case 'class_contentArea':
+            require_once PATH_VIEWS . 'class_contentarea.php';
+            break;
     }
 }

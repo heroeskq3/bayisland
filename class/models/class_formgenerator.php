@@ -84,7 +84,7 @@ function class_formGenerator($formParams, $formFields, $formButtons)
             if($row['value']){
                 $results .= '<img src="' . PATH_PROFILEPICTURE . $row['value'] . '" alt="' . $label . '">';
             }else{
-                $results .= '<img src="' . PATH_PROFILEPICTURE . 'user-icon.png' . '" alt="">';
+                $results .= '<img src="' . PATH_PROFILEPICTURE . CONFIG_IMAGEPROFILEDEFAULT . '" alt="">';
             }
             
             $results .= '</div>';

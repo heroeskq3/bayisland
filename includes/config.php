@@ -1,6 +1,7 @@
 <?php
 //define config
 define('CONFIG_FAVICON', 'favicon.ico');
+define('CONFIG_IMAGEPROFILEDEFAULT', 'signup_male.png');
 
 define('CONFIG_LANG', 'en'); //define default language
 define('CONFIG_LOGOICON', 'logo-icon-bayisland.png');

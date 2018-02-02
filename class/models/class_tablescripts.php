@@ -17,7 +17,21 @@ function class_showMore($array){
  ?>
 <?php function class_tableScripts($array,$params){ ?>
 <?php echo class_showMore($array); ?>
-
+<?php
+//determine total rows for keys array
+$array_key = array_keys(current($array));
+$array_results = array();
+foreach ($array_key as $key) {
+    if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+        $array_results[] = $key;
+    }
+}
+if(count($array_results)){
+    $array_TotalRows = count($array_results);
+}else{
+    $array_TotalRows = 0;
+}
+?>
 <!-- Datatable js -->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 
@@ -25,8 +39,8 @@ function class_showMore($array){
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
 <!-- Datatable responsive js-->
-<!-- <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
- -->
+<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js"></script>
+
 <!-- Datatable select js-->
 <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.2.0/js/dataTables.select.min.js"></script>
 
@@ -113,12 +127,12 @@ $(document).ready(function() {
         columnDefs: [ {
             className: 'control',
             orderable: false,
-            targets:   1
+            targets:   <?php echo $array_TotalRows-1; ?>
         } ],
         order: [ 0, 'asc' ],
         bFilter: true,
         bLengthChange: true,
-        pagingType: "simple",
+        pagingType: "full_numbers",
         "paging": true,
         "searching": true,
         "language": {

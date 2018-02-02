@@ -28,7 +28,11 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
 
             //form image show preview
             $results .= '<div data-trigger="fileinput" class="fileinput-preview thumbnail img-circle img-responsive">';
-            $results .= '<img src="' . PATH_PROFILEPICTURE . $row['value'] . '" alt="' . $label . '">';
+            if($row['value']){
+                $results .= '<img src="' . PATH_PROFILEPICTURE . $row['value'] . '" alt="' . $label . '">';
+            }else{
+                $results .= '<img src="' . PATH_PROFILEPICTURE . CONFIG_IMAGEPROFILEDEFAULT . '" alt="">';
+            }
             $results .= '</div>';
 
             //change input
@@ -57,19 +61,26 @@ function class_formGenerator2($formParams, $formFields, $formButtons)
     $results .= '<div class="col-lg-9 custom-col-9">';
 
 //form heading
-    if ($formParams['name']) {
-        $results .= '<h3 class="heading">' . $formParams['name'] . '</h3>';
-    }
+
     $results .= '<div class="row">';
     $results .= '<div class="form-horizontal" >';
     $results .= '<fieldset>';
 
 //foreach inputs start
     foreach ($formFields as $label => $row) {
+    
+        if ($row['inputType'] == 'label') {
+            $results .= '<h3 class="heading">' . $label . '</h3>';
+        }
+
         if ($row['inputType'] !== 'image') {
             if ($row['position']) {
                 $results .= '<div class="form-group pmd-textfield">';
-                $results .= '<label class="col-sm-3 control-label" for="u_fname">' . $label . '</label>';
+                
+                if($row['inputType'] !== 'label'){
+                    $results .= '<label class="col-sm-3 control-label" for="u_fname">' . $label . '</label>';
+                }
+                
                 $results .= '<div class="col-sm-9">';
 
                 //Show label when input is hidden and pos = 1

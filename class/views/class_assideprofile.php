@@ -12,11 +12,19 @@ $row_usersdetailsinfo = $usersdetailsinfo['response'][0];
         <div class="media-left">
             <!-- Primary circle button with ripple effect -->
             <button class="btn pmd-btn-fab pmd-ripple-effect btn-primary" type="button">
-                <i class="pmd-sm"><img src="<?php echo PATH_RESOURCES . "profile/" . $row_usersdetailsinfo['Image']; ?>" alt="<?php echo $row_usersdetailsinfo['FirstName'].' '.$row_usersdetailsinfo['LastName']; ?>" width="60px" height="60px"></i>
+                <i class="pmd-sm">
+                <?php  if($row_usersdetailsinfo['Image']){?>
+                    <img src="<?php echo PATH_PROFILEPICTURE. $row_usersdetailsinfo['Image']; ?>" alt="<?php echo $row_usersdetailsinfo['FirstName'].' '.$row_usersdetailsinfo['LastName']; ?>" width="60px" height="60px">
+                <?php }else{ ?>
+                    <img src="<?php echo PATH_PROFILEPICTURE.CONFIG_IMAGEPROFILEDEFAULT; ?>" alt="<?php echo $row_usersdetailsinfo['FirstName'].' '.$row_usersdetailsinfo['LastName']; ?>" width="60px" height="60px">
+                <?php } ?>
+                </i>
             </button>
         </div>
         <div class="media-body media-middle">
-            <?php echo $row_usersdetailsinfo['FirstName'].' '.$row_usersdetailsinfo['LastName']; ?>
+            
+                <?php echo $row_usersdetailsinfo['FirstName'].' '.$row_usersdetailsinfo['LastName']; ?>
+                <h6>(Supervisor)</h6>
         </div>
         <div class="media-right media-middle"><i class="dic-more-vert dic"></i></div>
     </a>

@@ -2,7 +2,7 @@
 //Section Parameters
 $section_tittle      = "Users Manager";
 $section_description = null;
-$section_style       = 1;
+$section_style       = 2;
 $section_searchbar   = 0;
 $section_restrict    = 1;
 $section_navbar      = 1;
@@ -39,9 +39,19 @@ if ($userslist['rows']) {
         $userstypeinfo     = class_usersTypeInfo($row_userslist['TypeId']);
         $row_userstypeinfo = $userstypeinfo['response'][0];
 
+        //find label for users type info
+        if($row_userslist['UsersIndex']){
+            $usersdetailsinfo     = class_usersDetailsInfo($row_userslist['UsersIndex']);
+            $row_usersdetailsinfo = $usersdetailsinfo['response'][0];
+            $row_usersdetailsinfo['FullName'] = $row_usersdetailsinfo['FirstName'].' '.$row_usersdetailsinfo['LastName'];
+        }else{
+            $row_usersdetailsinfo['FullName'] = null;
+        }
+
         $table_array[] = array(
             //Define custom Patern Table Alias Keys => Values
             'Username'    => $row_userslist['UserName'],
+            'Info'    => $row_usersdetailsinfo['FullName'],
             'Type'        => $row_userstypeinfo['Name'],
             'Created'     => $row_userslist['CreateDate'],
             'Last Update' => $row_userslist['LastUpdate'],
@@ -64,4 +74,4 @@ $table_params = array(
 //generate table list
 echo class_tableGenerator($table_array, $table_params);
 ?>
-<?php require_once 'footer.php';
+<?php require_once 'footer.php';?>

@@ -8,6 +8,9 @@ require_once PATH_MODELS . 'class_login.php';
 //SCRIPTS
 require_once PATH_MODELS . 'class_scripts.php';
 
+//TEMPLATE
+require_once PATH_MODELS . 'class_contentarea.php';
+
 require_once PATH_MODELS . 'class_api.php';
 require_once PATH_MODELS . 'class_mysql.php';
 require_once PATH_MODELS . 'class_array.php';
@@ -47,6 +50,7 @@ require_once PATH_MODELS . 'class_statelist.php';
 //MENU ASSIDE
 require_once PATH_MODELS . 'class_assidemenulist.php';
 require_once PATH_MODELS . 'class_assidesubmenulist.php';
+require_once PATH_MODELS . 'class_assideprivilegeslist.php';
 
 //DEBUGGER
 require_once PATH_MODELS . 'class_debug.php';

@@ -29,6 +29,7 @@ foreach ($userstypelist['response'] as $row_userstypelist) {
 //Menu List
 $menulist       = class_menuList();
 $array_menulist = array();
+$array_menulist[] = array('label' => "All", 'value' => 0, 'selected' => $row_privilegesinfo['MenuId']);
 foreach ($menulist['response'] as $row_menulist) {
     $array_menulist[] = array('label' => $row_menulist['Name'], 'value' => $row_menulist['Id'], 'selected' => $row_privilegesinfo['MenuId']);
 }

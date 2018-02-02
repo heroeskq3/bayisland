@@ -42,8 +42,13 @@ function class_tableMainList($array)
                 $row_typeinfo = $typeinfo['response'][0];
 
         		//Menu Info
-                $menuinfo = class_menuInfo($row_array['MenuId']);
-                $row_menuinfo = $menuinfo['response'][0];
+                if($row_array['MenuId']){
+                    $menuinfo = class_menuInfo($row_array['MenuId']);
+                    $row_menuinfo = $menuinfo['response'][0];                    
+                }else{
+                    $row_menuinfo['Name'] = "All";
+                }
+
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values

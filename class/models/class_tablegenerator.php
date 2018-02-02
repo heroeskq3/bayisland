@@ -15,7 +15,7 @@ function class_tableGenerator($array, $params)
     //table start
     if($params['rowsbypage']){
         $results .= '<div class="table-responsive">';
-        $results .= '<table id="example-checkbox" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">';
+        $results .= '<table id="example" class="table pmd-table table-hover table-striped display responsive nowrap" cellspacing="0" width="100%">';
     }else{
         $results .= '<div class="table-responsive pmd-card pmd-z-depth">';
         $results .= '<table class="table table-mc-red pmd-table">';
@@ -97,4 +97,5 @@ function class_tableGenerator($array, $params)
     $results .= '</section>';
 
     return $results;
-}
+}?>
+
