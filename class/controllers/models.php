@@ -1,141 +1,190 @@
 <?php
-//class library
-
 //SYSTEM
-require_once PATH_MODELS . 'class_conn.php';
-require_once PATH_MODELS . 'class_login.php';
+$namespace = 'mysql';
+require_once PATH_MODELS.$namespace. '/class_mysql.php';
+require_once PATH_MODELS.$namespace. '/class_conn.php';
+
+$namespace = 'login';
+require_once PATH_MODELS.$namespace. '/class_login.php';
+
+$namespace = 'token';
+require_once PATH_MODELS.$namespace. '/class_token.php';
+
+$namespace = 'functions';
+require_once PATH_MODELS.$namespace. '/class_sumavalor.php';
+require_once PATH_MODELS.$namespace. '/class_statusInfo.php';
+require_once PATH_MODELS.$namespace. '/class_infosino.php';
+require_once PATH_MODELS.$namespace. '/class_statusIcon.php';
+require_once PATH_MODELS.$namespace. '/class_statusperiod.php';
 
 //SCRIPTS
-require_once PATH_MODELS . 'class_scripts.php';
+$namespace = 'scripts';
+require_once PATH_MODELS.$namespace. '/class_scripts.php';
 
 //TEMPLATE
-require_once PATH_MODELS . 'class_contentarea.php';
+$namespace = 'contents';
+require_once PATH_MODELS.$namespace. '/class_contentarea.php';
 
-require_once PATH_MODELS . 'class_api.php';
-require_once PATH_MODELS . 'class_mysql.php';
-require_once PATH_MODELS . 'class_array.php';
+$namespace = 'modals';
+require_once PATH_MODELS.$namespace. '/class_modals.php';
+
+$namespace = 'api';
+require_once PATH_MODELS.$namespace. '/class_api.php';
+
+$namespace = 'array';
+require_once PATH_MODELS.$namespace. '/class_array.php';
+require_once PATH_MODELS.$namespace. '/class_arrayfilter.php';
+require_once PATH_MODELS.$namespace. '/class_arraylimit.php';
+require_once PATH_MODELS.$namespace. '/class_arrayrandom.php';
+require_once PATH_MODELS.$namespace. '/class_arraysort.php';
 
 //CONFIG
-require_once PATH_MODELS . 'class_lang.php';
-//require_once PATH_MODELS . 'class_config.php'; //en este habiria que tarbajar ahora define basic config VARS
+$namespace = 'lang';
+require_once PATH_MODELS.$namespace. '/class_lang.php';
+
+//SITES
+$namespace = 'sites';
+require_once PATH_MODELS.$namespace. '/class_sitesinfo.php';
+require_once PATH_MODELS.$namespace. '/class_siteslist.php';
+require_once PATH_MODELS.$namespace. '/class_sitesadd.php';
+require_once PATH_MODELS.$namespace. '/class_sitesdelete.php';
+require_once PATH_MODELS.$namespace. '/class_sitesupdate.php';
 
 //USERS
-require_once PATH_MODELS . 'class_usersinfo.php';
-require_once PATH_MODELS . 'class_userslist.php';
-require_once PATH_MODELS . 'class_usersadd.php';
-require_once PATH_MODELS . 'class_usersdelete.php';
-require_once PATH_MODELS . 'class_usersupdate.php';
-require_once PATH_MODELS . 'class_userspasswordupdate.php';
+$namespace = 'users';
+require_once PATH_MODELS.$namespace. '/class_usersinfo.php';
+require_once PATH_MODELS.$namespace. '/class_userslist.php';
+require_once PATH_MODELS.$namespace. '/class_usersadd.php';
+require_once PATH_MODELS.$namespace. '/class_usersdelete.php';
+require_once PATH_MODELS.$namespace. '/class_usersupdate.php';
+require_once PATH_MODELS.$namespace. '/class_userspasswordupdate.php';
 
-//USERS TYPE
-require_once PATH_MODELS . 'class_userstypeinfo.php';
-require_once PATH_MODELS . 'class_userstypeadd.php';
-require_once PATH_MODELS . 'class_userstypeupdate.php';
-require_once PATH_MODELS . 'class_userstypedelete.php';
-require_once PATH_MODELS . 'class_userstypelist.php';
+//USERSTYPE
+$namespace = 'userstype';
+require_once PATH_MODELS.$namespace. '/class_userstypeinfo.php';
+require_once PATH_MODELS.$namespace. '/class_userstypeadd.php';
+require_once PATH_MODELS.$namespace. '/class_userstypeupdate.php';
+require_once PATH_MODELS.$namespace. '/class_userstypedelete.php';
+require_once PATH_MODELS.$namespace. '/class_userstypelist.php';
 
-//USERS DETAILS
-require_once PATH_MODELS . 'class_usersdetailsadd.php';
-require_once PATH_MODELS . 'class_usersdetailsupdate.php';
-require_once PATH_MODELS . 'class_usersdetailsdelete.php';
-require_once PATH_MODELS . 'class_usersdetailsinfo.php';
-require_once PATH_MODELS . 'class_usersdetailslist.php';
+//USERSDETAILS
+$namespace = 'usersdetails';
+require_once PATH_MODELS.$namespace. '/class_usersdetailsadd.php';
+require_once PATH_MODELS.$namespace. '/class_usersdetailsupdate.php';
+require_once PATH_MODELS.$namespace. '/class_usersdetailsdelete.php';
+require_once PATH_MODELS.$namespace. '/class_usersdetailsinfo.php';
+require_once PATH_MODELS.$namespace. '/class_usersdetailslist.php';
 
 //COUNTRY
-require_once PATH_MODELS . 'class_countrylist.php';
+$namespace = 'country';
+require_once PATH_MODELS.$namespace. '/class_countrylist.php';
+require_once PATH_MODELS.$namespace. '/class_statelist.php';
 
-//STATE
-require_once PATH_MODELS . 'class_statelist.php';
-
-//MENU ASSIDE
-require_once PATH_MODELS . 'class_assidemenulist.php';
-require_once PATH_MODELS . 'class_assidesubmenulist.php';
-require_once PATH_MODELS . 'class_assideprivilegeslist.php';
+//MENUASSIDE
+$namespace = 'asside'; 
+require_once PATH_MODELS.$namespace. '/class_assidemenulist.php';
+require_once PATH_MODELS.$namespace. '/class_assidesubmenulist.php';
+require_once PATH_MODELS.$namespace. '/class_assideprivilegeslist.php';
 
 //DEBUGGER
-require_once PATH_MODELS . 'class_debug.php';
-require_once PATH_MODELS . 'class_phperror.php';
+$namespace = 'debug';
+require_once PATH_MODELS.$namespace. '/class_debug.php';
+require_once PATH_MODELS.$namespace. '/class_phperror.php';
 
-//UPLOAD FILES
-require_once PATH_MODELS . 'class_filesupload.php';
+//UPLOADFILES
+$namespace = 'upload';
+require_once PATH_MODELS.$namespace. '/class_filesupload.php';
 
 //FORMS
-require_once PATH_MODELS . 'class_formgenerator.php';
-require_once PATH_MODELS . 'class_formgenerator2.php';
-require_once PATH_MODELS . 'class_forminput.php';
-require_once PATH_MODELS . 'class_formbuttons.php';
-require_once PATH_MODELS . 'class_formscripts.php';
+$namespace = 'forms';
+require_once PATH_MODELS.$namespace. '/class_formgenerator.php';
+require_once PATH_MODELS.$namespace. '/class_formgenerator2.php';
+require_once PATH_MODELS.$namespace. '/class_formsurvey.php';
+require_once PATH_MODELS.$namespace. '/class_forminput.php';
+require_once PATH_MODELS.$namespace. '/class_formscripts.php';
+require_once PATH_MODELS.$namespace. '/class_formbuttons.php';
+require_once PATH_MODELS.$namespace. '/class_formbuttonstype.php';
 
 //TABLES
-require_once PATH_MODELS . 'class_tablegenerator.php';
-require_once PATH_MODELS . 'class_tablepager.php';
-require_once PATH_MODELS . 'class_tablemain.php';
-require_once PATH_MODELS . 'class_tablechilds.php';
-require_once PATH_MODELS . 'class_tablescripts.php';
-require_once PATH_MODELS . 'class_datatable.php';
-
-//TABLES - MENU
-require_once PATH_MODELS . 'class_tablemenulist.php';
-require_once PATH_MODELS . 'class_tablesubmenulist.php';
-
-//TABLES - USERS
-require_once PATH_MODELS . 'class_tableuserslist.php';
-
-//TABLES - USERS TYPE
-require_once PATH_MODELS . 'class_tableuserstypelist.php';
-
-//STATUS
-require_once PATH_MODELS . 'class_statusInfo.php';
-require_once PATH_MODELS . 'class_statusIcon.php';
+$namespace = 'tables';
+require_once PATH_MODELS.$namespace. '/class_tablegenerator.php';
+require_once PATH_MODELS.$namespace. '/class_tablegenerator3.php';
+require_once PATH_MODELS.$namespace. '/class_tablepager.php';
+require_once PATH_MODELS.$namespace. '/class_tablemain.php';
+require_once PATH_MODELS.$namespace. '/class_tablechilds.php';
+require_once PATH_MODELS.$namespace. '/class_tablescripts.php';
+require_once PATH_MODELS.$namespace. '/class_datatable.php';
+require_once PATH_MODELS.$namespace. '/class_tablemenulist.php';
+require_once PATH_MODELS.$namespace. '/class_tablesubmenulist.php';
+require_once PATH_MODELS.$namespace. '/class_tableuserslist.php';
+require_once PATH_MODELS.$namespace. '/class_tableuserstypelist.php';
 
 //MENU
-require_once PATH_MODELS . 'class_menulist.php';
-require_once PATH_MODELS . 'class_menuinfo.php';
-require_once PATH_MODELS . 'class_menuadd.php';
-require_once PATH_MODELS . 'class_menudelete.php';
-require_once PATH_MODELS . 'class_menuupdate.php';
-require_once PATH_MODELS . 'class_submenulist.php';
+$namespace = 'menu';
+require_once PATH_MODELS.$namespace. '/class_menulist.php';
+require_once PATH_MODELS.$namespace. '/class_menuinfo.php';
+require_once PATH_MODELS.$namespace. '/class_menuadd.php';
+require_once PATH_MODELS.$namespace. '/class_menudelete.php';
+require_once PATH_MODELS.$namespace. '/class_menuupdate.php';
+require_once PATH_MODELS.$namespace. '/class_submenulist.php';
+require_once PATH_MODELS.$namespace. '/class_iconslist.php';
 
 //PRIVILEGES
-require_once PATH_MODELS . 'class_privilegesinfo.php';
-require_once PATH_MODELS . 'class_privilegeslist.php';
-require_once PATH_MODELS . 'class_privilegesadd.php';
-require_once PATH_MODELS . 'class_privilegesupdate.php';
-require_once PATH_MODELS . 'class_privilegesdelete.php';
+$namespace = 'privileges';
+require_once PATH_MODELS.$namespace. '/class_privilegesinfo.php';
+require_once PATH_MODELS.$namespace. '/class_privilegeslist.php';
+require_once PATH_MODELS.$namespace. '/class_privilegesadd.php';
+require_once PATH_MODELS.$namespace. '/class_privilegesupdate.php';
+require_once PATH_MODELS.$namespace. '/class_privilegesdelete.php';
 
-//ICONS
-require_once PATH_MODELS . 'class_iconslist.php';
+//WELL
+$namespace = 'well';
+require_once PATH_MODELS.$namespace. '/class_wellgenerator.php';
 
-//SECTIONS
-require_once PATH_MODELS . 'class_sectioninfo.php';
+//reports
+$namespace = 'reports';
+require_once PATH_MODELS.$namespace. '/class_reportssearchbar.php';
+require_once PATH_MODELS.$namespace. '/class_reportsgenerator.php';
+require_once PATH_MODELS.$namespace. '/class_reportstable.php';
+require_once PATH_MODELS.$namespace. '/class_reportsresume.php';
+require_once PATH_MODELS.$namespace. '/class_reportsquery.php';
+require_once PATH_MODELS.$namespace. '/class_reportsorder.php';
+require_once PATH_MODELS.$namespace. '/class_reportslimit.php';
 
-//CUSTOM SECTIONS
-/*
-//SECTIONS - VISITS
-require_once PATH_MODELS . 'class_visitslist.php';
-require_once PATH_MODELS . 'class_visitsadd.php';
-require_once PATH_MODELS . 'class_visitsdel.php';
-require_once PATH_MODELS . 'class_visitsupdate.php';
-
-//SECTIONS - CUSTOMERS
-require_once PATH_MODELS . 'class_customerslist.php';
-require_once PATH_MODELS . 'class_customersadd.php';
-require_once PATH_MODELS . 'class_customersdel.php';
-require_once PATH_MODELS . 'class_customersupdate.php';
-
-//SECTIONS - AGENTS
-require_once PATH_MODELS . 'class_agentslist.php';
-require_once PATH_MODELS . 'class_agentsadd.php';
-require_once PATH_MODELS . 'class_agentsdel.php';
-require_once PATH_MODELS . 'class_agentsupdate.php';
+//site
+$namespace = 'survey/site/';
+require_once PATH_MODELS.$namespace. 'class_headersteps.php';
+require_once PATH_MODELS.$namespace. 'class_survey.php';
 
 
-//SECTIONS - NOTIFY
-require_once PATH_MODELS . 'class_notify.php';
+//qacustomers
+$namespace = 'qa';
+require_once PATH_MODELS.$namespace. '/class_qacustomersinfo.php';
+require_once PATH_MODELS.$namespace. '/class_qacustomerslist.php';
+require_once PATH_MODELS.$namespace. '/class_qacustomersadd.php';
+require_once PATH_MODELS.$namespace. '/class_qacustomersupdate.php';
+require_once PATH_MODELS.$namespace. '/class_qacustomersdelete.php';
 
-//SECTIONS - REPORTS
-require_once PATH_MODELS . 'class_resports.php';
+//qaclasses
+require_once PATH_MODELS.$namespace. '/class_qaclassesinfo.php';
+require_once PATH_MODELS.$namespace. '/class_qaclasseslist.php';
+require_once PATH_MODELS.$namespace. '/class_qaclassesadd.php';
+require_once PATH_MODELS.$namespace. '/class_qaclassesupdate.php';
+require_once PATH_MODELS.$namespace. '/class_qaclassesdelete.php';
 
-//SECTIONS - HOME
-require_once PATH_MODELS . 'class_dashboard.php';
-*/
+//qaappointments
+require_once PATH_MODELS.$namespace. '/class_qaappointmentsinfo.php';
+require_once PATH_MODELS.$namespace. '/class_qaappointmentslist.php';
+require_once PATH_MODELS.$namespace. '/class_qaappointmentsadd.php';
+require_once PATH_MODELS.$namespace. '/class_qaappointmentsupdate.php';
+require_once PATH_MODELS.$namespace. '/class_qaappointmentsdelete.php';
+
+//qacategory
+require_once PATH_MODELS.$namespace. '/class_qacategoryinfo.php';
+require_once PATH_MODELS.$namespace. '/class_qacategorylist.php';
+require_once PATH_MODELS.$namespace. '/class_qacategoryadd.php';
+require_once PATH_MODELS.$namespace. '/class_qacategoryupdate.php';
+require_once PATH_MODELS.$namespace. '/class_qacategorydelete.php';
+
+//reports
+require_once PATH_MODELS.$namespace. '/class_qacustomersreports.php';

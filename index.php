@@ -1,12 +1,22 @@
 <?php
 //Section Parameters
-$section_tittle      = "Home";
-$section_description = null;
-$section_style       = 0;
-$section_searchbar   = 0;
-$section_restrict    = 1;
-$section_navbar      = 0;
-?>
-<?php require_once 'header.php';?>
-<?php ClassViews('class_dashboard'); ?>
-<?php require_once 'footer.php'; ?>
+$sectionParams = array(
+    'tittle'      => 'Home',
+    'description' => '',
+    'homedir'     => '',
+    'restrict'    => true,
+    'navbar'      => true,
+    'sidebar'     => true,
+    'searchbar'   => false,
+    'style'       => true,
+    'debug'       => false,
+);
+require_once 'header.php';
+
+switch ($action) {
+    default:
+        echo "Welcome";
+        break;
+}
+
+require_once 'footer.php';
