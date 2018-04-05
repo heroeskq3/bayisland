@@ -1,6 +1,14 @@
 <?php
 if ($form_add) {
-    class_qaCustomersAdd($CategoryId, $UsersId, $ClassesId, $FullName, $Phone, $Phone2, $Contact, $Mobile, $Email, $Zone, null, $Status);
+
+    //patch for state id reverse
+    if($State){
+        $zonesinfo = class_zonesInfo($State);
+        $row_zonesinfo = $zonesinfo['response'][0];
+        $State = $row_zonesinfo['Name'];
+    }
+
+    class_qaCustomersAdd($CategoryId, $UsersId, $ClassesId, $FullName, $Phone, $Phone2, $Contact, $Mobile, $Email, $Country, $State, $City, $Address, $Status);
     header('Location: ' . $_SERVER['PHP_SELF']);
     die();
 }
@@ -30,6 +38,28 @@ if ($qaclasseslist['rows']) {
     }
 }
 
+
+//STATES
+$stateslist   = class_zonesList(4); //set default Costa Rica Zones Id
+$stateslist   = class_arrayFilter($stateslist['response'], 'Status', '1', '=');
+$array_states = array();
+$array_cities = array();
+if ($stateslist['rows']) {
+    foreach ($stateslist['response'] as $row_stateslist) {
+        $array_states[] = array('label' => $row_stateslist['Name'], 'value' => $row_stateslist['Id'], 'selected' => $ZonesId);
+
+        //CITIES
+        $citieslist   = class_zonesList($row_stateslist['Id']);
+        $citieslist   = class_arrayFilter($citieslist['response'], 'Status', '1', '=');
+        if ($citieslist['rows']) {
+            foreach ($citieslist['response'] as $row_citieslist) {
+                $array_cities[] = array('patern' => $row_citieslist['ZonesId'], 'label' => $row_citieslist['Name'], 'value' => $row_citieslist['Name'], 'selected' => $ZonesId);
+            }
+        }
+
+    }
+}
+
 //Status list
 $array_status   = array();
 $array_status[] = array('label' => 'Pendiente', 'value' => '2', 'selected' => $Status);
@@ -49,20 +79,23 @@ if ($row_userstypeinfo['Admin']) {
 //Form Generator
 $formFields = array(
     'form_add'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
-    LANG_CATEGORY   => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CategoryId', 'value' => $array_category),
+    LANG_CATEGORY => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CategoryId', 'value' => $array_category),
     'Usuario'     => $admin_users,
     'Clase'       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'ClassesId', 'value' => $array_classes),
-    'Empresa'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'FullName', 'value' => null),
-    LANG_PHONE1    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone', 'value' => null),
-    LANG_PHONE2  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone2', 'value' => null),
+    'Cliente'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'FullName', 'value' => null),
+    LANG_PHONE1   => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone', 'value' => null),
+    LANG_PHONE2   => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone2', 'value' => null),
     'Contacto'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Contact', 'value' => null),
     'Celular'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Mobile', 'value' => null),
     'E-Mail'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email', 'value' => null),
 
-    LANG_COUNTRY  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Country', 'value' => null),
-    LANG_STATE    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'State', 'value' => null),
-    LANG_CITY     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'City', 'value' => null),
-    LANG_ADDRESS => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Address', 'value' => null),
+    LANG_COUNTRY  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => 'Costa Rica'),
+
+    //SELECT AJAX ONCHANGE
+    LANG_STATE    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select_onchange1', 'required' => false, 'position' => 1, 'name' => 'State', 'value' => $array_states),
+    LANG_CITY     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select_onchange2', 'required' => false, 'position' => 1, 'name' => 'City', 'value' => $array_cities),
+
+    LANG_ADDRESS  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Address', 'value' => null),
 
     'Estado'      => $admin_status,
 );

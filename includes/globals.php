@@ -477,6 +477,12 @@ $TimeSet = date("H:i");
 if (isset($_POST['TimeSet'])) {
     $TimeSet = $_POST['TimeSet'];
 }
+
+$DateTime = date("Y-m-d H:i:s");
+if (isset($_POST['DateTime'])) {
+    $DateTime = $_POST['DateTime'];
+}
+
 $Level = null;
 if (isset($_POST['Level'])) {
     $Level = $_POST['Level'];

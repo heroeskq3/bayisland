@@ -19,7 +19,6 @@ function class_reportsTable($array, $params)
         $results .= '<div class="table-responsive">';
         $results .= '<table id="example" class="table table-striped table-bordered nowrap" style="width:100%">';
         $results .= '<thead>';
-        $results .= '<tr>';
 
         if ($array) {
             $array_key = array_keys(current($array));
@@ -37,14 +36,9 @@ function class_reportsTable($array, $params)
         foreach ($array as $row_array) {
 
             //TODO: estos if hay que cambiarlos
-            if (0) {
-                $results .= '<tr class="danger">';
-            }
-
-            if (0) {
-                $results .= '<tr class="warning">';
-            }
-            if (1) {
+            if ($row_array['context']) {
+                $results .= '<tr class="'.$row_array['context'].'">';
+            } else {
                 $results .= '<tr>';
             }
 

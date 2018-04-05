@@ -38,7 +38,7 @@ function class_tableMainList($array)
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
-                'Empresa' => $row_array['FullName'],
+                'Cliente' => $row_array['FullName'],
                 'Clase'   => $row_qaclassesinfo['Name'],
                 'Usuario' => $row_usersinfo['UserName'],
                 'Citas'   => $qaappointmentslist['rows'],

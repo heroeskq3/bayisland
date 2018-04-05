@@ -1,6 +1,14 @@
 <?php
 if ($form_update) {
-    class_qaAppointmentsUpdate($Id, $UsersId, $CustomersId, $DateSet, $TimeSet, $Details, $Status);
+    $qaappointmentsupdate = class_qaAppointmentsUpdate($Id, $UsersId, $CustomersId, $DateSet, $TimeSet, $Details, $Status);
+
+    //set customer last visit
+    if ($qaappointmentsupdate['rows']) {
+        $LastVisit = $DateSet.' '.$TimeSet;
+        class_qaCustomersLastVisit($CustomersId, $LastVisit);
+    }
+    
+
     header('Location: ' . $_SERVER['PHP_SELF'].'?action=next&Id='.$CustomersId);
     die();
 }

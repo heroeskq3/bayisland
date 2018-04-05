@@ -205,5 +205,14 @@ define('LANG_NONE', 'Ninguna');
 define('LANG_PHONE1', 'Teléfono 1');
 define('LANG_PHONE2', 'Teléfono 2');
 
+//QA - APPOINTMENTS
+define('LANG_NEVER', 'Nunca');
+define('LANG_ATTENDED', 'Atendido');
+define('LANG_UNATTENDED', 'Sin Atender');
+define('LANG_ERROR', 'Error');
+define('LANG_TODAY', 'En Proceso');
+
+
+
 //SURVEY - TEST
 define('LANG_CATEGORY', 'Catergoría');

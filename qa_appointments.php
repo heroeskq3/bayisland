@@ -17,6 +17,7 @@ require_once 'header.php';
 switch ($action) {
 
     default:
+        require_once 'class/views/qa/appointments/qa_appointmentsadd.php';
         require_once 'class/views/qa/appointments/qa_appointmentslist.php';
         break;
 
