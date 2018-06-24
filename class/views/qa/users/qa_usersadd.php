@@ -1,11 +1,11 @@
 <?php
 if ($form_add) {
-    class_usersAdd($UsersIndex, $UserName, $Password, $TypeId, $OwnerId, $Status);
+    class_usersAdd($UsersIndex, $UserName, $Password, $Email, $TypeId, $OwnerId, $Status);
     header('Location: ' . $_SERVER['PHP_SELF']);
     die();
 }
 
-//Status list
+//Status list|
 $array_status   = array();
 $array_status[] = array('label' => 'Active', 'value' => '1', 'selected' => $Status);
 $array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $Status);
@@ -53,6 +53,7 @@ $formFields = array(
     'Info'     => $form_info,
     'Username' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 2, 'name' => 'UserName', 'value' => $UserName),
     'Password' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'password', 'required' => true, 'position' => 2, 'name' => 'Password', 'value' => $Password),
+    'E-Mail'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => true, 'position' => 2, 'name' => 'Email', 'value' => $Email),
     'Type'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'TypeId', 'value' => $array_userstypelist),
     'Owner'    => $form_owner,
     'Status'   => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 3, 'name' => 'Status', 'value' => $array_status),
@@ -66,7 +67,7 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name'    => 'Add',
+    'name'    => LANG_ADD,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

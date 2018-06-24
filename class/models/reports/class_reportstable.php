@@ -14,17 +14,23 @@ function class_reportsTable($array, $params)
 
     $results .= '<link href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css" rel="stylesheet">';
     $results .= '<link href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.bootstrap.min.css" rel="stylesheet">';
+    $results .= '<link href="https://cdn.datatables.net/select/1.2.5/css/select.bootstrap.min.css" rel="stylesheet">';
 
     if ($array) {
         $results .= '<div class="table-responsive">';
-        $results .= '<table id="example" class="table table-striped table-bordered nowrap" style="width:100%">';
+        $results .= '<table id="example" class="table table-striped table-hover table-bordered nowrap" style="width:100%">';
         $results .= '<thead>';
 
         if ($array) {
             $array_key = array_keys(current($array));
             foreach ($array_key as $key) {
-                if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+                if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs') && ($key !== 'context')) {
                     $results .= '<th>' . $key . '</th>';
+                }
+            }
+            if (!$resume) {
+                if ($params['showaction']) {
+                    $results .= '<th>Actions</th>';
                 }
             }
         }
@@ -34,17 +40,19 @@ function class_reportsTable($array, $params)
         $results .= '<tbody>';
 
         foreach ($array as $row_array) {
-
-            //TODO: estos if hay que cambiarlos
-            if ($row_array['context']) {
-                $results .= '<tr class="'.$row_array['context'].'">';
+            if (!$resume) {
+                    if ($row_array['context']) {
+                        $results .= '<tr class="' . $row_array['context'] . '">';
+                    } else {
+                        $results .= '<tr>';
+                    }
             } else {
-                $results .= '<tr>';
+                $row_array['context'] = null;
             }
 
             //values
             foreach ($array_key as $key) {
-                if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+                if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs') && ($key !== 'context')) {
 
                     if ($key == 'Porcentaje') {
 
@@ -92,18 +100,32 @@ function class_reportsTable($array, $params)
                     ';
                         $results .= '</td>';
                     } else {
-                        $results .= '<td>';
                         if ($resume) {
+                            $results .= '<td>';
                             $results .= '<a href="?' . $_SERVER['QUERY_STRING'] . '&resume=&' . $resume . '=' . $row_array['Descripción'] . '">';
                             $results .= $row_array[$key];
                             $results .= '</a>';
+                            $results .= '</td>';
                         } else {
+                            $results .= '<td>';
                             $results .= $row_array[$key];
+                            $results .= '</td>';
                         }
-                        $results .= '</td>';
-
                     }
                 }
+            }
+
+            //actions buttons
+            if ($params['showaction']) {
+                $results .= '<td>';
+                if ($params['view']) {
+                    $results .= '<a href="?action=view&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-eye fa-fw" style="font-size:15px;"></i></a>';
+                }
+                if ($params['confirm']) {
+                    $results .= '<a href="?action=check&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-check fa-fw" style="font-size:15px;"></i></a>';
+                }
+
+                $results .= '</td>';
             }
             $results .= '</tr>';
         } //end key foreach
@@ -114,6 +136,10 @@ function class_reportsTable($array, $params)
     } else {
         $results .= 'No hay resultados para esta busqueda';
     }
+
+    $results .= '<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>';
+    $results .= '<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>';
+    $results .= '<script src="https://cdn.datatables.net/select/1.2.5/js/dataTables.select.min.js"></script>';
 
     $results .= '<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>';
     $results .= '<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>';
@@ -129,6 +155,7 @@ function class_reportsTable($array, $params)
     $results .= "<script>
         $(document).ready(function() {
             var table = $('#example').DataTable( {
+                select: 'single',
                 responsive: {
                     buttons: true
                 },
@@ -138,9 +165,100 @@ function class_reportsTable($array, $params)
                     { extend: 'colvis', text: 'Mostrar' },
                     { extend: 'excel', text: 'Excel' },
                     { extend: 'pdf', text: 'PDF' },
-                    { extend: 'print', text: 'Imprimir' }
+                    { extend: 'print', text: 'Imprimir' },";
 
-                ],
+    //add action button
+    if (isset($params['add']) && !$resume) {
+        $results .= "
+        { text: '" . LANG_ADD . "',
+            action: function ( e, dt, button, config ) {
+                window.location = '" . $params['add'] . "?action=add';
+            }
+        },
+        ";
+    }
+
+    //edit action button
+    if (isset($params['edit']) && !$resume) {
+        $results .= "
+        { text: '" . LANG_EDIT . "',
+            action: function ( e, dt, button, config ) {
+                  var ids = $.map(dt.rows('.selected').data(), function (item) {
+                    return item[0]
+                    });
+                    window.location = '" . $params['edit'] . "?action=update&Id='+ids;
+            }
+        },
+        ";
+    }
+
+    //delete action button
+    if (isset($params['delete']) && !$resume) {
+        $results .= "
+        { text: '" . LANG_DELETE . "',
+            action: function ( e, dt, button, config ) {
+                var ids = $.map(dt.rows('.selected').data(), function (item) {
+                  return item[0]
+                  });
+                  window.location = '" . $params['delete'] . "?action=delete&Id='+ids;
+          }
+        },
+        ";
+    }
+    //transfer action button
+    if (isset($params['transfer']) && !$resume) {
+        $results .= "
+        { text: '" . LANG_TRANSFER . "',
+            action: function ( e, dt, button, config ) {
+                var ids = $.map(dt.rows('.selected').data(), function (item) {
+                  return item[0]
+                  });
+                  window.location = '" . $params['transfer'] . "?action=transfer&Id='+ids;
+          }
+        },
+        ";
+    }
+    //schedule action button
+    if (isset($params['schedule']) && !$resume) {
+        $results .= "
+        { text: '" . LANG_VISIT . "',
+            action: function ( e, dt, button, config ) {
+                var ids = $.map(dt.rows('.selected').data(), function (item) {
+                  return item[0]
+                  });
+                  window.location = '" . $params['schedule'] . "?action=add&Id='+ids;
+          }
+        },
+        ";
+    }
+    //info action button
+    if (@$params['info'] && !$resume) {
+        $results .= "
+        { text: '" . LANG_INFO2 . "',
+            action: function ( e, dt, button, config ) {
+                var ids = $.map(dt.rows('.selected').data(), function (item) {
+                  return item[0]
+                  });
+                  window.location = '" . $params['info'] . "?resume=Info&ID='+ids;
+          }
+        },
+        ";
+    }
+    //finished action button
+    if (isset($params['finished']) && !$resume) {
+        $results .= "
+        { text: '" . LANG_FINISHED . "',
+            action: function ( e, dt, button, config ) {
+                var ids = $.map(dt.rows('.selected').data(), function (item) {
+                  return item[0]
+                  });
+                  window.location = '" . $params['finished'] . "?Id='+ids;
+          }
+        },
+        ";
+    }
+
+    $results .= "],
                 language: {
                     'lengthMenu': '" . LANG_SHOWING . " _MENU_ " . LANG_RECORDS . " " . LANG_PERPAGE . "',
                     'zeroRecords': '" . LANG_NOFOUND . "',

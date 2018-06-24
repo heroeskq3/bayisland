@@ -14,6 +14,12 @@
 	    case 3:
 	        $results = LANG_CANCELED;
 	        break;
+	    case 4:
+	        $results = LANG_INPROCESS;
+	        break;
+	    case 5:
+	        $results = LANG_FINISHED;
+	        break;
 	}
 return $results;
 }

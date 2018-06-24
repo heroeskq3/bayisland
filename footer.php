@@ -6,7 +6,6 @@
         <!-- /#page-wrapper -->
 
     </div>
-    
     <!-- /#wrapper -->
 <?php } ?>
 <?php require_once PATH_VIEWS.'/debug/debug.php';?>

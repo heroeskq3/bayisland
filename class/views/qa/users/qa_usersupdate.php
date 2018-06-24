@@ -1,7 +1,7 @@
 <?php
 if ($form_update) {
-    class_usersUpdate($Id, $UsersIndex, $UserName, $Password, $TypeId, $OwnerId, $Status);
-    header('Location: '.$_SERVER['PHP_SELF']);
+    class_usersUpdate($Id, $UsersIndex, $UserName, $Password, $Email, $TypeId, $OwnerId, $Status);
+    header('Location: ' . $_SERVER['PHP_SELF']);
     die();
 }
 
@@ -44,7 +44,7 @@ if ($usersdetailslist['rows']) {
 }
 
 //form priv
-if ($row_userstypeinfo['Level']==1) {
+if ($row_userstypeinfo['Level'] == 1) {
     $form_info  = array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'UsersIndex', 'value' => $array_usersdetailslist);
     $form_owner = array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => false, 'position' => 1, 'name' => 'OwnerId', 'value' => $array_userslist);
 } else {
@@ -57,6 +57,7 @@ $formFields = array(
     'UsersIndex'  => $form_info,
     'UserName'    => array('addbutton' => null, 'placeholder' => null, 'name' => 'UserName', 'label' => 'Username', 'value' => $row_usersinfo['UserName'], 'dataType' => 'Int', 'inputType' => 'text', 'required' => true, 'position' => 1),
     'Password'    => array('addbutton' => null, 'placeholder' => null, 'name' => 'Password', 'label' => 'Password', 'value' => $row_usersinfo['Password'], 'dataType' => 'Str', 'inputType' => 'password', 'required' => true, 'position' => 1),
+    'Email'       => array('addbutton' => null, 'placeholder' => null, 'name' => 'Email', 'label' => 'Email', 'value' => $row_usersinfo['Email'], 'dataType' => 'Str', 'inputType' => 'email', 'required' => true, 'position' => 1),
     'TypeId'      => array('addbutton' => null, 'placeholder' => null, 'name' => 'TypeId', 'label' => 'Type', 'value' => $array_userstypelist, 'dataType' => 'Str', 'inputType' => 'select', 'required' => true, 'position' => 3),
     'OwnerId'     => $form_owner,
     'Status'      => array('addbutton' => null, 'placeholder' => null, 'name' => 'Status', 'label' => 'Status', 'value' => $array_status, 'dataType' => 'Int', 'inputType' => 'select', 'required' => true, 'position' => 3),
@@ -70,7 +71,7 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name'    => 'Update',
+    'name'    => LANG_EDIT,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

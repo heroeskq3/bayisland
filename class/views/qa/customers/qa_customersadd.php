@@ -2,13 +2,20 @@
 if ($form_add) {
 
     //patch for state id reverse
-    if($State){
-        $zonesinfo = class_zonesInfo($State);
+    if ($State) {
+        $zonesinfo     = class_zonesInfo($State);
         $row_zonesinfo = $zonesinfo['response'][0];
-        $State = $row_zonesinfo['Name'];
+        $State         = $row_zonesinfo['Name'];
     }
 
-    class_qaCustomersAdd($CategoryId, $UsersId, $ClassesId, $FullName, $Phone, $Phone2, $Contact, $Mobile, $Email, $Country, $State, $City, $Address, $Status);
+    $qacustomersadd = class_qaCustomersAdd($CategoryId, $UsersId, $ClassesId, $FullName, $Phone, $Phone2, $Contact, $Mobile, $Email, $Email2, $Email3, $Email4, $Email5, $Country, $State, $City, $Address, $Status);
+
+    //set activity
+    if ($qacustomersadd['rows']) {
+        $Details = "Se ha creado el cliente: ".$FullName;
+        class_qaActivityAdd($UsersId, 'qa_customers', null, 'Cliente Nuevo', $Details, 2);
+    }
+
     header('Location: ' . $_SERVER['PHP_SELF']);
     die();
 }
@@ -38,7 +45,6 @@ if ($qaclasseslist['rows']) {
     }
 }
 
-
 //STATES
 $stateslist   = class_zonesList(4); //set default Costa Rica Zones Id
 $stateslist   = class_arrayFilter($stateslist['response'], 'Status', '1', '=');
@@ -49,8 +55,8 @@ if ($stateslist['rows']) {
         $array_states[] = array('label' => $row_stateslist['Name'], 'value' => $row_stateslist['Id'], 'selected' => $ZonesId);
 
         //CITIES
-        $citieslist   = class_zonesList($row_stateslist['Id']);
-        $citieslist   = class_arrayFilter($citieslist['response'], 'Status', '1', '=');
+        $citieslist = class_zonesList($row_stateslist['Id']);
+        $citieslist = class_arrayFilter($citieslist['response'], 'Status', '1', '=');
         if ($citieslist['rows']) {
             foreach ($citieslist['response'] as $row_citieslist) {
                 $array_cities[] = array('patern' => $row_citieslist['ZonesId'], 'label' => $row_citieslist['Name'], 'value' => $row_citieslist['Name'], 'selected' => $ZonesId);
@@ -69,7 +75,7 @@ $array_status[] = array('label' => 'Inactive', 'value' => '0', 'selected' => $St
 if ($row_userstypeinfo['Admin']) {
     $admin_status = array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Status', 'value' => $array_status);
 } else {
-    $admin_status = array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'Status', 'value' => 2);
+    $admin_status = array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'Status', 'value' => 1);
 }
 if ($row_userstypeinfo['Admin']) {
     $admin_users = array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'UsersId', 'value' => $array_users);
@@ -87,7 +93,12 @@ $formFields = array(
     LANG_PHONE2   => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone2', 'value' => null),
     'Contacto'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Contact', 'value' => null),
     'Celular'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Mobile', 'value' => null),
+  
     'E-Mail'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email', 'value' => null),
+    'E-Mail2'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email2', 'value' => null),
+    'E-Mail3'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email3', 'value' => null),
+    'E-Mail4'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email4', 'value' => null),
+    'E-Mail5'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email5', 'value' => null),
 
     LANG_COUNTRY  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => 'Costa Rica'),
 
@@ -102,13 +113,13 @@ $formFields = array(
 
 // define buttons for form
 $formButtons = array(
-    'Submit' => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Back'   => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => $_SERVER['PHP_SELF']),
+    LANG_BTNSUBMIT => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    LANG_BTNBACK   => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => $_SERVER['PHP_SELF']),
 );
 
 //set params for form
 $formParams = array(
-    'name'    => 'Add',
+    'name'    => LANG_ADD,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

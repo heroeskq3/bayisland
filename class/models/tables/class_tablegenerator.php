@@ -7,9 +7,11 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="panel panel-default">
+                <?php if ($params['name']) {?>
                 <div class="panel-heading">
                     <?php echo $params['name'] ?>
                 </div>
+                <?php }?>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
 <?php
@@ -21,7 +23,7 @@
         echo class_formButtons($formButtons_add);
     }
     ?>
-                    <table width="100%" class="table table-striped table-bordered table-hover display nowrap" id="dataTables-example">
+                    <table width="100%" class="table table-striped table-hover display nowrap" id="dataTables-example">
                         <thead>
                             <tr>
 
@@ -31,7 +33,7 @@
     if ($array) {
         $array_key = array_keys(current($array));
         foreach ($array_key as $key) {
-            if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+            if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs') && ($key !== 'showactions')) {
                 $results .= '<th>' . $key . '</th>';
             }
         }
@@ -55,37 +57,47 @@
 
         //values
         foreach ($array_key as $key) {
-            if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
+            if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs') && ($key !== 'showactions')) {
                 $results .= '<td>' . $row_array[$key] . '</td>';
             }
         }
         //actions
         if ($params['showactions']) {
+
             $results .= '<td>';
+            
+            if(isset($row_array['showactions'])){
+                $row_array['showactions'] = $row_array['showactions'];
+            }else{
+                $row_array['showactions'] = 1;
+            }
 
-            if ($params['showactions']) {
-                //Update
-                $results .= '<a href="?action=update&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-edit fa-fw" style="font-size:15px;"></i></a>';
-                //Delete
+            if ($row_array['showactions']) {
+                if ($params['showactions']) {
+                    //Update
+                    $results .= '<a href="?action=update&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-edit fa-fw" style="font-size:15px;"></i></a>';
+                    //Delete
 
-                if (!$row_array['childs']) {
-                    $results .= '<a href="?action=delete&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-trash-o fa-fw"" style="font-size:15px;"></i></a>';
-                }
-                if (isset($params['schedule'])) {
-                    $results .= '<a href="?action=schedule&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-calendar fa-fw" style="font-size:15px;"></i></a>';
-                }
-
-                //Show More
-                if ($params['showmore']) {
-                    if ($params['showmore'] > 'a') {
-                        $showmore = $params['showmore'];
-                    } else {
-                        $showmore = 'add';
+                    if (!$row_array['childs']) {
+                        $results .= '<a href="?action=delete&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-trash-o fa-fw"" style="font-size:15px;"></i></a>';
                     }
-                    $results .= '<a href="?action=' . $showmore . '&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-plus fa-fw"" style="font-size:15px;"></i></a>';
+                    if (isset($params['schedule'])) {
+                        $results .= '<a href="?action=schedule&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-calendar fa-fw" style="font-size:15px;"></i></a>';
+                    }
+
+                    //Show More
+                    if ($params['showmore']) {
+                        if ($params['showmore'] > 'a') {
+                            $showmore = $params['showmore'];
+                        } else {
+                            $showmore = 'add';
+                        }
+                        $results .= '<a href="?action=' . $showmore . '&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-plus fa-fw"" style="font-size:15px;"></i></a>';
+                    }
                 }
             }
             $results .= '</td>';
+
             $results .= '</tr>';
         }
         //end actions

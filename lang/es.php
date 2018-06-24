@@ -17,9 +17,11 @@ define('LANG_FORMSELECTSTATE', 'Seleccionar Provincia');
 //Survey - buttons
 define('LANG_BTNNEXT', 'Siguiente');
 define('LANG_BTNPREVIOUS', 'Atrás');
-define('LANG_BTNSUBMIT', 'Submit');
+define('LANG_BTNSUBMIT', 'Enviar');
+define('LANG_BTNBACK', 'Atrás');
 define('LANG_BTNHOME', 'Home');
 define('LANG_BTNFINISH', 'Finalizar');
+define('LANG_FINISHED', 'Terminar');
 
 //SURVEY SITE - WELCOME
 define('LANG_HOME01', '¡BIENVENIDOS AL PORTAL DE EXPERIENCIA INTACO!');
@@ -77,6 +79,7 @@ define('LANG_USERNAME', 'Usuario');
 define('LANG_PASSWORD', 'Contraseña');
 define('LANG_EMAIL', 'E-Mail');
 define('LANG_REMEMBERME', 'Recordar');
+define('LANG_SESSIONACTIVE', 'Mantener sesión iniciada');
 define('LANG_LOGINENTER', 'Ingresar');
 
 //ADMIN
@@ -84,9 +87,13 @@ define('LANG_ADD', 'Agregar');
 define('LANG_LIST', 'Lista');
 define('LANG_UPDATE', 'Actualizar');
 define('LANG_EDIT', 'Editar');
+define('LANG_DELETE', 'Borrar');
+define('LANG_TRANSFER', 'Transferir');
+define('LANG_CONFIRM', 'Confirmar');
 
 //ADMIN - DATATABLES
 define('LANG_SHOW', 'Mostrar');
+define('LANG_SHOWRESULTS', 'Mostrar Resultados');
 define('LANG_ENTRIES', 'Entradas');
 define('LANG_SHOWING', 'Mostrando');
 define('LANG_TO', 'a');
@@ -101,7 +108,6 @@ define('LANG_FILTERED', 'Filtrado');
 define('LANG_NORESULTS', 'No hay resultados');
 define('LANG_NEXT', 'Siguiente');
 define('LANG_PREVIOUS', 'Anterior');
-
 
 //ADMIN - SURVEY POSITIONS
 define('LANG_ZONES', 'Zonas');
@@ -195,6 +201,7 @@ define('LANG_INACTIVE', 'Inactivo');
 define('LANG_ACTIVE', 'Activo');
 define('LANG_PENDDING', 'Pendiente');
 define('LANG_CANCELED', 'Cancelado');
+define('LANG_INPROCESS', 'En Proceso');
 define('LANG_NO', 'No');
 define('LANG_YES', 'Si');
 
@@ -205,14 +212,52 @@ define('LANG_NONE', 'Ninguna');
 define('LANG_PHONE1', 'Teléfono 1');
 define('LANG_PHONE2', 'Teléfono 2');
 
-//QA - APPOINTMENTS
-define('LANG_NEVER', 'Nunca');
-define('LANG_ATTENDED', 'Atendido');
-define('LANG_UNATTENDED', 'Sin Atender');
-define('LANG_ERROR', 'Error');
-define('LANG_TODAY', 'En Proceso');
+//QA - CONTEXT
+define('CONTEXT_DANGER', 'Caducado');
+define('CONTEXT_SUCCESS', 'Al día');
+define('CONTEXT_WARNING', 'Falta de atención');
+define('CONTEXT_ERROR', 'Error');
+define('CONTEXT_INFO', 'Atendido');
+define('CONTEXT_PRIMARY', 'Esta Semana');
+define('CONTEXT_DEFAULT', 'Nuevo');
 
+//REPORTS
+define('LANG_DATE', 'Fecha');
+define('LANG_YEAR', 'Año');
+define('LANG_MONTH', 'Mes');
+define('LANG_DAY', 'Día');
 
+//DATES
+define('LANG_JANUARY', 'Enero');
+define('LANG_FEBRUARY', 'Febrero');
+define('LANG_MARCH', 'Marzo');
+define('LANG_APRIL', 'Abril');
+define('LANG_MAY', 'Mayo');
+define('LANG_JUNE', 'Junio');
+define('LANG_JULY', 'Julio');
+define('LANG_AUGUST', 'Agosto');
+define('LANG_SEPTEMBER', 'Septiembre');
+define('LANG_OCTOBER', 'Octubre');
+define('LANG_NOVEMBER', 'Noviembre');
+define('LANG_DECEMBER', 'Diciembre');
+
+//days
+define('LANG_MONDAY', 'Lunes');
+define('LANG_TUESDAY', 'Martes');
+define('LANG_WEDNESDAY', 'Miércoles');
+define('LANG_THURSDAY', 'Jueves');
+define('LANG_FRIDAY', 'Viernes');
+define('LANG_SATURDAY', 'Sábado');
+define('LANG_SUNDAY', 'Domingo');
+
+//SCHEDULE
+define('LANG_DAYS', 'Días');
+define('LANG_CUSTOMERS', 'Clientes');
+define('LANG_VISIT', 'Visita');
+define('LANG_INFO2', 'Ficha');
+
+//DASHBOARD
+define('LANG_VIEWDETAILS', 'Ver detalle');
 
 //SURVEY - TEST
 define('LANG_CATEGORY', 'Catergoría');

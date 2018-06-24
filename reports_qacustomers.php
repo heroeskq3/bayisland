@@ -11,11 +11,11 @@ $sectionParams = array(
     'style'       => true,
     'debug'       => false,
 );
+
 require_once 'header.php';
 
 //methods
 switch ($action) {
-    
     default:
         require_once 'class/views/reports/qa/qa_customers.php';
         break;

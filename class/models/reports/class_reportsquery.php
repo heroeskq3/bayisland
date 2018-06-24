@@ -4,6 +4,9 @@ function class_reportsQuery($array)
     if ($array) {
         $array_key = array_keys(current($array));
         foreach ($array_key as $key) {
+            if($key == 'status'){
+                $key = LANG_STATUS;
+            }
             if (($key !== 'index') && ($key !== 'status') && ($key !== 'childs')) {
                 $get_key = null;
                 if (isset($_GET[$key])) {

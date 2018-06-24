@@ -17,6 +17,7 @@
     <?php //require_once('navbar_messages.php') ?>
     <?php //require_once('navbar_tasks.php') ?>
     <?php //require_once('navbar_notify.php') ?>
+    <?php require_once('navbar_actions.php') ?>
     <?php require_once('navbar_user.php') ?>
 </ul>
 <?php } ?>

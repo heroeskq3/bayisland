@@ -25,7 +25,7 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name'    => 'Add',
+    'name'    => LANG_ADD,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

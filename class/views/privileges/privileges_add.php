@@ -29,7 +29,6 @@ foreach ($menulist['response'] as $row_menulist) {
             $submenulistl3 = class_submenuList($row_submenulist['Id']);
             if ($submenulistl3['rows']) {
                 foreach ($submenulistl3['response'] as $row_submenulistl3) {
-
                     $array_menulist[] = array('label' => '-----> ' . $row_submenulistl3['Name'], 'value' => $row_submenulistl3['Id'], 'selected' => $MenuId);
                 }
             }
@@ -40,7 +39,7 @@ foreach ($menulist['response'] as $row_menulist) {
 //Form Generator
 $formFields = array(
     'form_add' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
-    LANG_TYPE     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'TypeId', 'value' => $array_userstypelist),
+    LANG_TYPE  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'TypeId', 'value' => $array_userstypelist),
 
     //se debe tarbajar en alguna opcion apra mostrar los list con checkbox
     'Menu'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'MenuId', 'value' => $array_menulist),

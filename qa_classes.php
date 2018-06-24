@@ -15,7 +15,7 @@ require_once 'header.php';
 
 //methods
 switch ($action) {
-    
+
     default:
         require_once 'class/views/qa/classes/qa_classesadd.php';
         require_once 'class/views/qa/classes/qa_classeslist.php';
@@ -23,7 +23,7 @@ switch ($action) {
 
     case 'add':
         require_once 'class/views/qa/classes/qa_classesadd.php';
-        require_once 'class/views/qa/classes/qa_classeslist.php';
+        require_once "class/views/qa/classes/qa_classeslist.php";
         break;
 
     case 'update':

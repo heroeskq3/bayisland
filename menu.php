@@ -36,8 +36,7 @@ switch ($action) {
 
     case 'icons':
         require_once 'class/views/menu/menu_icons.php';
-        break;
-        
+        break;    
 }
 
 require_once 'footer.php';

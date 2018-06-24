@@ -1,7 +1,16 @@
 <?php
-//customers list
-$qacustomerslist = class_qaCustomersList();
+//define vars
+if (!$row_userstypeinfo['Admin']) {
 
+    if (isset($_GET['Agente'])) {
+        $_GET['Agente'] = $_GET['Agente'];
+    } else {
+        $_GET['Agente'] = $row_usersinfo['UserName'];
+    }
+}
+
+//customers list
+$qacustomerslist       = class_qaCustomersList();
 $array_qacustomerslist = array();
 if ($qacustomerslist['rows']) {
     foreach ($qacustomerslist['response'] as $row_qacustomerslist) {
@@ -30,35 +39,28 @@ if ($qacustomerslist['rows']) {
             $row_qacategoryinfo['Name'] = 'Undefined';
         }
 
-        //determine customers health
         if ($row_qacustomerslist['LastVisit']) {
-
-            $LastVisit = date("Y-m-d", strtotime($row_qacustomerslist['LastVisit']));
-
-            //define context
-            
-            if ($DateSet == $LastVisit) {
-                $LastVisit = LANG_TODAY;
-                $Context   = 'info';
-            } elseif ($DateSet < $LastVisit) {
-                $LastVisit = LANG_ATTENDED;
-                $Context   = 'success';
-            } elseif ($DateSet > $LastVisit) {
-                $LastVisit = LANG_UNATTENDED;
-                $Context   = 'warning';
-            } else {
-                $LastVisit = LANG_ERROR;
-                $Context   = null;
-            }
+            $createdate = $row_qacustomerslist['CreateDate'];
+            $lastvisit  = $row_qacustomerslist['LastVisit'];
+            $date       = $lastvisit;
         } else {
-            $LastVisit = LANG_NEVER;
-            $Context   = 'danger';
+            $createdate = $row_qacustomerslist['CreateDate'];
+            $lastvisit  = null;
+            $date       = $createdate;
         }
+
+        $date = date_create($date);
+        $date = date_format($date, 'Y-m-d');
+
+        //context
+        $context     = class_qacustomerscontext($createdate, $lastvisit, $row_qaclassesinfo['Period'], 365);
+        $row_context = $context['response'];
 
         $array_qacustomerslist[] = array(
 
             //Define custom Patern Table Alias Keys => Values
-            LANG_NAME     => $row_qacustomerslist['FullName'],
+            'ID'          => $row_qacustomerslist['Id'],
+            LANG_NAME     => $row_qacustomerslist['FullName'] . $row_context['test'],
             'Agente'      => $row_qausersinfo['UserName'],
             'Clase'       => $row_qaclassesinfo['Name'],
             LANG_CATEGORY => $row_qacategoryinfo['Name'],
@@ -71,29 +73,36 @@ if ($qacustomerslist['rows']) {
             LANG_COUNTRY  => $row_qacustomerslist['Country'],
             'Provincia'   => $row_qacustomerslist['State'],
             'Ciudad'      => $row_qacustomerslist['City'],
-            'Visita'      => $LastVisit,
-            'Estado'      => class_statusInfo($row_qacustomerslist['Status']),
+            LANG_DATE     => $date,
+            LANG_STATUS   => $row_context['status'],
 
             //Define Index, Status, Childs
             'index'       => $row_qacustomerslist['Id'],
-            'status'      => $row_qacustomerslist['Status'], //use = 1 or 0
-            'context'     => $Context, //use bootsrap context (danger, warning, success, info)
+            'status'      => $row_context['status'], //use = 1 or 0
+            'context'     => $row_context['context'], //use bootsrap context (danger, warning, success, info)
             'childs'      => null,
         );
     }
 }
 
 $reportsParams = array(
-
     'searchbar' => true,
     'filterbar' => true,
     'filter'    => true,
+    'search'    => true,
     'resume'    => true,
     'order'     => true,
     'table'     => true,
     'limit'     => 10,
-    'hidecols'  => '4,5,6,7,8',
+    'hidecols'  => '0,5,6,7,8,9,10,12',
+    'add'       => 'qa_customers.php',
+    'edit'      => 'qa_customers.php',
+    'delete'    => 'qa_customers.php',
+    'schedule'  => 'qa_appointments.php',
+    'info'      => 'info_qacustomers.php',
+    'transfer'  => 'qa_transfers.php',
+    'status'    => true,
 );
 
 //generate reports
-print class_reportsGenerator($array_qacustomerslist, $reportsParams, null);
+print class_reportsGenerator2($array_qacustomerslist, $reportsParams, null);

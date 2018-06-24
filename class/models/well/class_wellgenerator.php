@@ -13,7 +13,7 @@ function class_wellGenerator($formWell, $formParams, $formFields, $formButtons)
                 $results .= '<div class="col-xs-12 col-sm-4">';
             }
 
-            if ($row['active']==$row['value']) {
+            if ($row['active'] == $row['value']) {
                 $input_checked  = 'checked';
                 $button_checked = 'btn-active';
             } else {
@@ -24,7 +24,7 @@ function class_wellGenerator($formWell, $formParams, $formFields, $formButtons)
             if ($row['class']) {
                 $class = $row['class'];
             } else {
-                $class = 'btn-custom '.$button_checked.' well well-lg well-custom';
+                $class = 'btn-custom ' . $button_checked . ' well well-lg well-custom';
             }
 
             //submit

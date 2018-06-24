@@ -14,6 +14,12 @@ if (isset($_POST['password']) && isset($_POST['username'])) {
 
         $_SESSION['UserId'] = $row_login['Id'];
 
+        if ($_POST['remember']) {
+            setcookie("PHPSESSID", $_COOKIE[session_name()], time() + 31622400);
+        } else {
+            setcookie("PHPSESSID", $_COOKIE[session_name()]);
+        }
+
         header('Location: index.php');
         die();
     } else {
@@ -44,7 +50,7 @@ if (isset($_POST['password']) && isset($_POST['username'])) {
                                 </div>
                                 <div class="checkbox">
                                     <label>
-                                        <input name="remember" type="checkbox" value="Remember Me"><?php echo LANG_REMEMBERME; ?>
+                                        <input name="remember" type="checkbox" value="1"><?php echo LANG_SESSIONACTIVE; ?>
                                     </label>
                                 </div>
                                 <!-- Change this to a button or input when using this as a form -->

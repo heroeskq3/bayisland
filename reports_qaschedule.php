@@ -1,7 +1,7 @@
 <?php
 //Section Parameters
 $sectionParams = array(
-    'tittle'      => 'Cronograma Semanal',
+    'tittle'      => 'Cronograma Semanal de Visitas',
     'description' => '',
     'homedir'     => '',
     'restrict'    => true,

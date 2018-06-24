@@ -15,7 +15,7 @@ require_once 'header.php';
 
 switch ($action) {
     default:
-    require_once 'class/views/profile/profile_update.php';
+        require_once 'class/views/profile/profile_update.php';
         break;
 }
 

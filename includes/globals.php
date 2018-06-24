@@ -92,6 +92,22 @@ $Email = null;
 if (isset($_POST['Email'])) {
     $Email = htmlspecialchars($_POST['Email']);
 }
+$Email2 = null;
+if (isset($_POST['Email2'])) {
+    $Email2 = htmlspecialchars($_POST['Email2']);
+}
+$Email3 = null;
+if (isset($_POST['Email3'])) {
+    $Email3 = htmlspecialchars($_POST['Email3']);
+}
+$Email4 = null;
+if (isset($_POST['Email4'])) {
+    $Email4 = htmlspecialchars($_POST['Email4']);
+}
+$Email5 = null;
+if (isset($_POST['Email5'])) {
+    $Email5 = htmlspecialchars($_POST['Email5']);
+}
 $Country = null;
 if (isset($_POST['Country'])) {
     $Country = $_POST['Country'];
@@ -166,6 +182,10 @@ $TypeId = null;
 if (isset($_POST['TypeId'])) {
     $TypeId = ($_POST['TypeId']);
 }
+$remember = null;
+if (isset($_POST['remember'])) {
+    $remember = ($_POST['remember']);
+}
 
 //USERS TYPE
 $Report = null;
@@ -207,6 +227,10 @@ if (isset($_GET['Id'])) {
 $action = null;
 if (isset($_GET['action'])) {
     $action = $_GET['action'];
+}
+$search = null;
+if (isset($_GET['search'])) {
+    $search = $_GET['search'];
 }
 
 //ADMIN - MENU ADD

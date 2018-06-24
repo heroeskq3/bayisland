@@ -26,5 +26,6 @@ function class_resportsResume($array)
     } else {
         $results = $array;
     }
+
     return $results;
 }

@@ -63,8 +63,12 @@ label {
     .table-responsive {
         border: 0px solid #ddd;
     }
-    #wrapper {
-        padding-top: 90px;
+    ul.navbar-right{
+        display: none;
     }
 }
 /* upload image end*/
+
+table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+    border-bottom-width: 90px;
+}

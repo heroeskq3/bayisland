@@ -4,6 +4,9 @@ $namespace = 'mysql';
 require_once PATH_MODELS . $namespace . '/class_mysql.php';
 require_once PATH_MODELS . $namespace . '/class_conn.php';
 
+$namespace = 'mail';
+require_once PATH_MODELS . $namespace . '/class_mailsent.php';
+
 $namespace = 'login';
 require_once PATH_MODELS . $namespace . '/class_login.php';
 
@@ -16,6 +19,10 @@ require_once PATH_MODELS . $namespace . '/class_statusInfo.php';
 require_once PATH_MODELS . $namespace . '/class_infosino.php';
 require_once PATH_MODELS . $namespace . '/class_statusIcon.php';
 require_once PATH_MODELS . $namespace . '/class_statusperiod.php';
+require_once PATH_MODELS . $namespace . '/class_infomonth.php';
+require_once PATH_MODELS . $namespace . '/class_infoday.php';
+require_once PATH_MODELS . $namespace . '/class_diffdate.php';
+require_once PATH_MODELS . $namespace . '/class_weekiso.php';
 
 //SCRIPTS
 $namespace = 'scripts';
@@ -37,6 +44,7 @@ require_once PATH_MODELS . $namespace . '/class_arrayfilter.php';
 require_once PATH_MODELS . $namespace . '/class_arraylimit.php';
 require_once PATH_MODELS . $namespace . '/class_arrayrandom.php';
 require_once PATH_MODELS . $namespace . '/class_arraysort.php';
+require_once PATH_MODELS . $namespace . '/class_arraygroup.php';
 
 //CONFIG
 $namespace = 'lang';
@@ -144,10 +152,18 @@ require_once PATH_MODELS . $namespace . '/class_wellgenerator.php';
 //reports
 $namespace = 'reports';
 require_once PATH_MODELS . $namespace . '/class_reportssearchbar.php';
+require_once PATH_MODELS . $namespace . '/class_reportsfilterbar.php';
 require_once PATH_MODELS . $namespace . '/class_reportsgenerator.php';
+require_once PATH_MODELS . $namespace . '/class_reportsgenerator2.php';
+require_once PATH_MODELS . $namespace . '/class_reportsgenerator3.php';
 require_once PATH_MODELS . $namespace . '/class_reportstable.php';
+require_once PATH_MODELS . $namespace . '/class_reportstableweek.php';
+require_once PATH_MODELS . $namespace . '/class_reportstableinfo.php';
 require_once PATH_MODELS . $namespace . '/class_reportsresume.php';
+require_once PATH_MODELS . $namespace . '/class_reportsweek.php';
 require_once PATH_MODELS . $namespace . '/class_reportsquery.php';
+require_once PATH_MODELS . $namespace . '/class_reportsstatus.php';
+require_once PATH_MODELS . $namespace . '/class_reportssearch.php';
 require_once PATH_MODELS . $namespace . '/class_reportsorder.php';
 require_once PATH_MODELS . $namespace . '/class_reportslimit.php';
 
@@ -164,6 +180,7 @@ require_once PATH_MODELS . $namespace . '/class_qacustomersadd.php';
 require_once PATH_MODELS . $namespace . '/class_qacustomersupdate.php';
 require_once PATH_MODELS . $namespace . '/class_qacustomersdelete.php';
 require_once PATH_MODELS . $namespace . '/class_qacustomerslastvisit.php';
+require_once PATH_MODELS . $namespace . '/class_qacustomerscontext.php';
 
 //qaclasses
 require_once PATH_MODELS . $namespace . '/class_qaclassesinfo.php';
@@ -178,6 +195,10 @@ require_once PATH_MODELS . $namespace . '/class_qaappointmentslist.php';
 require_once PATH_MODELS . $namespace . '/class_qaappointmentsadd.php';
 require_once PATH_MODELS . $namespace . '/class_qaappointmentsupdate.php';
 require_once PATH_MODELS . $namespace . '/class_qaappointmentsdelete.php';
+require_once PATH_MODELS . $namespace . '/class_qaappointmentsstatus.php';
+
+//qaschedule
+require_once PATH_MODELS . $namespace . '/class_qaschedulelist.php';
 
 //qacategory
 require_once PATH_MODELS . $namespace . '/class_qacategoryinfo.php';
@@ -185,6 +206,20 @@ require_once PATH_MODELS . $namespace . '/class_qacategorylist.php';
 require_once PATH_MODELS . $namespace . '/class_qacategoryadd.php';
 require_once PATH_MODELS . $namespace . '/class_qacategoryupdate.php';
 require_once PATH_MODELS . $namespace . '/class_qacategorydelete.php';
+
+//qaactivity
+require_once PATH_MODELS . $namespace . '/class_qaactivityadd.php';
+require_once PATH_MODELS . $namespace . '/class_qaactivityupdate.php';
+require_once PATH_MODELS . $namespace . '/class_qaactivitylist.php';
+require_once PATH_MODELS . $namespace . '/class_qaactivitystatuslist.php';
+require_once PATH_MODELS . $namespace . '/class_qaactivitystatusupdate.php';
+require_once PATH_MODELS . $namespace . '/class_qaactivitypending.php';
+
+//qatransfers
+require_once PATH_MODELS . $namespace . '/class_qatransfersupdate.php';
+
+//qafinished
+require_once PATH_MODELS . $namespace . '/class_qafinishedupdate.php';
 
 //reports
 require_once PATH_MODELS . $namespace . '/class_qacustomersreports.php';

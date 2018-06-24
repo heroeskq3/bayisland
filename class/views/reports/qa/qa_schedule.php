@@ -1,81 +1,99 @@
 <?php
-function class_tableMainList($array)
-{
-    $results = array();
-    if ($array['rows']) {
-        foreach ($array['response'] as $row_array) {
+if (!isset($_GET['Semana'])) {
 
-            //users info
-            if ($row_array['UsersId']) {
-                $qausersinfo     = class_usersInfo($row_array['UsersId']);
-                $row_qausersinfo = $qausersinfo['response'][0];
-            } else {
-                $row_qausersinfo['UserName'] = 'Undefined';
-            }
+    $week_number    = date(W);
+    $week_year      = date(Y);
+    $weekiso        = class_weekIso($week_year, $week_number);
+    $week_set       = $weekiso['date_start'] . " al " . $weekiso['date_end'];
+    $_GET['Año']   = $week_year;
+    $_GET['Semana'] = $week_set;
+}
 
-            //classes info
-            if ($row_array['ClassesId']) {
-                $qaclassesinfo     = class_qaClassesInfo($row_array['ClassesId']);
-                $row_qaclassesinfo = $qaclassesinfo['response'][0];
-            } else {
-                $row_qaclassesinfo['Name'] = 'Undefined';
-            }
+if (!$row_userstypeinfo['Admin']) {
 
-            //category info
-            if ($row_array['CategoryId']) {
-                $qacategoryinfo     = class_qaCategoryInfo($row_array['CategoryId']);
-                $row_qacategoryinfo = $qacategoryinfo['response'][0];
-            } else {
-                $row_qacategoryinfo['Name'] = 'Undefined';
-            }
-
-            //zones
-            if (!$row_array['Zone']) {
-                $row_array['Zone'] = 'Undefined';
-            }
-
-            $results[] = array(
-
-                //Define custom Patern Table Alias Keys => Values
-                'Nombre'    => $row_array['FullName'],
-                'Agente'    => $row_qausersinfo['UserName'],
-                'Clase'     => $row_qaclassesinfo['Name'],
-                'Categoría' => $row_qacategoryinfo['Name'],
-
-                'Tel1'      => $row_array['Phone'],
-                'Tel2'      => $row_array['Phone2'],
-                'Contacto'  => $row_array['Contact'],
-                'Celular'   => $row_array['Mobile'],
-                'E-Mail'    => $row_array['Email'],
-                'Zona'      => $row_array['Zone'],
-                'Detalles'  => $row_array['Details'],
-                'Estado'    => class_statusInfo($row_array['Status']),
-
-                //Define Index, Status, Childs
-                'index'     => $row_array['Id'],
-                'status'    => $row_array['Status'], //use = 1 or 0
-                'childs'    => null, //define array
-            );
-        }
+    if (isset($_GET['Agente'])) {
+        $_GET['Agente'] = $_GET['Agente'];
+    } else {
+        $_GET['Agente'] = $row_usersinfo['UserName'];
     }
-    return $results;
+}
+
+if($_GET['Agente']){
+    $week_user = $_GET['Agente'];
+}else{
+    $week_user = 'Todos los agentes';
+}
+
+$tittle_week = $week_user." Semana del <b>" . $_GET['Semana']."</b>";
+
+//Schedule list
+$qaschedulelist = class_qaScheduleList();
+
+if (!$row_userstypeinfo['Admin']) {
+    $qaschedulelist = class_arrayFilter($qaschedulelist['response'], 'UsersId', $_SESSION['UserId'], '=');
+}
+
+$array_qaschedulelist = array();
+if ($qaschedulelist['rows']) {
+    $i = 1;
+
+    //$dateweek = $row_qaschedulelist['DateWeek'];
+
+    foreach ($qaschedulelist['response'] as $row_qaschedulelist) {
+
+        $qausersinfo     = class_usersInfo($row_qaschedulelist['UsersId']);
+        $row_qausersinfo = $qausersinfo['response'][0];
+        $infomonth       = class_infoMonth($row_qaschedulelist['DateMonth']);
+        $infoday         = class_infoDay($row_qaschedulelist['DateDay']);
+        $countweek       = $i++;
+        $Date            = date_create($row_qaschedulelist['Date']);
+        $DateWeek        = date_format($Date, "W");
+        $DateYear        = date_format($Date, "Y");
+
+        $weekiso  = class_weekIso($DateYear, $DateWeek);
+        $week_set = $weekiso['date_start'] . " al " . $weekiso['date_end'];
+
+        $array_qaschedulelist[] = array(
+
+            //Define custom Patern Table Alias Keys => Values
+            'Semana'      => $week_set,
+            'Fecha'       => $row_qaschedulelist['Date'],
+            'Año'         => $row_qaschedulelist['DateYear'],
+            'Mes'         => $infomonth,
+            'Día'         => $infoday,
+            'Agente'      => $row_qausersinfo['UserName'],
+            'Zona'        => $row_qaschedulelist['Zone'],
+            'Cliente'     => $row_qaschedulelist['Customer'],
+            LANG_CATEGORY => $row_qaschedulelist['Category'],
+            'Cantidad'    => $row_qaschedulelist['Qnty'],
+
+            //Define Index, Status, Childs
+            'index'       => $row_qaschedulelist['CustomersId'],
+            'status'      => null, //use = 1 or 0
+            'context'     => null, //use bootsrap context (danger, warning, success, info)
+            'childs'      => null,
+        );
+    }
 }
 
 $reportsParams = array(
-
+    'title'     => $tittle_week,
     'searchbar' => true,
     'filterbar' => true,
     'filter'    => true,
+    'search'    => true,
     'resume'    => true,
-    'order'     => true,
+    'order'     => false,
     'table'     => true,
     'limit'     => 10,
-    'hidecols'  => '4,5,6,7,8,10',
+    'hidecols'  => '',
+    'add'       => false,
+    'edit'      => false,
+    'delete'    => false,
+    'schedule'  => false,
+    'transfer'  => false,
+    'status'    => true,
 );
 
-//customers list
-$qacustomerslist       = class_qaCustomersList();
-$array_qacustomerslist = class_tableMainList($qacustomerslist);
-
 //generate reports
-print class_reportsGenerator($array_qacustomerslist, $reportsParams, null);
+print class_reportsGenerator($array_qaschedulelist, $reportsParams, null);

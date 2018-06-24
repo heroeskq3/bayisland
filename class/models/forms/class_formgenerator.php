@@ -28,17 +28,18 @@ function class_formGenerator($formParams, $formFields, $formButtons)
                             <?php if ($formParams['method']) {?>
                             <form id="validationForm" role="form" action="<?php echo $formParams['action']; ?>" method="<?php echo $formParams['method']; ?>" enctype="<?php echo $formParams['enctype']; ?>">
                                 <?php }?>
-                                <?php foreach ($formFields as $label => $row) {?>
+                                <?php foreach ($formFields as $label => $row) {
+        ?>
                                 <div class="form-group">
                                     <?php if ($row['position']) {?>
                                         <?php if ($label) {?>
                                         <?php if ($row['inputType'] == 'label') {?>
                                             <h4><strong><?php echo $label; ?></strong></h4>
-                                        <?php } elseif($row['inputType'] == 'checkbox') {?>
+                                        <?php } elseif ($row['inputType'] == 'checkbox') {?>
                                         <?php } else {?>
-                                            <?php if($row['addbutton']){ ?>
-                                                <label><?php echo $label; ?> <a href="<?php echo $_SERVER['PHP_SELF'].'?action='.$row['name'];?>">(Agregar)</a></label>
-                                                <?php }else{?>
+                                            <?php if ($row['addbutton']) {?>
+                                                <label><?php echo $label; ?> <a href="<?php echo $_SERVER['PHP_SELF'] . '?action=' . $row['name']; ?>">(Agregar)</a></label>
+                                                <?php } else {?>
                                                 <label><?php echo $label; ?></label>
                                                 <?php }?>
                                             <?php }?>
@@ -48,8 +49,8 @@ function class_formGenerator($formParams, $formFields, $formButtons)
                                     <?php }?>
                                     <?php
 } else {
-        $row['inputType'] = 'hidden';
-    }
+            $row['inputType'] = 'hidden';
+        }
         ?>
 
                                     <?php echo class_formInput($row['placeholder'], $row['inputType'], $row['name'], $label, $row['value'], $row['required']); ?>

@@ -1,7 +1,7 @@
 <?php
-function class_qaCustomersUpdate($Id, $CategoryId, $UsersId, $ClassesId, $FullName, $Phone, $Phone2, $Contact, $Mobile, $Email, $Country, $State, $City, $Address, $Status)
+function class_qaCustomersUpdate($Id, $CategoryId, $UsersId, $ClassesId, $FullName, $Phone, $Phone2, $Contact, $Mobile, $Email, $Email2, $Email3, $Email4, $Email5, $Country, $State, $City, $Address, $Status)
 {
-    $mysql_query    = "UPDATE qa_customers SET CategoryId = '$CategoryId', UsersId = '$UsersId', ClassesId = '$ClassesId', FullName = '$FullName', Phone = '$Phone', Phone2 = '$Phone2', Contact = '$Contact', Mobile = '$Mobile', Email = '$Email', Country = '$Country', State = '$State', City = '$City', Address = '$Address', Status = '$Status' WHERE Id = $Id";
+    $mysql_query    = "UPDATE qa_customers SET CategoryId = '$CategoryId', UsersId = '$UsersId', ClassesId = '$ClassesId', FullName = '$FullName', Phone = '$Phone', Phone2 = '$Phone2', Contact = '$Contact', Mobile = '$Mobile', Email = '$Email', Email2 = '$Email2', Email3 = '$Email3', Email4 = '$Email4', Email5 = '$Email5', Country = '$Country', State = '$State', City = '$City', Address = '$Address', Status = '$Status' WHERE Id = $Id";
     $mysql_database = CONFIG_MYSQLDB;
     $mysql_conn     = conn_mysql();
     $mysql_debug    = 0;

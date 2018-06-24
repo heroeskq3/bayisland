@@ -8,6 +8,14 @@ if ($form_add) {
         class_qaCustomersLastVisit($CustomersId, $LastVisit);
     }
 
+    //set activity
+    if ($qaappointmentsadd['rows']) {
+        $DateSet = date_create($DateSet);
+        $DateSet = date_format($DateSet, 'l, j F Y');
+        $Details = 'Programada para ' . $DateSet;
+        class_qaActivityAdd($UsersId, 'qa_appointments', $CustomersId, 'Visita Nueva', $Details, 2);
+    }
+
     header('Location: ' . $_SERVER['PHP_SELF'] . '?action=next&Id=' . $CustomersId);
     die();
 }
@@ -55,20 +63,20 @@ $formFields = array(
     'Usuario'     => $admin_users,
     'Cliente'     => array('addbutton' => true, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CustomersId', 'value' => $array_customers),
     'Fecha'       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'date', 'required' => true, 'position' => 1, 'name' => 'DateSet', 'value' => $DateSet),
-    'Hora'        => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'time', 'required' => true, 'position' => 1, 'name' => 'TimeSet', 'value' => $TimeSet),
-    'Comentarios' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $Details),
-    'Estado'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => true, 'position' => 0, 'name' => 'Status', 'value' => 1),
+    'Hora'        => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'TimeSet', 'value' => $TimeSet),
+    'Comentarios' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Details', 'value' => $Details),
+    'Estado'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Status', 'value' => 2),
 );
 
 // define buttons for form
 $formButtons = array(
-    'Next' => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Back' => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => $_SERVER['PHP_SELF']),
+    LANG_NEXT => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    LANG_BACK => array('buttonType' => 'link', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => $_SERVER['PHP_SELF']),
 );
 
 //set params for form
 $formParams = array(
-    'name'    => 'Add',
+    'name'    => LANG_ADD,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

@@ -2,14 +2,21 @@
 if ($form_update) {
     $qaappointmentsupdate = class_qaAppointmentsUpdate($Id, $UsersId, $CustomersId, $DateSet, $TimeSet, $Details, $Status);
 
-    //set customer last visit
+    //Activity
     if ($qaappointmentsupdate['rows']) {
-        $LastVisit = $DateSet.' '.$TimeSet;
+        $LastVisit = $DateSet . ' ' . $TimeSet;
         class_qaCustomersLastVisit($CustomersId, $LastVisit);
     }
-    
 
-    header('Location: ' . $_SERVER['PHP_SELF'].'?action=next&Id='.$CustomersId);
+    //set activity
+    if ($qaappointmentsupdate['rows']) {
+        $DateSet = date_create($DateSet);
+        $DateSet = date_format($DateSet, 'l, j F Y');
+        $Details = 'Programada para ' . $DateSet;
+        $test    = class_qaActivityAdd($UsersId, 'qa_appointments', $CustomersId, 'Visita Cambiada', $Details, 2);
+    }
+
+    header('Location: ' . $_SERVER['PHP_SELF'] . '?action=next&Id=' . $CustomersId);
     die();
 }
 
@@ -60,20 +67,20 @@ $formFields = array(
     'Usuario'     => $admin_users,
     'Cliente'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CustomersId', 'value' => $array_customers),
     'Fecha'       => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'date', 'required' => true, 'position' => 1, 'name' => 'DateSet', 'value' => $row_qaappointmentsinfo['DateSet']),
-    'Hora'        => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'time', 'required' => true, 'position' => 1, 'name' => 'TimeSet', 'value' => $row_qaappointmentsinfo['TimeSet']),
-    'Comentarios' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'textarea', 'required' => false, 'position' => 1, 'name' => 'Details', 'value' => $row_qaappointmentsinfo['Details']),
+    'Hora'        => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'TimeSet', 'value' => $row_qaappointmentsinfo['TimeSet']),
+    'Comentarios' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Details', 'value' => $row_qaappointmentsinfo['Details']),
     'Estado'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Status', 'value' => $row_qaappointmentsinfo['Status']),
 );
 
 // define buttons for form
 $formButtons = array(
-    'Next' => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
-    'Back'   => array('buttonType' => 'home', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => $_SERVER['PHP_SELF']),
+    LANG_NEXT => array('buttonType' => 'submit', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => null),
+    LANG_BACK => array('buttonType' => 'home', 'disabled' => null, 'class' => null, 'name' => null, 'value' => null, 'action' => $_SERVER['PHP_SELF']),
 );
 
 //set params for form
 $formParams = array(
-    'name'    => 'Add',
+    'name'    => LANG_EDIT,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

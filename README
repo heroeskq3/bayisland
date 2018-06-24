@@ -1,0 +1,18 @@
+#REQUIREMENTS
+- Apache 2x / IIS
+- PHP 5.6
+- MySQL 5
+- Cron Jobs Systems
+
+#INSTALLATION
+1) Copy source into http directory
+2) Create MySQL Database and Execute Dump File ./sql/bayisland.sql
+3) Edit ./includes/config.php //MYSQL DEFINE ACCESS INFORMATION
+
+#CRONJOBS
+- Configure Server "Schedule System" URL: http://URLSERVER/cronjobs/qa_activity.php
+
+#RUN
+Open URL using Browser for Internet http://URLSERVER/
+
+

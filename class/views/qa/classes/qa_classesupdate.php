@@ -30,7 +30,7 @@ $formButtons = array(
 
 //set params for form
 $formParams = array(
-    'name'    => 'Add',
+    'name'    => LANG_EDIT,
     'action'  => '',
     'method'  => 'post',
     'enctype' => '',

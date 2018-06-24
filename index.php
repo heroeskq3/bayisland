@@ -1,7 +1,9 @@
 <?php
+header("Refresh:120");
+
 //Section Parameters
 $sectionParams = array(
-    'tittle'      => 'Home',
+    'tittle'      => 'Bienvenido!',
     'description' => '',
     'homedir'     => '',
     'restrict'    => true,
@@ -15,7 +17,7 @@ require_once 'header.php';
 
 switch ($action) {
     default:
-        echo "Welcome";
+        require_once 'class/views/dashboard/dashboard.php';
         break;
 }
 

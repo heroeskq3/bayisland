@@ -1,6 +1,6 @@
 <?php
 $table_params = array(
-    'name'        => "List",
+    'name'        => LANG_LIST,
     'searchbar'   => true,
     'rowsbypage'  => 10,
     'showactions' => true,
@@ -17,14 +17,14 @@ function class_tableMainList($array)
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
-                'Nombre'      => $row_array['Name'],
-                'Periodo Visita'      => class_statusPeriod($row_array['Period']),
-                'Estado'       => class_statusInfo($row_array['Status']),
+                'Nombre'         => $row_array['Name'],
+                'Periodo Visita' => class_statusPeriod($row_array['Period']),
+                'Estado'         => class_statusInfo($row_array['Status']),
 
                 //Define Index, Status, Childs
-                'index'        => $row_array['Id'],
-                'status'       => null, //use = 1 or 0
-                'childs'       => null, //define array
+                'index'          => $row_array['Id'],
+                'status'         => null, //use = 1 or 0
+                'childs'         => null, //define array
             );
         }
     }
@@ -33,7 +33,7 @@ function class_tableMainList($array)
 }
 
 $qaclasseslist = class_qaClassesList();
-$table_array     = class_tableMainList($qaclasseslist);
+$table_array   = class_tableMainList($qaclasseslist);
 
 //set params for form
 $formParams = null;
