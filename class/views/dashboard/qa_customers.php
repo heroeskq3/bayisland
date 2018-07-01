@@ -1,4 +1,8 @@
 <?php
+$resume = null;
+if (isset($_GET['resume'])) {
+    $resume = $_GET['resume'];
+}
 //customers
 $qacustomerslist = class_qaCustomersList();
 if (!$row_userstypeinfo['Admin']) {
@@ -58,11 +62,11 @@ if ($qaprimary['rows']) {
 }
 ?>
 <div class="col-lg-3 col-md-12">
-    <?php if($qaprimary['rows']){ ?>
-<a href="reports_qacustomers.php?&Estado=<?php echo CONTEXT_PRIMARY; ?>">
-<?php }else{ ?>
+    <?php if ($qaprimary['rows']) {?>
+<a href="reports_qacustomers.php?resume=<?php echo $resume; ?>&Estado=<?php echo CONTEXT_PRIMARY; ?>">
+<?php } else {?>
     <a href="#">
-<?php } ?>
+<?php }?>
         <div class="panel <?php echo $qaprimary_color; ?>">
             <div class="panel-heading">
                 <div class="row">
@@ -77,22 +81,27 @@ if ($qaprimary['rows']) {
                     </div>
                 </div>
             </div>
-
                 <div class="panel-footer">
                     <span class="pull-left"><?php echo LANG_VIEWDETAILS ?></span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
-
         </div>
         </a>
     </div>
     <div class="col-lg-3 col-md-6">
-        <?php if($qasuccess['rows']){ ?>
-        <a href="reports_qacustomers.php?&Estado=<?php echo CONTEXT_SUCCESS; ?>">
-        <?php }else{ ?>
+        <?php if ($qasuccess['rows']) {
+    ?>
+        <?php
+$resume = null;
+    if ($row_userstypeinfo['Admin']) {
+        $resume = 'Agente';
+    }
+    ?>
+        <a href="reports_qacustomers.php?resume=<?php echo $resume; ?>&Estado=<?php echo CONTEXT_SUCCESS; ?>">
+        <?php } else {?>
             <a href="#">
-        <?php } ?>
+        <?php }?>
         <div class="panel <?php echo $qasuccess_color; ?>">
             <div class="panel-heading">
                 <div class="row">
@@ -119,7 +128,7 @@ if ($qaprimary['rows']) {
     </div>
     <div class="col-lg-3 col-md-6">
         <?php if ($qawarning['rows']) {?>
-        <a href="reports_qacustomers.php?&Estado=<?php echo CONTEXT_WARNING; ?>">
+        <a href="reports_qacustomers.php?resume=<?php echo $resume; ?>&Estado=<?php echo CONTEXT_WARNING; ?>">
         <?php } else {?>
             <a href="#">
         <?php }?>
@@ -149,7 +158,7 @@ if ($qaprimary['rows']) {
     </div>
     <div class="col-lg-3 col-md-6">
         <?php if ($qadanger['rows']) {?>
-        <a href="reports_qacustomers.php?&Estado=<?php echo CONTEXT_DANGER; ?>">
+        <a href="reports_qacustomers.php?resume=<?php echo $resume; ?>&Estado=<?php echo CONTEXT_DANGER; ?>">
         <?php } else {?>
         <a href="#">
         <?php }?>

@@ -21,7 +21,7 @@ function class_mailSent($from, $from_reply, $to, $cc, $bcc, $subject, $body)
         $headers .= 'Bcc: ' . $bcc . "\r\n";
     }
 
-    $sent = @mail($to, $subject, $body, $headers);
+    $sent = mail($to, $subject, $body, $headers);
 
     if ($sent) {
         $msg = "ok";

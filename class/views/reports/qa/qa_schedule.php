@@ -1,8 +1,7 @@
 <?php
 if (!isset($_GET['Semana'])) {
-
-    $week_number    = date(W);
-    $week_year      = date(Y);
+    $week_number    = @date(W);
+    $week_year      = @date(Y);
     $weekiso        = class_weekIso($week_year, $week_number);
     $week_set       = $weekiso['date_start'] . " al " . $weekiso['date_end'];
     $_GET['Año']   = $week_year;
@@ -18,13 +17,13 @@ if (!$row_userstypeinfo['Admin']) {
     }
 }
 
-if($_GET['Agente']){
+if (isset($_GET['Agente'])) {
     $week_user = $_GET['Agente'];
-}else{
+} else {
     $week_user = 'Todos los agentes';
 }
 
-$tittle_week = $week_user." Semana del <b>" . $_GET['Semana']."</b>";
+$tittle_week = $week_user . " Semana del <b>" . $_GET['Semana'] . "</b>";
 
 //Schedule list
 $qaschedulelist = class_qaScheduleList();

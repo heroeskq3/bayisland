@@ -10,10 +10,10 @@ if ($form_add) {
 
     //set activity
     if ($qaappointmentsadd['rows']) {
-        $DateSet = date_create($DateSet);
-        $DateSet = date_format($DateSet, 'l, j F Y');
-        $Details = 'Programada para ' . $DateSet;
-        class_qaActivityAdd($UsersId, 'qa_appointments', $CustomersId, 'Visita Nueva', $Details, 2);
+        $DateSet       = date_create($DateSet);
+        $DateSet       = date_format($DateSet, 'l, j F Y');
+        $Details       = 'Programada para ' . $DateSet;
+        $qaactivityadd = class_qaActivityAdd($UsersId, 'qa_appointments', $CustomersId, 'Visita Nueva', $Details, 2);
     }
 
     header('Location: ' . $_SERVER['PHP_SELF'] . '?action=next&Id=' . $CustomersId);

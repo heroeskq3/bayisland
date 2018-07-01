@@ -1,10 +1,10 @@
-<?php 
+<?php
 //define vars
 if (!$row_userstypeinfo['Admin']) {
 
-    if(isset($_GET['Agente'])){
+    if (isset($_GET['Agente'])) {
         $_GET['Agente'] = $_GET['Agente'];
-    }else{
+    } else {
         $_GET['Agente'] = $row_usersinfo['UserName'];
     }
 }

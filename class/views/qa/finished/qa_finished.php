@@ -4,25 +4,31 @@ if ($form_add) {
 
     //set activity
     if ($qatransfersupdate['rows']) {
-        
+
         //user info
         $usersinfo2     = class_usersInfo($UsersId);
         $row_usersinfo2 = $usersinfo2['response'][0];
 
         //status info
-        if($Status == 1){
+        if ($Status == 1) {
             $Status = 'Visita Terminada';
         }
         //status info
-        if($Status == 2){
+        if ($Status == 2) {
             $Status = 'Aspectos Varios';
         }
 
-        if($Status == 3){
+        if ($Status == 3) {
             $Status = 'Cancelada';
         }
-        
-        class_qaActivityAdd($row_usersinfo['Id'], 'qa_appointments', $CustomersId, $Status, 'Comentarios: (' . $Details . ')', 2);
+
+        //get customersid
+        $qaappointmentsinfo     = class_qaAppointmentsInfo($Id);
+        $row_qaappointmentsinfo = $qaappointmentsinfo['response'][0];
+        $CustomersId            = $row_qaappointmentsinfo['CustomersId'];
+
+        $qaactivityadd = class_qaActivityAdd($row_usersinfo['Id'], 'qa_appointments', $CustomersId, $Status, 'Comentarios: (' . $Details . ')', 2);
+
     }
 
     //header('Location: ' . 'reports_qaappointments.php');
@@ -43,7 +49,7 @@ if ($qaappointmentslist['rows']) {
 }
 
 //Status list
-$Status = 1;
+$Status         = 1;
 $array_status   = array();
 $array_status[] = array('label' => 'Terminar', 'value' => '1', 'selected' => $Status);
 $array_status[] = array('label' => 'Aspectos Varios', 'value' => '2', 'selected' => $Status);
@@ -52,7 +58,7 @@ $array_status[] = array('label' => 'Aspectos Varios', 'value' => '2', 'selected'
 //Form Generator
 $formFields = array(
     'form_add'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'form_add', 'value' => 1),
-    'Visita'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'CustomersId', 'value' => $array_appointments),
+    'Visita'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Id', 'value' => $array_appointments),
     'Comentarios' => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => true, 'position' => 1, 'name' => 'Details', 'value' => $Details),
     'Estado'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'select', 'required' => true, 'position' => 1, 'name' => 'Status', 'value' => $array_status),
 );

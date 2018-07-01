@@ -28,8 +28,7 @@ function class_formGenerator($formParams, $formFields, $formButtons)
                             <?php if ($formParams['method']) {?>
                             <form id="validationForm" role="form" action="<?php echo $formParams['action']; ?>" method="<?php echo $formParams['method']; ?>" enctype="<?php echo $formParams['enctype']; ?>">
                                 <?php }?>
-                                <?php foreach ($formFields as $label => $row) {
-        ?>
+                                <?php foreach ($formFields as $label => $row) {?>
                                 <div class="form-group">
                                     <?php if ($row['position']) {?>
                                         <?php if ($label) {?>
@@ -49,8 +48,8 @@ function class_formGenerator($formParams, $formFields, $formButtons)
                                     <?php }?>
                                     <?php
 } else {
-            $row['inputType'] = 'hidden';
-        }
+        $row['inputType'] = 'hidden';
+    }
         ?>
 
                                     <?php echo class_formInput($row['placeholder'], $row['inputType'], $row['name'], $label, $row['value'], $row['required']); ?>

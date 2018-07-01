@@ -22,12 +22,10 @@ function class_reportsGenerator($array, $params, $filters)
     }
 
     //resume
-
     $resume = null;
     if (isset($_GET['resume'])) {
         $resume = $_GET['resume'];
     }
-
     if ($params['resume']) {
         if ($resume == 'Week') {
         } elseif ($resume == 'Info') {
@@ -49,7 +47,7 @@ function class_reportsGenerator($array, $params, $filters)
     //results table
     if ($resume == 'Week') {
         $results_table = class_reportsTableWeek($array, $params);
-    }elseif($resume == 'Info'){
+    } elseif ($resume == 'Info') {
         $results_table = class_reportsTableInfo($array, $params);
     } else {
         if ($params['table']) {

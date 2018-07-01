@@ -28,7 +28,7 @@ if ($userslist['rows']) {
 <?php
 // define buttons for form
 $formButtons = array(
-    LANG_SHOWRESULTS => array('buttonType' => 'submit', 'disabled' => null, 'class' => 'form-control', 'name' => 'action', 'value' => 'Mostrar', 'action' => null),
+    LANG_SHOWRESULTS => array('buttonType' => 'submit', 'disabled' => null, 'class' => 'form-control', 'name' => 'action', 'value' => 'Mostrar', 'action' => null)
 );
 
 echo class_formButtons($formButtons)

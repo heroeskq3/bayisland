@@ -65,10 +65,10 @@
         if ($params['showactions']) {
 
             $results .= '<td>';
-            
-            if(isset($row_array['showactions'])){
+
+            if (isset($row_array['showactions'])) {
                 $row_array['showactions'] = $row_array['showactions'];
-            }else{
+            } else {
                 $row_array['showactions'] = 1;
             }
 

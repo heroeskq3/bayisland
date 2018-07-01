@@ -29,7 +29,7 @@ function class_tableMainList($array)
             }
 
             if ($qacustomersinfo['rows']) {
-                $customer = $row_qacustomersinfo['FullName'].'hola';
+                $customer = $row_qacustomersinfo['FullName'] . 'hola';
             } else {
                 $customer = 'Sin referencia' . ' (' . $reference . ')';
             }

@@ -29,7 +29,7 @@ function class_reportsTable($array, $params)
                 }
             }
             if (!$resume) {
-                if ($params['showaction']) {
+                if (@$params['showaction']) { //TODO: revisar
                     $results .= '<th>Actions</th>';
                 }
             }
@@ -116,7 +116,7 @@ function class_reportsTable($array, $params)
             }
 
             //actions buttons
-            if ($params['showaction']) {
+            if (@$params['showaction']) { //TODO: revisar
                 $results .= '<td>';
                 if ($params['view']) {
                     $results .= '<a href="?action=view&Id=' . $row_array['index'] . '" class="btn pmd-btn-fab pmd-btn-flat pmd-ripple-effect btn-default btn-sm"><i class="fa fa-eye fa-fw" style="font-size:15px;"></i></a>';
@@ -232,7 +232,10 @@ function class_reportsTable($array, $params)
         ";
     }
     //info action button
-    if (@$params['info'] && !$resume) {
+    if(!isset($params['info'])){
+        $params['info'] = null;
+    }
+    if ($params['info'] && !$resume) {
         $results .= "
         { text: '" . LANG_INFO2 . "',
             action: function ( e, dt, button, config ) {

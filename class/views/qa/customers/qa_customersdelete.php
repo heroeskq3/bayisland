@@ -12,7 +12,7 @@ if ($action == "delete") {
     if ($qacustomersdelete['rows']) {
         $DateSet = date_create($DateSet);
         $DateSet = date_format($DateSet, 'l, j F Y');
-        $Details = 'Se ha eliminado el cliente ' . $customer;
+        $Details = $customer;
         $test    = class_qaActivityAdd($row_usersinfo['Id'], 'qa_customers', $Id, 'Cliente Eliminado', $Details, 2);
     }
 

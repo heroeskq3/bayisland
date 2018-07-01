@@ -1,5 +1,5 @@
 <?php
-//MYSQL - RECORDSET
+//ARRAY - RECORDSET
 function class_array($array, $debug)
 {
 
@@ -16,7 +16,7 @@ function class_array($array, $debug)
     $response = $array;
     $rows     = $array_totalRows;
 
-    $results = api($status, $request, $response, $rows, $debug);
+    $results = api($status, null, $request, $response, $rows, $debug);
 
     return $results;
 }

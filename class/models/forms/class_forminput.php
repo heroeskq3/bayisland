@@ -109,7 +109,6 @@ function class_formInput($placeholder, $inputType, $name, $label, $value, $requi
                     } else {
                         $results .= null;
                     }
-
                 }
                 $results .= '>';
                 if ($row_option['label']) {
@@ -155,7 +154,6 @@ function class_formInput($placeholder, $inputType, $name, $label, $value, $requi
                     } else {
                         $results .= null;
                     }
-
                 }
                 $results .= '>';
                 if ($row_option['label']) {
@@ -214,7 +212,7 @@ function class_formInput($placeholder, $inputType, $name, $label, $value, $requi
         }
         $results .= '</select>';
         ?>
-        <?php
+<?php
 function array_envia($array)
         {
 
@@ -273,6 +271,23 @@ function array_envia($array)
         $results .= '</div>';
 
     }
+    
+    //RADIO INPUT
+    if ($inputType == 'radio') {
+        if ($value) {
+            $checked = 'checked';
+        } else {
+            $checked = null;
+        }
+
+        $results .= '<div>';
+        $results .= '<input type="radio" name="' . $name . '" value="' . $value . '">';
+        $results .= '<label></label>';
+        $results .= '</div>';
+        $results .= '<div class="img-contenedor">';
+        $results .= '</div>';
+
+    }
 
     //RADIO INPUT WITH IMAGE
     if ($inputType == 'radio_img') {
@@ -284,7 +299,7 @@ function array_envia($array)
 
         $results .= '<label class="radio_img">';
         $results .= '<input type="radio" name="' . $name . '" value="' . $value . '">';
-        $results .= '<img src="resources/surveys/'.IMG_SURVEYINPUT.'">';
+        $results .= '<img src="resources/surveys/' . IMG_SURVEYINPUT . '">';
         $results .= '</label>';
     }
     //RADIO INPUT WITH IMAGE
@@ -296,7 +311,7 @@ function array_envia($array)
         }
         $results .= '<label class="radio_img">';
         $results .= '<input type="checkbox" name="' . $name . '" value="' . $value . '">';
-        $results .= '<img src="resources/surveys/'.IMG_SURVEYINPUT.'">';
+        $results .= '<img src="resources/surveys/' . IMG_SURVEYINPUT . '">';
         $results .= '</label>';
     }
 

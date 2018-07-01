@@ -12,8 +12,8 @@ if ($form_add) {
 
     //set activity
     if ($qacustomersadd['rows']) {
-        $Details = "Se ha creado el cliente: ".$FullName;
-        class_qaActivityAdd($UsersId, 'qa_customers', null, 'Cliente Nuevo', $Details, 2);
+        $Details = "Se ha creado el cliente: " . $FullName;
+        class_qaActivityAdd($UsersId, 'qa_customers', $qacustomersadd['lastid'], 'Cliente Nuevo', $Details, 2);
     }
 
     header('Location: ' . $_SERVER['PHP_SELF']);
@@ -93,12 +93,12 @@ $formFields = array(
     LANG_PHONE2   => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone2', 'value' => null),
     'Contacto'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Contact', 'value' => null),
     'Celular'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Mobile', 'value' => null),
-  
+
     'E-Mail'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email', 'value' => null),
-    'E-Mail2'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email2', 'value' => null),
-    'E-Mail3'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email3', 'value' => null),
-    'E-Mail4'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email4', 'value' => null),
-    'E-Mail5'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email5', 'value' => null),
+    'E-Mail2'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email2', 'value' => null),
+    'E-Mail3'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email3', 'value' => null),
+    'E-Mail4'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email4', 'value' => null),
+    'E-Mail5'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email5', 'value' => null),
 
     LANG_COUNTRY  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => 'Costa Rica'),
 

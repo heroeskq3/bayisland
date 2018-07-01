@@ -60,7 +60,7 @@ if ($qacustomerslist['rows']) {
 
             //Define custom Patern Table Alias Keys => Values
             'ID'          => $row_qacustomerslist['Id'],
-            LANG_NAME     => $row_qacustomerslist['FullName'] . $row_context['test'],
+            LANG_NAME     => $row_qacustomerslist['FullName'],
             'Agente'      => $row_qausersinfo['UserName'],
             'Clase'       => $row_qaclassesinfo['Name'],
             LANG_CATEGORY => $row_qacategoryinfo['Name'],

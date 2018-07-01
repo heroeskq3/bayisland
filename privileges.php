@@ -1,21 +1,21 @@
 <?php
 //Section Parameters
 $sectionParams = array(
-    'tittle' => 'Privileges Manager',
+    'tittle'      => 'Privileges Manager',
     'description' => '',
-    'homedir' => '',
-    'restrict' => true,
-    'navbar' => true,
-    'sidebar' => true,
-    'searchbar' => false,
-    'style' => true,
-    'debug' => false,
+    'homedir'     => '',
+    'restrict'    => true,
+    'navbar'      => true,
+    'sidebar'     => true,
+    'searchbar'   => false,
+    'style'       => true,
+    'debug'       => false,
 );
 require_once 'header.php';
 
 //methods
 switch ($action) {
-
+    
     default:
         require_once 'class/views/privileges/privileges_add.php';
         require_once 'class/views/privileges/privileges_list.php';
@@ -32,7 +32,7 @@ switch ($action) {
 
     case 'delete':
         require_once 'class/views/privileges/privileges_delete.php';
-        break;
+        break;     
 }
 
 require_once 'footer.php';

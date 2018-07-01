@@ -75,7 +75,6 @@ define('LANG_EMAIL', 'E-Mail');
 define('LANG_REMEMBERME', 'Remember Me');
 define('LANG_LOGINENTER', 'Login');
 
-
 //ADMIN
 define('LANG_ADD', 'Add');
 define('LANG_LIST', 'List');

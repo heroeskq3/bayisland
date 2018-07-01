@@ -18,7 +18,6 @@ function class_arrayFilter($array, $field, $value, $condition)
         $condition_2 = false;
         $condition_3 = true;
         $condition_4 = false;
-
     }
 
     //special all
@@ -39,16 +38,12 @@ function class_arrayFilter($array, $field, $value, $condition)
     if ($array) {
         $array_filter = array();
         foreach ($array as $row) {
-
-
-
             //Condition 1
             if ($condition_1) {
                 if ($row[$field] == $value) {
                     $array_filter[] = $row;
                 }
             }
-
             //Condition 2
             if ($condition_2) {
                 if ($row[$field] == 0) {
@@ -64,13 +59,12 @@ function class_arrayFilter($array, $field, $value, $condition)
             //Condition 4
             if ($condition_4) {
                 foreach ($row as $key_condition => $row_condition) {
-                    if (preg_match("/".$value."(.*)/i",  $row[$key_condition])) {
-                    //if ((@preg_match("^" . $value . "", $row[$key_condition],PCRE_CASELESS))) {
+                    if (preg_match("/" . $value . "(.*)/i", $row[$key_condition])) {
+                        //if ((@preg_match("^" . $value . "", $row[$key_condition],PCRE_CASELESS))) {
                         $array_filter[] = $row;
                     }
                 }
             }
-
         }
         $debug = 0;
 

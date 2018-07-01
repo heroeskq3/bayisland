@@ -38,7 +38,7 @@ if ($qaactivitystatuslist['rows']) {
             $customer = 'Sin referencia' . ' (' . $reference . ')';
         }
 
-        $results .= '<table width="755px" border="0" bgcolor="#ccc" cellpadding="5" cellspacing="1" style="font-family:arial;">';
+        $results .= '<table width="100%" border="0" bgcolor="#ccc" cellpadding="5" cellspacing="1" style="font-family:arial;">';
 
         //Agente
         $results .= '<tr>';
@@ -81,7 +81,7 @@ if ($qaactivitystatuslist['rows']) {
             if ($sent['status'] == "ok") {
                 class_qaActivityStatusUpdate($row_qaactivitystatuslist['Id']);
                 echo "ok - $to";
-            }else{
+            } else {
                 echo "error";
             }
         }

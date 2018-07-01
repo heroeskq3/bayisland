@@ -1,9 +1,10 @@
 <?php
 //API ARRAY RESULTS - JSON FOR DEBBUGER - FAULT CODE
-function api($status,$request, $response, $rows, $debug)
+function api($status, $lastid, $request, $response, $rows, $debug)
 {
     $results = array(
         "status"   => $status,
+        "lastid"   => $lastid,
         "request"  => $request,
         "rows"     => $rows,
         "response" => $response

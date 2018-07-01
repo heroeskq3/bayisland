@@ -1,12 +1,16 @@
 body {
     color: #555;
 }
+
 .btn {
     margin-right: 6px;
 }
+
+
 /*button.btn {
     margin: 6px;
 }*/
+
 
 /* upload image*/
 
@@ -14,6 +18,7 @@ body {
     position: relative;
     overflow: hidden;
 }
+
 .btn-file input[type=file] {
     position: absolute;
     top: 0;
@@ -29,46 +34,62 @@ body {
     cursor: inherit;
     display: block;
 }
+
 .dataTables_filter {
     text-align: right;
 }
+
 .dataTables_filter input {
     margin: 5px;
 }
+
 #img-upload {
     width: 100%;
 }
+
 label {
     height: 10px;
 }
+
 .pull-filter {
     padding-top: 18px;
 }
+
 .progress {
     height: 30px;
     margin-bottom: 0;
     background-color: #A9A9A9;
 }
-.progress-bar.active, .progress.active .progress-bar {
+
+.progress-bar.active,
+.progress.active .progress-bar {
     text-align: left;
     padding: 5px;
 }
+
 #wrapper {
     padding-top: 40px;
 }
+
 @media screen and (max-width: 767px) {
-    div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate {
+    div.dataTables_wrapper div.dataTables_length,
+    div.dataTables_wrapper div.dataTables_filter,
+    div.dataTables_wrapper div.dataTables_info,
+    div.dataTables_wrapper div.dataTables_paginate {
         padding: 5px;
     }
     .table-responsive {
         border: 0px solid #ddd;
     }
-    ul.navbar-right{
+    ul.navbar-right {
         display: none;
     }
 }
+
+
 /* upload image end*/
 
-table.table-bordered.dataTable tbody th, table.table-bordered.dataTable tbody td {
+table.table-bordered.dataTable tbody th,
+table.table-bordered.dataTable tbody td {
     border-bottom-width: 90px;
 }

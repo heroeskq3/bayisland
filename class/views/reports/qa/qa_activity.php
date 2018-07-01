@@ -26,8 +26,8 @@ function class_tableMainList($array)
 
                 $qascheduleinfo     = class_qaAppointmentsInfo($reference);
                 $row_qascheduleinfo = $qascheduleinfo['response'][0];
-                
-                $reference          = $row_qascheduleinfo['CustomersId'];
+
+                $reference = $row_qascheduleinfo['CustomersId'];
 
                 $qacustomersinfo     = class_qaCustomersInfo($reference);
                 $row_qacustomersinfo = $qacustomersinfo['response'][0];
@@ -42,6 +42,7 @@ function class_tableMainList($array)
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
+                'Sel'         => class_formInput(null, 'checkbox', 'activity_check[]', null, 'value', null),
                 'Fecha'       => $row_array['DateAdd'],
                 'Responsable' => $row_usersinfo['UserName'],
                 'Actividad'   => $row_array['Description'],

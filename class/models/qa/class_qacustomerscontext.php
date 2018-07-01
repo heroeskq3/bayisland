@@ -1,17 +1,18 @@
 <?php
 function class_qaCustomersContext($createdate, $lastvisit, $period, $max)
 {
-    if(!$lastvisit){
+    $status     = null;
+    if (!$lastvisit) {
         $date1      = date("Y-m-d", strtotime($createdate)); //Customer Last Date
         $date2      = date("Y-m-d"); //today
         $datediff   = class_diffDate($date1, $date2);
         $max_period = $period;
         $max_danger = $max;
-        if($datediff>=$max_period){
+        if ($datediff >= $max_period) {
             $lastvisit = $createdate;
-        }else{
-        $status  = CONTEXT_DEFAULT;
-        $context    = 'default';
+        } else {
+            $status  = CONTEXT_DEFAULT;
+            $context = 'default';
         }
 
     }
