@@ -1,6 +1,6 @@
 <?php
 $table_params = array(
-    'name'        => "List",
+    'name'        => "Lista",
     'searchbar'   => true,
     'rowsbypage'  => 10,
     'showactions' => true,

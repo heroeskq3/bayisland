@@ -540,3 +540,8 @@ $Position = null;
 if (isset($_POST['Position'])) {
     $Position = $_POST['Position'];
 }
+
+$ActivityId = null;
+if (isset($_POST['ActivityId'])) {
+    $ActivityId = $_POST['ActivityId'];
+}

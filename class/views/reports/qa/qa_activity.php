@@ -1,5 +1,4 @@
 <?php
-
 //Table Main
 function class_tableMainList($array)
 {
@@ -37,12 +36,11 @@ function class_tableMainList($array)
                 } else {
                     $customer = 'Sin referencia' . ' (' . $reference . ')';
                 }
-
             }
 
             $results[] = array(
                 //Define custom Patern Table Alias Keys => Values
-                'Sel'         => class_formInput(null, 'checkbox', 'activity_check[]', null, 'value', null),
+                null          => class_formInput(null, 'checkbox_v2', 'ActivityId[]', null, $row_array['Id'], null),
                 'Fecha'       => $row_array['DateAdd'],
                 'Responsable' => $row_usersinfo['UserName'],
                 'Actividad'   => $row_array['Description'],
@@ -91,11 +89,12 @@ $reportsParams = array(
     'table'      => true,
     'limit'      => 10,
     'hidecols'   => '',
-    'showaction' => $showaction,
+    //'showaction' => $showaction,
+    'showaction' => false, //patch for checkbox multiple select for activity processing
     'add'        => false,
     'view'       => false,
     'confirm'    => true,
 );
 
 //generate reports
-print class_reportsGenerator($table_array, $reportsParams, null);
+print class_reportsGenerator4($table_array, $reportsParams, null);

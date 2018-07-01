@@ -156,6 +156,7 @@ require_once PATH_MODELS . $namespace . '/class_reportsfilterbar.php';
 require_once PATH_MODELS . $namespace . '/class_reportsgenerator.php';
 require_once PATH_MODELS . $namespace . '/class_reportsgenerator2.php';
 require_once PATH_MODELS . $namespace . '/class_reportsgenerator3.php';
+require_once PATH_MODELS . $namespace . '/class_reportsgenerator4.php';
 require_once PATH_MODELS . $namespace . '/class_reportstable.php';
 require_once PATH_MODELS . $namespace . '/class_reportstableweek.php';
 require_once PATH_MODELS . $namespace . '/class_reportstableinfo.php';

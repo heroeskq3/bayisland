@@ -2,7 +2,7 @@
 //Section Parameters
 $sectionParams = array(
     'tittle'      => 'Logout',
-    'description' => '',
+    'description' => 'test',
     'homedir'     => '',
     'restrict'    => false,
     'navbar'      => false,

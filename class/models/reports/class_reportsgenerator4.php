@@ -22,8 +22,16 @@ function class_reportsGenerator4($array, $params, $filters)
     }
 
     //resume
+    $resume = null;
+    if (isset($_GET['resume'])) {
+        $resume = $_GET['resume'];
+    }
     if ($params['resume']) {
-        $array = class_resportsResume($array);
+        if ($resume == 'Week') {
+        } elseif ($resume == 'Info') {
+        } elseif ($resume) {
+            $array = class_resportsResume($array);
+        }
     }
 
     //limit
@@ -35,13 +43,17 @@ function class_reportsGenerator4($array, $params, $filters)
     if ($params['order']) {
         $array = class_reportsOrder($array);
     }
-    
+
     //results table
-    if ($params['table']) {
-        $results_table = class_reportsTable($array, $params);
+    if ($resume == 'Week') {
+        $results_table = class_reportsTableWeek($array, $params);
+    } elseif ($resume == 'Info') {
+        $results_table = class_reportsTableInfo($array, $params);
+    } else {
+        if ($params['table']) {
+            $results_table = class_reportsTable($array, $params);
+        }
     }
-
-
 
     $results .= '<ul class="nav nav-tabs">';
     $results .= '<li class="active"><a href="#home" data-toggle="tab" aria-expanded="true">Resumen</a></li>';
@@ -71,7 +83,15 @@ function class_reportsGenerator4($array, $params, $filters)
 
     $results .= '<div class="tab-content">';
     $results .= '<div class="tab-pane fade active in" id="home">';
+
+    $results .= '<form action="" method="post">';
     $results .= '<p>' . $results_table . '</p>';
+    if ($array) {
+        $results .= class_formInput(null, 'submit', 'action', 'label', 'Procesar', null);
+    }
+
+    $results .= '</form>';
+
     $results .= '</div>';
     $results .= '<div class="tab-pane fade" id="profile">';
     $results .= '<p>' . $results_filterbar . '</p>';

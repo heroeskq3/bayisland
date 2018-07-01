@@ -14,12 +14,12 @@ $sectionParams = array(
 require_once 'header.php';
 
 //methods
-switch ($action) {
+switch (isset($_POST['action'])) {
     
     default:
         require_once 'class/views/reports/qa/qa_activity.php';
         break;
-    case 'check':
+    case 'Procesar':
         require_once 'class/views/qa/activity/qa_activitycheck.php';
         break;
 }

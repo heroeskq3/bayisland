@@ -241,6 +241,29 @@ function array_envia($array)
     </script>
     <?php
 }
+    //CHECKBX INPUT v3
+    if ($inputType == 'checkbox_v3') {
+        if ($value) {
+            $checked = 'checked';
+        } else {
+            $checked = null;
+        }
+
+        $results .= '<a class="checkbox_v3">';
+        $results .= '<input id="box1" type="checkbox" checked />';
+        $results .= '<label for="box1"></label>';
+        $results .= '</a>';
+    }
+
+    //CHECKBX INPUT v2
+    if ($inputType == 'checkbox_v2') {
+        if ($required) {
+            $checked = 'checked';
+        } else {
+            $checked = null;
+        }
+        $results .= '<input name="' . $name . '" type="checkbox" value="' . $value . '" ' . $checked . '>';
+    }
 
     //CHECKBX INPUT
     if ($inputType == 'checkbox') {
@@ -255,6 +278,7 @@ function array_envia($array)
         $results .= '<span> ' . $label . '</span>';
         $results .= '</label>';
     }
+
     //RADIO INPUT
     if ($inputType == 'radio') {
         if ($value) {
@@ -271,7 +295,7 @@ function array_envia($array)
         $results .= '</div>';
 
     }
-    
+
     //RADIO INPUT
     if ($inputType == 'radio') {
         if ($value) {
