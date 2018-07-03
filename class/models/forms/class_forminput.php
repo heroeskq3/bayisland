@@ -243,16 +243,42 @@ function array_envia($array)
 }
     //CHECKBX INPUT v3
     if ($inputType == 'checkbox_v3') {
-        if ($value) {
+    ?>
+<script type='text/javascript'>
+ $(document).ready(function(){
+   // Check or Uncheck All checkboxes
+   $("#checkall").change(function(){
+     var checked = $(this).is(':checked');
+     if(checked){
+       $(".checkbox").each(function(){
+         $(this).prop("checked",true);
+       });
+     }else{
+       $(".checkbox").each(function(){
+         $(this).prop("checked",false);
+       });
+     }
+   });
+ 
+  // Changing state of CheckAll checkbox 
+  $(".checkbox").click(function(){
+ 
+    if($(".checkbox").length == $(".checkbox:checked").length) {
+      $("#checkall").prop("checked", true);
+    } else {
+      $("#checkall").removeAttr("checked");
+    }
+
+  });
+});
+</script>
+<?php
+        if ($required) {
             $checked = 'checked';
         } else {
             $checked = null;
         }
-
-        $results .= '<a class="checkbox_v3">';
-        $results .= '<input id="box1" type="checkbox" checked />';
-        $results .= '<label for="box1"></label>';
-        $results .= '</a>';
+        $results .= '<input id="' . $label . '" name="' . $name . '" type="checkbox" value="' . $value . '" ' . $checked . '>';
     }
 
     //CHECKBX INPUT v2
@@ -262,7 +288,7 @@ function array_envia($array)
         } else {
             $checked = null;
         }
-        $results .= '<input name="' . $name . '" type="checkbox" value="' . $value . '" ' . $checked . '>';
+        $results .= '<input class="checkbox" name="' . $name . '" type="checkbox" value="' . $value . '" ' . $checked . '>';
     }
 
     //CHECKBX INPUT

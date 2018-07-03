@@ -14,9 +14,9 @@ if (isset($_POST['password']) && isset($_POST['username'])) {
 
         $_SESSION['UserId'] = $row_login['Id'];
 
-        if($_POST['remember']){
-            setcookie("PHPSESSID", $_COOKIE[session_name()], time()+31622400);
-        }else{
+        if ($_POST['remember']) {
+            setcookie("PHPSESSID", $_COOKIE[session_name()], time() + 31622400);
+        } else {
             setcookie("PHPSESSID", $_COOKIE[session_name()]);
         }
 

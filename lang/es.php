@@ -258,6 +258,7 @@ define('LANG_INFO2', 'Ficha');
 
 //DASHBOARD
 define('LANG_VIEWDETAILS', 'Ver detalle');
+define('LANG_VIEWMORE', 'Ver Más');
 
 //SURVEY - TEST
 define('LANG_CATEGORY', 'Catergoría');

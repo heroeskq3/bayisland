@@ -86,7 +86,7 @@ function class_reportsGenerator4($array, $params, $filters)
 
     $results .= '<form action="" method="post">';
     $results .= '<p>' . $results_table . '</p>';
-    if ($array) {
+    if ($array && @$params['checkbox']) {
         $results .= class_formInput(null, 'submit', 'action', 'label', 'Procesar', null);
     }
 
