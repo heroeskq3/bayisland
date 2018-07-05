@@ -49,6 +49,7 @@ function class_reportsFilterBar($array)
                 }
 
                 //$array_col = array_column($array, $key);
+                $array     = class_arraySort($array, $key, SORT_ASC);
                 $array_col = get_field_data($array, $key);
                 $array_uni = array_unique($array_col);
 
