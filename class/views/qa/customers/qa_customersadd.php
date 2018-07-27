@@ -16,7 +16,9 @@ if ($form_add) {
         class_qaActivityAdd($UsersId, 'qa_customers', $qacustomersadd['lastid'], 'Cliente Nuevo', $Details, 2);
     }
 
-    header('Location: ' . $_SERVER['PHP_SELF']);
+    header(
+        'Location: ' . $_SERVER['PHP_SELF']
+    );
     die();
 }
 
@@ -62,7 +64,6 @@ if ($stateslist['rows']) {
                 $array_cities[] = array('patern' => $row_citieslist['ZonesId'], 'label' => $row_citieslist['Name'], 'value' => $row_citieslist['Name'], 'selected' => $ZonesId);
             }
         }
-
     }
 }
 

@@ -1,9 +1,7 @@
 <?php
 //DEBUGGER SESSION
 $debug = null;
-if (isset($_SESSION['debug'])) {
-    $debug = $_SESSION['debug'];
-}
+
 $phperror = null;
 if (isset($_SESSION['phperror'])) {
     $phperror = $_SESSION['phperror'];
@@ -544,4 +542,46 @@ if (isset($_POST['Position'])) {
 $ActivityId = null;
 if (isset($_POST['ActivityId'])) {
     $ActivityId = $_POST['ActivityId'];
+}
+$DateStart = null;
+if (isset($_POST['DateStart'])) {
+    $DateStart = $_POST['DateStart'];
+}
+$DateEnd = null;
+if (isset($_POST['DateEnd'])) {
+    $DateEnd = $_POST['DateEnd'];
+}
+$Tittle = null;
+if (isset($_POST['Tittle'])) {
+    $Tittle = $_POST['Tittle'];
+}
+$Notice = null;
+if (isset($_POST['Notice'])) {
+    $Notice = $_POST['Notice'];
+}
+$TypeId = null;
+if (isset($_POST['TypeId'])) {
+    $TypeId = $_POST['TypeId'];
+}
+$Color = null;
+if (isset($_POST['Color'])) {
+    $Color = $_POST['Color'];
+}
+
+//calendar
+$title = null;
+if (isset($_POST['title'])) {
+    $title = $_POST['title'];
+}
+$start = null;
+if (isset($_POST['start'])) {
+    $start = $_POST['start'];
+}
+$end = null;
+if (isset($_POST['end'])) {
+    $end = $_POST['end'];
+}
+$color = null;
+if (isset($_POST['color'])) {
+    $color = $_POST['color'];
 }

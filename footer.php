@@ -1,5 +1,4 @@
-
-    <?php if($sectionParams['style']==1){ ?>
+    <?php if ($sectionParams['style'] == 1) {?>
 
         </div>
 
@@ -7,13 +6,13 @@
 
     </div>
     <!-- /#wrapper -->
-<?php } ?>
-<?php require_once PATH_VIEWS.'/debug/debug.php';?>
-<?php if($sectionParams['style']){ ?>
-<script src="<?php echo PATH_ASSETS;?>bootstrap/js/bootstrap-select.min.js"></script>
+<?php }?>
+<?php require_once PATH_VIEWS . '/debug/debug.php';?>
+<?php if ($sectionParams['style']) {?>
+<script src="<?php echo PATH_ASSETS; ?>bootstrap/js/bootstrap-select.min.js"></script>
 
-<?php if(true){ ?>
-<script src="<?php echo PATH_ASSETS;?>js/tinymce/tinymce.min.js"></script>
+<?php if (true) {?>
+<script src="<?php echo PATH_ASSETS; ?>js/tinymce/tinymce.min.js"></script>
 <script>
 tinymce.init({
   selector: "textarea",
@@ -32,7 +31,7 @@ tinymce.init({
 
   menubar: false,
   toolbar_items_size: 'small',
-  
+
   init_instance_callback: function () {
     window.setTimeout(function() {
       $("#div").show();
@@ -42,6 +41,6 @@ tinymce.init({
 
 </script>
 <?php } //style ?>
-<?php } ?>
+<?php }?>
 </body>
 </html>

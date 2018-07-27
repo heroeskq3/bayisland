@@ -232,3 +232,19 @@ require_once PATH_MODELS . $namespace . 'class_zoneslist.php';
 require_once PATH_MODELS . $namespace . 'class_zonesadd.php';
 require_once PATH_MODELS . $namespace . 'class_zonesupdate.php';
 require_once PATH_MODELS . $namespace . 'class_zonesdelete.php';
+
+//calendar types
+$namespace = 'calendar/types/';
+require_once PATH_MODELS . $namespace . 'class_calendartypesinfo.php';
+require_once PATH_MODELS . $namespace . 'class_calendartypeslist.php';
+require_once PATH_MODELS . $namespace . 'class_calendartypesadd.php';
+require_once PATH_MODELS . $namespace . 'class_calendartypesupdate.php';
+require_once PATH_MODELS . $namespace . 'class_calendartypesdelete.php';
+
+//calendar events
+$namespace = 'calendar/events/';
+require_once PATH_MODELS . $namespace . 'class_calendareventslist.php';
+require_once PATH_MODELS . $namespace . 'class_calendareventsadd.php';
+require_once PATH_MODELS . $namespace . 'class_calendareventsupdate.php';
+require_once PATH_MODELS . $namespace . 'class_calendareventsupdatetittle.php';
+require_once PATH_MODELS . $namespace . 'class_calendareventsdelete.php';

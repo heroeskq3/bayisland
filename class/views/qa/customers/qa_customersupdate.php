@@ -115,12 +115,12 @@ $formFields = array(
     'Teléfono 2'  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Phone2', 'value' => $row_qacustomersinfo['Phone2']),
     'Contacto'    => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'text', 'required' => false, 'position' => 1, 'name' => 'Contact', 'value' => $row_qacustomersinfo['Contact']),
     'Celular'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'tel', 'required' => false, 'position' => 1, 'name' => 'Mobile', 'value' => $row_qacustomersinfo['Mobile']),
-    
+
     'E-Mail'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email', 'value' => $row_qacustomersinfo['Email']),
-    'E-Mail2'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email2', 'value' => $row_qacustomersinfo['Email2']),
-    'E-Mail3'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email3', 'value' => $row_qacustomersinfo['Email3']),
-    'E-Mail4'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email4', 'value' => $row_qacustomersinfo['Email4']),
-    'E-Mail5'      => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email5', 'value' => $row_qacustomersinfo['Email5']),
+    'E-Mail2'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email2', 'value' => $row_qacustomersinfo['Email2']),
+    'E-Mail3'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email3', 'value' => $row_qacustomersinfo['Email3']),
+    'E-Mail4'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email4', 'value' => $row_qacustomersinfo['Email4']),
+    'E-Mail5'     => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'email', 'required' => false, 'position' => 1, 'name' => 'Email5', 'value' => $row_qacustomersinfo['Email5']),
 
     LANG_COUNTRY  => array('addbutton' => null, 'placeholder' => null, 'inputType' => 'hidden', 'required' => false, 'position' => 0, 'name' => 'Country', 'value' => $row_qacustomersinfo['Country']),
 

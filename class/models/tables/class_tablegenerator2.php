@@ -97,5 +97,4 @@ function class_tableGenerator($array, $params)
     $results .= '</section>';
 
     return $results;
-}?>
-
+}

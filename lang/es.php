@@ -255,6 +255,7 @@ define('LANG_DAYS', 'Días');
 define('LANG_CUSTOMERS', 'Clientes');
 define('LANG_VISIT', 'Visita');
 define('LANG_INFO2', 'Ficha');
+define('LANG_COLOR', 'Color');
 
 //DASHBOARD
 define('LANG_VIEWDETAILS', 'Ver detalle');
